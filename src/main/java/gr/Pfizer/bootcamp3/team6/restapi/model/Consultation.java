@@ -17,6 +17,7 @@ public class Consultation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private Date creationDate;
+    private String consultation;
 
     @ManyToOne
     private Doctor doctor;

@@ -18,11 +18,11 @@ public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String fname;
-    private String lname;
+    private String firstName;
+    private String lastName;
     private String email;
     private String password;
-    private int telnumber;
+    private int telephoneNumber;
     private String address;
     private Date dob;
     private PatientGender gender;
@@ -34,5 +34,5 @@ public class Patient {
     private List<Carb> listOfCarbs = new ArrayList<>();
 
     @OneToMany(mappedBy = "patient",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Glycose> listOfGlycose = new ArrayList<>();
+    private List<Glucose> listOfGlucose = new ArrayList<>();
 }

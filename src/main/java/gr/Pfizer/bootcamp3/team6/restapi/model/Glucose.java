@@ -13,7 +13,7 @@ import java.util.Date;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Glycose {
+public class Glucose {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

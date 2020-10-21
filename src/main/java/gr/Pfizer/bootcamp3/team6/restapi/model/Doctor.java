@@ -17,11 +17,11 @@ public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String fname;
-    private String lname;
+    private String firstName;
+    private String lastName;
     private String email;
     private String password;
-    private int telnumber;
+    private int telephoneNumber;
     private String address;
     private Date dob;
 
