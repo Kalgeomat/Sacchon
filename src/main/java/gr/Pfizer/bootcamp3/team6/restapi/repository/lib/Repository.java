@@ -37,7 +37,7 @@ public abstract class Repository<T, K> implements IRepository<T, K> {
     @Override
     public Optional<T> save(T t) {
         try {
-            entityManager.getTransaction().begin();
+            entityManager.getTransaction().begin(); //to transaction to xrisimopoioume otan kanoume allages
             entityManager.persist(t);
             entityManager.getTransaction().commit();
             return Optional.of(t);
