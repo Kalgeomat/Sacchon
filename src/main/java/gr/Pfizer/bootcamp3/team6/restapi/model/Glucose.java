@@ -14,6 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 public class Glucose {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

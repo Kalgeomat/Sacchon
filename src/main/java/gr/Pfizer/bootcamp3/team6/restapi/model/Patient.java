@@ -22,10 +22,10 @@ public class Patient {
     private String lastName;
     private String email;
     private String password;
-    private int telephoneNumber;
+    private long telephoneNumber;
     private String address;
     private Date dob;
-    private PatientGender gender;
+    private Gender gender;
 
     @ManyToOne
     private Doctor doctor;

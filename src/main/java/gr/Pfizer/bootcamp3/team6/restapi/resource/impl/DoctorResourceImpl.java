@@ -1,16 +1,12 @@
-package gr.Pfizer.bootcamp3.team6.restapi.resource.util;
+package gr.Pfizer.bootcamp3.team6.restapi.resource.impl;
 
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.BadEntityException;
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.NotFoundException;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Doctor;
-import gr.Pfizer.bootcamp3.team6.restapi.model.Patient;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.DoctorRepository;
-import gr.Pfizer.bootcamp3.team6.restapi.repository.PatientRepository;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.util.JpaUtil;
 import gr.Pfizer.bootcamp3.team6.restapi.representation.DoctorRepresentation;
-import gr.Pfizer.bootcamp3.team6.restapi.representation.PatientRepresentation;
 import gr.Pfizer.bootcamp3.team6.restapi.resource.DoctorResource;
-import gr.Pfizer.bootcamp3.team6.restapi.resource.PatientResource;
 import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
 

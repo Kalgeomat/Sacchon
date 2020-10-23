@@ -1,7 +1,7 @@
 package gr.Pfizer.bootcamp3.team6.restapi.representation;
 
 import gr.Pfizer.bootcamp3.team6.restapi.model.Patient;
-import gr.Pfizer.bootcamp3.team6.restapi.model.PatientGender;
+import gr.Pfizer.bootcamp3.team6.restapi.model.Gender;
 import lombok.Data;
 
 import java.util.Date;
@@ -14,10 +14,10 @@ public class PatientRepresentation {
     private String lastName;
     private String email;
     private String password;
-    private int telephoneNumber;
+    private long telephoneNumber;
     private String address;
     private Date dob;
-    private PatientGender gender;
+    private Gender gender;
 
     private String uri;
 
@@ -35,8 +35,8 @@ public class PatientRepresentation {
 
         return patient;
     }
-    static public PatientRepresentation  getPatientRepresentation (Patient patient){
-        PatientRepresentation  patientRepresentation  = new PatientRepresentation ();
+    static public PatientRepresentation  getPatientRepresentation(Patient patient){
+        PatientRepresentation  patientRepresentation  = new PatientRepresentation();
 
         patientRepresentation.setFirstName(patient.getFirstName());
         patientRepresentation.setLastName(patient.getLastName());
@@ -46,7 +46,8 @@ public class PatientRepresentation {
         patientRepresentation.setAddress(patient.getAddress());
         patientRepresentation.setDob(patient.getDob());
         patientRepresentation.setGender(patient.getGender());
-        //patientRepresentation.setUri("http://localhost:9000/app/patient/"+patient.getId());
+        patientRepresentation.setUri("http://localhost:9000/SacchonApp/patient/"+patient.getId());
+
         return patientRepresentation;
 
 

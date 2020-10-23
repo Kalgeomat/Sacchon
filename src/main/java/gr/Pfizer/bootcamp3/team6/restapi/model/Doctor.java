@@ -21,9 +21,10 @@ public class Doctor {
     private String lastName;
     private String email;
     private String password;
-    private int telephoneNumber;
+    private long telephoneNumber;
     private String address;
     private Date dob;
+    private Gender gender;
 
     @OneToMany(mappedBy = "doctor",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Patient> listOfPatients = new ArrayList<>();

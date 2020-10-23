@@ -19,7 +19,7 @@ public interface DoctorResource {
     @Delete
     public void remove() throws NotFoundException;
 
-    //kanei add
+    //kanei update
     @Put("json")
     public DoctorRepresentation update(DoctorRepresentation doctorReprIn)
             throws NotFoundException, BadEntityException;
