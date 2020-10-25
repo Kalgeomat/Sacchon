@@ -1,116 +1,117 @@
 # Sacchon
 
-#Patient
-Get all patients:
+**Patient**
+
+_Get all patients:_
 HTTP GET => baseUrl + /patients (R Patient Report Page in the "Choose a patient" dropdown) 
 
-Get all new patients:
+_Get all new patients:_
 HTTP GET => baseUrl + /patients/new (DA new patient's page)
 
-Get all patients in need:
+_Get all patients in need:_
 HTTP GET => baseUrl + /patients/ineed (R Patient Report Page in the "Patients Waiting for Consultation"
 
-Get a patient:
+_Get a patient:_
 HTTP GET => baseUrl + /patients/id (MDR Homepage, DA one-patient page)
 
-Get a patient's average glucose:
+_Get a patient's average glucose:_
 HTTP GET => baseUrl + /patients/id/glucose/start/end (MDR view data page)
 
-Get a patient's average carb:
+_Get a patient's average carb:_
 HTTP GET => baseUrl + /patients/id/carb/start/end (MDR view data page)
 
-Post a patient:
+_Post a patient:_
 HTTP POST => baseUrl + /patients (MDR sign up page)
 
-Delete a patient (patient removes account):
+_Delete a patient (patient removes account):_
 HTTP DELETE => baseUrl + /patients/id (MDR account page in "REMOVE ACCOUNT")
 
-#Consultation
+**Consultation**
 
-Get a patient's consultations:
+_Get a patient's consultations:_
 HTTP GET => baseUrl + /patients/id/consultations (MDR past consultations page)
 
-Get a patient's consultation:
+_Get a patient's consultation:_
 HTTP GET => baseUrl + /patients/id/consultations/id (MDR homepage)
 
-Post a consultation for a patient:
+_Post a consultation for a patient:_
 HTTP POST => baseUrl + /patients/id/consultations (DA consultation page)
 
-Update a patient's consultation:
+_Update a patient's consultation:_
 HTTP PUT => baseUrl + /patients/id/consultations/id (we don't know yet)
 
-#Measurement
+**Measurement**
 
-Get a patient's measurements:
+_Get a patient's measurements:_
 HTTP GET => baseUrl + /patients/id/measurements (MDR view data page, DA one-patient page)
 
-Get a patient's measurement:
+_Get a patient's measurement:_
 HTTP GET => baseUrl + /patients/id/measurements/id (we don't know yet)
 
-Post a patient's measurement:
+_Post a patient's measurement:_
 HTTP POST => baseUrl + /patients/id/measurements (MDR homepage)
 
-Update a patient's measurement:
+_Update a patient's measurement:_
 HTTP PUT => baseUrl + /patients/id/measurements/id (MDR view data page)
 
-Delete a patient's measurement:
+_Delete a patient's measurement:_
 HTTP DELETE => baseUrl + /patients/id/measurements/id (MDR view data page)
 
-#Doctor
+**Doctor**
 
-Get all doctors:
+_Get all doctors:_
 HTTP GET => baseUrl + /doctors (R Doctor Report Page in the "Choose a doctor" dropdown)
 
-Get a doctor:
+_Get a doctor:_
 HTTP GET => baseUrl + /doctors/id (DA homepage)
 
-Get a doctor's patients:
+_Get a doctor's patients:_
 HTTP GET => baseUrl + /doctors/id/patients (DA homepage in "ALL MY PATIENTS")
 
-Get a doctor's patients in need:
+_Get a doctor's patients in need:_
 HTTP GET => baseUrl + /doctors/id/patients/ineed (DA homepage in "MY PATIENTS IN NEED OF CONSULTING")
 
-Get a doctor's patient:
+_Get a doctor's patient:_
 HTTP GET => baseUrl + /doctors/id/patients/id (DA one-patient page)
 
-Delete a doctor (doctor removes account):
+_Delete a doctor (doctor removes account):_
 HTTP DELETE => baseUrl + /doctors/id (DA account page in "REMOVE ACCOUNT")
 
-#Reporter(Chief)
+**Reporter(Chief)**
 
-Get all inactive doctors:
+_Get all inactive doctors:_
 HTTP GET => baseUrl + /doctors/noactive/start/end (R doctor report page in "DOCTORS WITH NO ACTIVITY")
 
-Get all inactive patients:
+_Get all inactive patients:_
 HTTP GET => baseUrl + /patients/noactive/start/end (R patient report page in "PATIENTS WITH NO ACTIVITY")
 
-Get a patient's activity data:
+_Get a patient's activity data:_
 HTTP GET => baseUrl + /patients/id/activity/start/end (R patient report page in "PERSONAL MONITOR DATA")
 
-Get a doctor's activity data:
+_Get a doctor's activity data:_
 HTTP GET => baseUrl + /doctors/id/activity/start/end (R doctor report page in "CONSULTATION SUBMISSIONS")
 
-Post a doctor:
+_Post a doctor:_
 HTTP POST => baseUrl + /doctors (R doctor signup page)
 
-#Authentication
+**Authentication**
 
-Sign up a patient:
+_Sign up a patient:_
 HTTP POST => baseUrl + /patients/signup (sign up page)
 
-Login a patient:
+_Login a patient:_
 HTTP POST => baseUrl + /patients/login (login page)
 
-Sign up a doctor (from chief's system):
+_Sign up a doctor (from chief's system):_
 HTTP POST => baseUrl + /doctors/signup (sign up page)
 
-Login a doctor:
+_Login a doctor:_
 HTTP POST => baseUrl + /doctors/login (login page)
 
-Login the chief:
+_Login the chief:_
 HTTP POST => baseUrl + /reporter/login (login page)
 
-#Important Things to Notice
-1. The indicated pages for each endpoint may not be the only ones. Meaning, there may be other pages as well that may use that endpoint.
-2. There are some endpoints that we still don’t know where we can use them. 
+**Important Things to Notice**
+-The indicated pages for each endpoint may not be the only ones. Meaning, there may be other pages as well that may use that endpoint.
+-There are some endpoints that we still don’t know where we can use them. 
 
