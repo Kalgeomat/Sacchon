@@ -112,8 +112,8 @@ _Login the chief:_
 HTTP POST => baseUrl + /reporter/login (login page)
 
 **Important Things to Notice**
--The indicated pages for each endpoint may not be the only ones. Meaning, there may be other pages as well that may use that endpoint.
--There are some endpoints that we still don’t know where we can use them.
-...
+1. The indicated pages for each endpoint may not be the only ones. Meaning, there may be other pages as well that may use that endpoint.
+2. There are some endpoints that we still don’t know where we can use them.
+
 
 
