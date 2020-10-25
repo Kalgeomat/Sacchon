@@ -23,8 +23,11 @@ public class CustomRouter {
         Router router = new Router(application.getContext());
 
         router.attach("/patient/{id}", PatientResourceImpl.class);
-        router.attach("/customer", PatientListResourceImpl.class);
-        router.attach("/customer/", PatientListResourceImpl.class);
+        router.attach("/patient/{id}/", PatientResourceImpl.class);
+        router.attach("/patient", PatientListResourceImpl.class);
+        router.attach("/patient/", PatientListResourceImpl.class);
+
+
 
 
         router.attach("/doctor/", DoctorListResourceImpl.class);

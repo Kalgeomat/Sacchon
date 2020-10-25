@@ -6,6 +6,7 @@ import gr.Pfizer.bootcamp3.team6.restapi.model.Gender;
 import lombok.Data;
 
 
+import javax.print.Doc;
 import java.util.Date;
 
 @Data
@@ -38,6 +39,7 @@ public class DoctorRepresentation {
     }
     static public DoctorRepresentation  getDoctorRepresentation (Doctor doctor){
         DoctorRepresentation  doctorRepresentation  = new DoctorRepresentation ();
+        //Doctor d = (Doctor)user;
 
         doctorRepresentation.setFirstName(doctor.getFirstName());
         doctorRepresentation.setLastName(doctor.getLastName());

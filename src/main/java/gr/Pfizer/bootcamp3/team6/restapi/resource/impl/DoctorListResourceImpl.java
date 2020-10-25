@@ -7,6 +7,8 @@ import gr.Pfizer.bootcamp3.team6.restapi.repository.DoctorRepository;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.util.JpaUtil;
 import gr.Pfizer.bootcamp3.team6.restapi.representation.DoctorRepresentation;
 import gr.Pfizer.bootcamp3.team6.restapi.resource.DoctorListResource;
+import gr.Pfizer.bootcamp3.team6.restapi.resource.util.ResourceUtils;
+import gr.Pfizer.bootcamp3.team6.restapi.security.CustomRole;
 import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
 
@@ -42,7 +44,7 @@ public class DoctorListResourceImpl extends ServerResource implements DoctorList
     @Override
     public DoctorRepresentation add(DoctorRepresentation doctorIn) throws BadEntityException {
 
-        //ResourceUtils.checkRole(this, CustomRole.ROLE_ADMIN.getRoleName());
+        ResourceUtils.checkRole(this, CustomRole.ROLE_CHIEF_DOCTOR.getRoleName());
         if (doctorIn==null) throw new  BadEntityException("Null doctor representation error");
         if (doctorIn.getLastName().equals("admin")) throw new  BadEntityException("Invalid doctor name error");
 
@@ -57,7 +59,7 @@ public class DoctorListResourceImpl extends ServerResource implements DoctorList
 
     @Override
     public List<DoctorRepresentation> getDoctors() throws NotFoundException {
-        //ResourceUtils.checkRole(this, DoctorRole.ROLE_USER.getRoleName());
+        ResourceUtils.checkRole(this, CustomRole.ROLE_DOCTOR.getRoleName());
         List<Doctor> doctors= doctorRepository.findAll();
 
         List<DoctorRepresentation> doctorRepresentationList = new ArrayList<>();

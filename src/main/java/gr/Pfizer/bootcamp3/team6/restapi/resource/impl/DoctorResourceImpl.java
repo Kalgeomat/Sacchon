@@ -7,6 +7,8 @@ import gr.Pfizer.bootcamp3.team6.restapi.repository.DoctorRepository;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.util.JpaUtil;
 import gr.Pfizer.bootcamp3.team6.restapi.representation.DoctorRepresentation;
 import gr.Pfizer.bootcamp3.team6.restapi.resource.DoctorResource;
+import gr.Pfizer.bootcamp3.team6.restapi.resource.util.ResourceUtils;
+import gr.Pfizer.bootcamp3.team6.restapi.security.CustomRole;
 import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
 
@@ -41,7 +43,7 @@ public class DoctorResourceImpl extends ServerResource implements DoctorResource
     @Override
     public DoctorRepresentation getDoctor() throws NotFoundException, ResourceException {
 
-        //ResourceUtils.checkRole(this, CustomRole.ROLE_USER.getRoleName());
+        ResourceUtils.checkRole(this, CustomRole.ROLE_DOCTOR.getRoleName());
         Optional<Doctor> doctor = doctorRepository.findById(id);
         setExisting(doctor.isPresent());
         if (!doctor.isPresent())  throw new NotFoundException("Doctor is not found");

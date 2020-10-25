@@ -12,13 +12,13 @@ import java.time.LocalDate;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Consultation {
+public class Measurement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private LocalDate creationDate;
-    private String description;
 
     @ManyToOne
-    private Doctor doctor;
+    private Patient patient;
+
 }

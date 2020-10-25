@@ -31,8 +31,7 @@ public class Patient {
     private Doctor doctor;
 
     @OneToMany(mappedBy = "patient",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Carb> listOfCarbs = new ArrayList<>();
+    private List<Measurement> listOfMeasurement= new ArrayList<>();
 
-    @OneToMany(mappedBy = "patient",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Glucose> listOfGlucose = new ArrayList<>();
+
 }

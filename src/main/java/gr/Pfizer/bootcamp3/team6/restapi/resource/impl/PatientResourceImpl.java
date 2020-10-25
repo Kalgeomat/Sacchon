@@ -2,13 +2,14 @@ package gr.Pfizer.bootcamp3.team6.restapi.resource.impl;
 
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.BadEntityException;
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.NotFoundException;
-import gr.Pfizer.bootcamp3.team6.restapi.model.Doctor;
+
 import gr.Pfizer.bootcamp3.team6.restapi.model.Patient;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.PatientRepository;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.util.JpaUtil;
-import gr.Pfizer.bootcamp3.team6.restapi.representation.DoctorRepresentation;
 import gr.Pfizer.bootcamp3.team6.restapi.representation.PatientRepresentation;
 import gr.Pfizer.bootcamp3.team6.restapi.resource.PatientResource;
+import gr.Pfizer.bootcamp3.team6.restapi.resource.util.ResourceUtils;
+import gr.Pfizer.bootcamp3.team6.restapi.security.CustomRole;
 import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
 
@@ -46,7 +47,7 @@ public class PatientResourceImpl extends ServerResource implements PatientResour
     public PatientRepresentation getPatient() throws NotFoundException, ResourceException {
 
 
-        //ResourceUtils.checkRole(this, CustomRole.ROLE_USER.getRoleName());
+        ResourceUtils.checkRole(this, CustomRole.ROLE_PATIENT.getRoleName());
         Optional<Patient> patient = patientRepository.findById(id);
         setExisting(patient.isPresent());
         if (!patient.isPresent())  throw new NotFoundException("Doctor is not found");

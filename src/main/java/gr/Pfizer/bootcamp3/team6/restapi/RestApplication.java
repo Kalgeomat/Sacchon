@@ -1,5 +1,6 @@
 package gr.Pfizer.bootcamp3.team6.restapi;
 
+import gr.Pfizer.bootcamp3.team6.restapi.model.Doctor;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.util.JpaUtil;
 import gr.Pfizer.bootcamp3.team6.restapi.router.CustomRouter;
 import gr.Pfizer.bootcamp3.team6.restapi.security.CustomRole;
@@ -35,9 +36,12 @@ public class RestApplication extends Application {
         c.getDefaultHost().attach("/SacchonApp", new RestApplication());
         c.start();
 
+
         LOGGER.info("Sample Web API started");
         LOGGER.info("URL: http://localhost:9000/SacchonApp/patient/1");
         LOGGER.info("URL: http://localhost:9000/SacchonApp/doctor/1");
+
+
 
     }
     @Override

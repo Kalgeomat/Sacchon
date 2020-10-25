@@ -6,22 +6,17 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.sql.Time;
-import java.util.Date;
+import java.time.LocalTime;
+
 
 @Setter
 @Getter
 @NoArgsConstructor
 @Entity
-public class Glucose {
+public class Glucose extends Measurement {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    private Date creationDate;
-    private Time creationTime;
-    private double level;
+    private LocalTime creationTime;
+    private double bloodGlucoseLevel;
 
-    @ManyToOne
-    private Patient patient;
+
 }

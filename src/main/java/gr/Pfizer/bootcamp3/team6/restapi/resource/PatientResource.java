@@ -10,17 +10,13 @@ import org.restlet.resource.Put;
 
 public interface PatientResource {
 
-    //anaferetai sto patientrepresentation
 
-    //epistrefei
     @Get("json")
     public PatientRepresentation getPatient() throws NotFoundException;
 
-    //diagrafei
     @Delete
     public void remove() throws NotFoundException;
 
-    //kanei add
     @Put("json")
     public PatientRepresentation update(PatientRepresentation patientReprIn)
             throws NotFoundException, BadEntityException;
