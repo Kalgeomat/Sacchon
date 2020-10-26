@@ -4,9 +4,6 @@ import gr.Pfizer.bootcamp3.team6.restapi.model.Doctor;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Gender;
 
 import lombok.Data;
-
-
-import javax.print.Doc;
 import java.util.Date;
 
 @Data

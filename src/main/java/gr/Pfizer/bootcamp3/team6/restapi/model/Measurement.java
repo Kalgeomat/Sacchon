@@ -12,9 +12,10 @@ import java.time.LocalDate;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Measurement {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Measurement {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private long id;
     private LocalDate creationDate;
 
