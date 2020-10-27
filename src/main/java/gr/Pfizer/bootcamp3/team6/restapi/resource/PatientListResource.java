@@ -14,6 +14,9 @@ public interface PatientListResource {
     @Post("json")
     public PatientRepresentation add(PatientRepresentation patientIn)
             throws BadEntityException;
+
     @Get("json")
     public List<PatientRepresentation> getPatients() throws NotFoundException;
+
+
 }
