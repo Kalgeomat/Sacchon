@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h3>Personal Monitor Data</h3>
+            Choose a Patient:
+            <select formControlName="rrpatient">
+                <option>Patient</option>
+                <option>Patient</option>
+                <option>Patient</option>
+                <!--TODO bring all the active patients of db to the front-->
+            </select>
+            <app-period-form></app-period-form>
+
+            <p>Total number of measurements: </p>
+            <!-- <span *ngIf=""></span> -->
+            <!-- TODO return number of measurements-->
+        </div>
+        <div class="col-md-4">
+            <h3>Patients with no activity</h3>
+            <app-period-form></app-period-form>
+            <!-- <ul *ngIf="patients.length">
+                <li *ngFor="let item of items">
+                <span *ngIf="item==='one'">
+                Bingo!
+                </span>
+                {{item.value}}
+                </li>
+            </ul> -->
+            <!-- TODO return list patients with no activity at that period-->
+
+        </div>
+        <div class="col-md-4">
+            <h3>Patients Waiting For Consultation</h3>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Days Due</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- <tr *ngIf="duepatients.length">
+                    <th scope="row">{{duepatients.name}} {{duepatients.surname}}</th>
+                    <td>{{duepatients.days}}-30</td>                    
+                  </tr>                   -->
+                  <!--TODO show due patients-->
+                </tbody>
+              </table>
+
+        </div>
+    </div>
+</div>

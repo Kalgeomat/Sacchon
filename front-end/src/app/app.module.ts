@@ -10,6 +10,9 @@ import { DaHomeModule } from './da-home/da-home.module';
 import { DaNewPatientModule } from './da-new-patient/da-new-patient.module';
 import { DaOnePatientModule } from './da-one-patient/da-one-patient.module';
 import { DaHomeComponent } from './da-home/da-home/da-home.component';
+import { ReDocReportModule } from './re-doc-report/re-doc-report.module';
+import { ReHomeModule } from './re-home/re-home.module';
+import { RePatReportModule } from './re-pat-report/re-pat-report.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,8 @@ import { DaHomeComponent } from './da-home/da-home/da-home.component';
     BrowserModule,
     SharedModule,
     FormsModule,
-    DaAccountModule, DaConsultationModule, DaHomeModule, DaNewPatientModule, DaOnePatientModule
+    DaAccountModule, DaConsultationModule, DaHomeModule, DaNewPatientModule, DaOnePatientModule,
+    ReDocReportModule, ReHomeModule, RePatReportModule
   ],
   providers: [],
   bootstrap: [AppComponent]

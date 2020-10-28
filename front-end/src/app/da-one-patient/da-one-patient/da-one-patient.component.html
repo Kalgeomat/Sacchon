@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-sm-1"></div>
     <div class="col-sm-4">
-        patient: name surname
+        <h3>patient: name surname </h3>
         <!--TODO patient name binding {{}}-->
     </div>
     <div class="col-sm-4">
@@ -13,14 +13,66 @@
 <div class="row">
     <div class="col-sm-4">
         <h3>Blood Level Glucose Inputs</h3>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Level</th>
+                <th scope="col">Date</th>
+                <th scope="col">Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- <tr *ngIf="items.length">
+                <th scope="row"></th>
+                <td></td> 
+                <td></td>     
+                <td></td>                
+              </tr>                   -->
+              <!--TODO show due patients-->
+            </tbody>
+          </table>
         <!--TODO show patients all glucose inputs-->
     </div>
     <div class="col-sm-4">
         <h3>Carb Intake Inputs</h3>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Carb Intake</th>
+                <th scope="col">Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- <tr *ngIf="items.length">
+                <th scope="row"></th>
+                <td></td>     
+                <td></td>                
+              </tr>                   -->
+              <!--TODO show due patients-->
+            </tbody>
+          </table>
         <!--TODO show patients alla carb inputs-->
     </div>
     <div class="col-sm-4">
         <h3>Past Consultations</h3>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Consultation</th>
+                <th scope="col">Doctor</th>
+                <th scope="col">Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- <tr *ngIf="items.length">
+                <th scope="row"></th>
+                <td></td>     
+                <td></td> 
+                <td></td>                
+              </tr>                   -->
+              <!--TODO show due patients-->
+            </tbody>
+          </table>
         <!--TODO show patients all consultations-->
     </div>
 
