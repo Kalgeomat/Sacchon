@@ -1,0 +1,17 @@
+<div class="container">
+    <p>Choose period:</p>
+
+    <form [formGroup]="periodForm">
+        <div>
+            <label>From</label><br>
+            <input type="date" formControlName="pfrom">
+        </div>
+        <div>
+            <label>To</label><br>
+            <input type="date" formControlName="pto">
+        </div><br>
+        <button type="button" class="btn btn-default btn-md btn-light">
+            Go
+        </button>
+    </form>
+</div>

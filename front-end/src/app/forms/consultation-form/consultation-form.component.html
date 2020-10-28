@@ -1,0 +1,16 @@
+<div class="container">
+    <h2>Consultation</h2>
+
+    <form [formGroup]="consultationForm">
+        <div>
+            <label>Name of Medication and Dosage</label><br>
+            <input type="text" formControlName="consultation">
+            <div *ngIf="consultationForm.get('consultation').invalid && consultationForm.get('consultation').dirty" class="warningmessages">
+                *The field is required
+            </div>
+        </div>
+        <button type="button" class="btn btn-default btn-md btn-light">
+            Submit
+        </button>
+    </form>
+</div>

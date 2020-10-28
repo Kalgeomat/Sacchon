@@ -1,0 +1,57 @@
+<div class="container">
+    <!-- Content here -->
+
+    <h2>Sign Up a Doctor</h2>
+
+    <form [formGroup]="signupDoctorForm">
+        <div>
+            <label>Email</label><br>
+            <input type="email" formControlName="sdemail">
+            <div *ngIf="signupDoctorForm.get('sdemail').invalid && signupDoctorForm.get('sdemail').dirty" class="warningmessages">
+                *The field is required
+            </div>
+        </div>
+        <div>
+            <label>Password</label><br>
+            <input type="password" formControlName="sdpassword">
+            <div *ngIf="signupDoctorForm.get('sdpassword').invalid && signupDoctorForm.get('sdpassword').dirty" class="warningmessages">
+                *The field is required
+            </div>
+        </div>
+        <div>
+            <label>Name</label><br>
+            <input type="text" formControlName="sdname">
+            <div *ngIf="signupDoctorForm.get('sdname').invalid && signupDoctorForm.get('sdname').dirty" class="warningmessages">
+                *The field is required
+            </div>
+        </div>
+        <div>
+            <label>Surname</label><br>
+            <input type="text" formControlName="sdsurname">
+            <div *ngIf="signupDoctorForm.get('sdsurname').invalid && signupDoctorForm.get('sdsurname').dirty" class="warningmessages">
+                *The field is required
+            </div>
+        </div>
+        <div>
+            <label>Address</label><br>
+            <input type="text" formControlName="sdaddress">
+        </div>
+        <div>
+            <label>Telephone Number</label><br>
+            <input type="tel" formControlName="sdtelephone">
+        </div>
+        <div>
+            <label for="example-date-input">Birthday</label><br>
+            <input type="date" formControlName="sdbirthday">
+            <div *ngIf="signupDoctorForm.get('sdbirthday').invalid && signupDoctorForm.get('sdbirthday').dirty" class="warningmessages">
+                *The field is required
+            </div>
+        </div>
+        <br>
+        <button type="button" class="btn btn-default btn-md btn-light">
+            Sign Up New Doctor
+        </button>
+    </form>
+
+</div>
+
