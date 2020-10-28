@@ -36,6 +36,9 @@ public class Patient {
     @OneToMany(mappedBy = "patient",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Carb> listOfCarbMeasurements = new ArrayList<>();
 
+    @OneToMany(mappedBy = "patient",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Glucose> listOfGlucoseMeasurements = new ArrayList<>();
+
     public boolean checkIfInNeed()
     {
         return false;
@@ -50,5 +53,11 @@ public class Patient {
     {
         carbMeasurement.setPatient(this);
         listOfCarbMeasurements.add(carbMeasurement);
+    }
+
+    public void addGlucoseMeasurement(Glucose glucoseMeasurement)
+    {
+        glucoseMeasurement.setPatient(this);
+        listOfGlucoseMeasurements.add(glucoseMeasurement);
     }
 }

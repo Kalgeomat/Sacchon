@@ -60,6 +60,4 @@ public class CarbListResourceImpl extends ServerResource implements CarbListReso
     public List<CarbRepresentation> getCarbs() throws NotFoundException {
         return null;
     }
-
-
 }

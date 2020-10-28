@@ -34,6 +34,4 @@ public class CarbRepresentation {
 
         return carbRepresentation;
     }
-
-
 }

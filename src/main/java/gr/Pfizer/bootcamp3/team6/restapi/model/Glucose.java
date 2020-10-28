@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalTime;
+import java.util.Date;
 
 
 @Setter
@@ -14,12 +15,12 @@ import java.time.LocalTime;
 @NoArgsConstructor
 @Entity
 public class Glucose {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private LocalTime creationTime;
+    private Date creationTime;
     private double bloodGlucoseLevel;
 
-
+    @ManyToOne
+    private Patient patient;
 }
