@@ -30,7 +30,7 @@ public class PatientRepresentation {
         patient.setTelephoneNumber(patientRepresentation.getTelephoneNumber());
         patient.setAddress(patientRepresentation.getAddress());
         patient.setDob(patientRepresentation.getDob());
-        patient.setGender(patientRepresentation.getGender());
+        //patient.setGender(patientRepresentation.getGender());
 
         return patient;
     }

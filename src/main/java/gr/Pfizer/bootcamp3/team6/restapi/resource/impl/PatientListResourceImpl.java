@@ -38,13 +38,11 @@ public class PatientListResourceImpl extends ServerResource implements PatientLi
 
     @Override
     public PatientRepresentation add(PatientRepresentation patientIn) throws BadEntityException {
-
         ResourceUtils.checkRole(this, CustomRole.ROLE_PATIENT.getRoleName());
         if (patientIn==null) throw new  BadEntityException("Null patient representation error");
         if (patientIn.getLastName().equals("admin")) throw new  BadEntityException("Invalid patient name error");
 
         Patient patient = PatientRepresentation.getPatient(patientIn);
-
         patientRepository.save(patient);
 
         return PatientRepresentation.getPatientRepresentation(patient);
@@ -54,9 +52,7 @@ public class PatientListResourceImpl extends ServerResource implements PatientLi
     public List<PatientRepresentation> getPatients(){
         ResourceUtils.checkRole(this, CustomRole.ROLE_DOCTOR.getRoleName());
         List<Patient> patients= patientRepository.findAll();
-
         List<PatientRepresentation> patientRepresentationList = new ArrayList<>();
-
         patients.forEach(patient -> patientRepresentationList.add(PatientRepresentation.getPatientRepresentation(patient)));
 
         return patientRepresentationList;

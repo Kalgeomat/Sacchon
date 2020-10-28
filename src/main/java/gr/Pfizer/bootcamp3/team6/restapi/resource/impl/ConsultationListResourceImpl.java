@@ -10,12 +10,14 @@ import gr.Pfizer.bootcamp3.team6.restapi.repository.DoctorRepository;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.PatientRepository;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.util.JpaUtil;
 import gr.Pfizer.bootcamp3.team6.restapi.representation.ConsultationRepresentation;
+import gr.Pfizer.bootcamp3.team6.restapi.representation.PatientRepresentation;
 import gr.Pfizer.bootcamp3.team6.restapi.resource.ConsultationListResource;
 import gr.Pfizer.bootcamp3.team6.restapi.resource.util.ResourceUtils;
 import gr.Pfizer.bootcamp3.team6.restapi.security.CustomRole;
 import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
 import javax.persistence.EntityManager;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +26,7 @@ public class ConsultationListResourceImpl extends ServerResource implements Cons
     private DoctorRepository doctorRepository;
     private PatientRepository patientRepository;
     private EntityManager em;
+    private long patientId;
 
     @Override
     protected void doInit() throws ResourceException {
@@ -32,6 +35,7 @@ public class ConsultationListResourceImpl extends ServerResource implements Cons
             consultationRepository = new ConsultationRepository(em);
             doctorRepository = new DoctorRepository(em);
             patientRepository = new PatientRepository(em);
+            patientId = Long.parseLong(getAttribute("id")); // takes the "id" from the path and transforms it to long
         }
         catch(Exception ex){
             throw new ResourceException(ex);
@@ -63,7 +67,30 @@ public class ConsultationListResourceImpl extends ServerResource implements Cons
     }
 
     @Override
-    public List<ConsultationRepresentation> getConsultations() throws NotFoundException {
-        return null;
+    public List<ConsultationRepresentation> getConsultations(){
+        List<String> roles = new ArrayList<>();
+        roles.add(CustomRole.ROLE_PATIENT.getRoleName());
+        //roles.add(CustomRole.ROLE_DOCTOR.getRoleName());
+
+        ResourceUtils.checkRoles(this, roles);
+        List<Consultation> consultations= consultationRepository.findAll();
+        consultations = getConsultationsForPatient(patientId, consultations);
+        List<ConsultationRepresentation> consultationRepresentationList = new ArrayList<>();
+        consultations.forEach(consultation -> consultationRepresentationList.add(ConsultationRepresentation.getConsultationRepresentation(consultation)));
+
+        return consultationRepresentationList;
+    }
+
+    // utility method
+    private List<Consultation> getConsultationsForPatient(long id, List<Consultation> allConsultations)
+    {
+        List<Consultation> patientConsultations = new ArrayList<>();
+
+        allConsultations.forEach(consultation -> {
+            if(consultation.getPatient().getId() == patientId)
+                patientConsultations.add(consultation);
+        });
+
+        return patientConsultations;
     }
 }
