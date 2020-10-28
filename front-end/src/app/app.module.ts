@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { FormsModule } from './forms/forms.module';
-import { DaAccountModule } from './da-account/da-account.module';
 import { DaConsultationModule } from './da-consultation/da-consultation.module';
 import { DaHomeModule } from './da-home/da-home.module';
 import { DaNewPatientModule } from './da-new-patient/da-new-patient.module';
@@ -13,6 +12,12 @@ import { DaHomeComponent } from './da-home/da-home/da-home.component';
 import { ReDocReportModule } from './re-doc-report/re-doc-report.module';
 import { ReHomeModule } from './re-home/re-home.module';
 import { RePatReportModule } from './re-pat-report/re-pat-report.module';
+import { AccountModule } from './account/account.module';
+import { MdrHomeModule } from './mdr-home/mdr-home.module';
+import { MdrViewDataModule } from './mdr-view-data/mdr-view-data.module';
+import { MdrPastConsultationsModule } from './mdr-past-consultations/mdr-past-consultations.module';
+import { LogInModule } from './log-in/log-in.module';
+import { PatientSignUpModule } from './patient-sign-up/patient-sign-up.module';
 
 @NgModule({
   declarations: [
@@ -22,8 +27,10 @@ import { RePatReportModule } from './re-pat-report/re-pat-report.module';
     BrowserModule,
     SharedModule,
     FormsModule,
-    DaAccountModule, DaConsultationModule, DaHomeModule, DaNewPatientModule, DaOnePatientModule,
-    ReDocReportModule, ReHomeModule, RePatReportModule
+    AccountModule, 
+    DaConsultationModule, DaHomeModule, DaNewPatientModule, DaOnePatientModule,
+    ReDocReportModule, ReHomeModule, RePatReportModule,
+    MdrHomeModule, MdrViewDataModule, MdrPastConsultationsModule, LogInModule, PatientSignUpModule
   ],
   providers: [],
   bootstrap: [AppComponent]
