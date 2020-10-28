@@ -56,7 +56,7 @@ public class ConsultationListResourceImpl extends ServerResource implements Cons
         // this is where the mapping or relationship is done
         System.out.println("The doctor id of the consultation: " + consultationRepresentation.getDoctorId());
         Doctor doctorConsulting = doctorRepository.findById(consultationRepresentation.getDoctorId()).get();
-        Patient patientConsulted = patientRepository.findById(consultationRepresentation.getPatientId()).get();
+        Patient patientConsulted = patientRepository.findById(patientId).get();
         consultation.setPatient(patientConsulted);
         doctorConsulting.consultPatient(patientConsulted,consultation);
         // this where the consultation is persisted
@@ -71,9 +71,9 @@ public class ConsultationListResourceImpl extends ServerResource implements Cons
         roles.add(CustomRole.ROLE_PATIENT.getRoleName());
         //roles.add(CustomRole.ROLE_DOCTOR.getRoleName());
 
-       // ResourceUtils.checkRoles(this, roles);
+        // ResourceUtils.checkRoles(this, roles);
         List<Consultation> consultations= consultationRepository.findAll();
-        consultations = getConsultationsForPatient(patientId, consultations);
+        consultations = getConsultationsForPatient(consultations);
         List<ConsultationRepresentation> consultationRepresentationList = new ArrayList<>();
         consultations.forEach(consultation -> consultationRepresentationList.add(ConsultationRepresentation.getConsultationRepresentation(consultation)));
 
@@ -81,7 +81,7 @@ public class ConsultationListResourceImpl extends ServerResource implements Cons
     }
 
     // utility method
-    private List<Consultation> getConsultationsForPatient(long id, List<Consultation> allConsultations)
+    private List<Consultation> getConsultationsForPatient(List<Consultation> allConsultations)
     {
         List<Consultation> patientConsultations = new ArrayList<>();
 

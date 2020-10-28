@@ -49,7 +49,7 @@ public class CarbListResourceImpl extends ServerResource implements CarbListReso
 
         Carb carb = CarbRepresentation.getCarb(carbRepresentation);
 
-        Patient patientOfCarb = patientRepository.findById(carbRepresentation.getPatientId()).get();
+        Patient patientOfCarb = patientRepository.findById(patientId).get();
         patientOfCarb.addCarbMeasurement(carb);
         carbRepository.save(carb);
 
@@ -57,7 +57,7 @@ public class CarbListResourceImpl extends ServerResource implements CarbListReso
     }
 
     @Override
-    public List<CarbRepresentation> getCarbs() throws NotFoundException {
+    public List<CarbRepresentation> getCarbs(){
         return null;
     }
 }
