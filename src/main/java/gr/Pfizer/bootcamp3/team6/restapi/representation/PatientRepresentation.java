@@ -8,7 +8,6 @@ import java.util.Date;
 
 @Data
 public class PatientRepresentation {
-
     private long id;
     private String firstName;
     private String lastName;
@@ -38,6 +37,7 @@ public class PatientRepresentation {
     static public PatientRepresentation  getPatientRepresentation(Patient patient){
         PatientRepresentation  patientRepresentation  = new PatientRepresentation();
 
+        patientRepresentation.setId(patient.getId());
         patientRepresentation.setFirstName(patient.getFirstName());
         patientRepresentation.setLastName(patient.getLastName());
         patientRepresentation.setEmail(patient.getEmail());
@@ -49,9 +49,5 @@ public class PatientRepresentation {
         patientRepresentation.setUri("http://localhost:9000/SacchonApp/patient/"+patient.getId());
 
         return patientRepresentation;
-
-
     }
-
-
 }

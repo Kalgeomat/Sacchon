@@ -67,7 +67,4 @@ public class CustomCorsFilter {
         };
         return filter;
     }
-
-
 }
-

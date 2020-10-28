@@ -1,39 +1,48 @@
 package gr.Pfizer.bootcamp3.team6.restapi.router;
 
 import gr.Pfizer.bootcamp3.team6.restapi.resource.PingServerResource;
-import gr.Pfizer.bootcamp3.team6.restapi.resource.impl.DoctorListResourceImpl;
-import gr.Pfizer.bootcamp3.team6.restapi.resource.impl.DoctorResourceImpl;
-import gr.Pfizer.bootcamp3.team6.restapi.resource.impl.PatientListResourceImpl;
-import gr.Pfizer.bootcamp3.team6.restapi.resource.impl.PatientResourceImpl;
+import gr.Pfizer.bootcamp3.team6.restapi.resource.impl.*;
 import org.restlet.Application;
 import org.restlet.routing.Router;
 
 public class CustomRouter {
-  //ftiaxnw ena router pou pairnei plirofories apo ena application
+    // make a router that takes information from an application
     private Application application;
 
     public CustomRouter(Application application) {
         this.application = application;
-
     }
 
-
     public Router createApiRouter() {
-
         Router router = new Router(application.getContext());
 
-        router.attach("/patient/{id}", PatientResourceImpl.class);
-        router.attach("/patient/{id}/", PatientResourceImpl.class);
-        router.attach("/patient", PatientListResourceImpl.class);
-        router.attach("/patient/", PatientListResourceImpl.class);
+        // the repetition is happening because of the trailing slash issue
+        // Patient's endpoints
 
+        router.attach("/patients", PatientListResourceImpl.class); // GET
+        router.attach("/patients/", PatientListResourceImpl.class); // GET
 
+        router.attach("/patients/{id}", PatientResourceImpl.class); // GET
+        router.attach("/patients/{id}/", PatientResourceImpl.class); // GET
 
+        // Doctor's endpoints
+        router.attach("/doctors", DoctorListResourceImpl.class); // GET
+        router.attach("/doctors/", DoctorListResourceImpl.class); // GET
 
-        //router.attach("/doctor/id/patients ", DoctorListResourceImpl.class);
-        router.attach("/doctor", DoctorListResourceImpl.class);
-        router.attach("/doctor/{id}", DoctorResourceImpl.class);
+        router.attach("/doctors/{id}", DoctorResourceImpl.class); // GET
+        router.attach("/doctors/{id}/", DoctorResourceImpl.class); // GET
+        //router.attach("/doctors/{id}/patients", DoctorPatientsResourceImpl.class);
+        //router.attach("/doctors/{id}/patients/", DoctorPatientsResourceImpl.class);
 
+        // Consultation's endpoints
+        router.attach("/patients/{id}/consultations", ConsultationListResourceImpl.class); // GET
+        router.attach("/patients/{id}/consultations/", ConsultationListResourceImpl.class); // GET
+
+        //router.attach("/patients/{id}/consultations/{id}", ConsultationResourceImpl.class); // GET
+        //router.attach("/patients/{id}/consultations/{id}/", ConsultationResourceImpl.class); // GET
+
+        router.attach("/patients/{id}/consultations", ConsultationListResourceImpl.class); // POST
+        router.attach("/patients/{id}/consultations/", ConsultationListResourceImpl.class); // POST
 
         return router;
     }
@@ -43,6 +52,4 @@ public class CustomRouter {
         router.attach("/ping", PingServerResource.class);
         return router;
     }
-
-
 }

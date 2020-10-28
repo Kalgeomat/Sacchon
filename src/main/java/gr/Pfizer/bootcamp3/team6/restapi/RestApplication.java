@@ -1,6 +1,5 @@
 package gr.Pfizer.bootcamp3.team6.restapi;
 
-import gr.Pfizer.bootcamp3.team6.restapi.model.Doctor;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.util.JpaUtil;
 import gr.Pfizer.bootcamp3.team6.restapi.router.CustomRouter;
 import gr.Pfizer.bootcamp3.team6.restapi.security.CustomRole;
@@ -15,34 +14,27 @@ import org.restlet.routing.Router;
 import org.restlet.security.ChallengeAuthenticator;
 import org.restlet.security.Role;
 
-
 import javax.persistence.EntityManager;
 import java.util.logging.Logger;
 
 public class RestApplication extends Application {
-
     public static final Logger LOGGER = Engine.getLogger(RestApplication.class);
 
     public static void main(String[] args) throws Exception {
         LOGGER.info("Contacts application starting...");
 
-        //arxikopoihsh
+        //initialization
         EntityManager em = JpaUtil.getEntityManager();
         em.close();
 
-        //ksekinaw to sugkekrimeno server pou legetai rest application
+        //start up the restlet server
         Component c = new Component();
         c.getServers().add(Protocol.HTTP, 9000);
         c.getDefaultHost().attach("/SacchonApp", new RestApplication());
         c.start();
 
-
-        LOGGER.info("Sample Web API started");
-        LOGGER.info("URL: http://localhost:9000/SacchonApp/patient/1");
-        LOGGER.info("URL: http://localhost:9000/SacchonApp/doctor/1");
-
-
-
+        LOGGER.info("Sacchon Web API started");
+        LOGGER.info("URL: http://localhost:9000/SacchonApp/");
     }
     @Override
     public Restlet createInboundRoot() {
@@ -62,17 +54,14 @@ public class RestApplication extends Application {
 
         CustomCorsFilter corsFilter = new CustomCorsFilter(this);
         return corsFilter.createCorsFilter(publicRouter);
-
     }
 
     public RestApplication() {
-
-        setName("WebAPITutorial");
-        setDescription("Full Web API tutorial");
+        setName("Sacchon");
+        setDescription("Medical data web application.");
 
         getRoles().add(new Role(this, CustomRole.ROLE_PATIENT.getRoleName()));
         getRoles().add(new Role(this, CustomRole.ROLE_DOCTOR.getRoleName()));
         getRoles().add(new Role(this,  CustomRole.ROLE_CHIEF_DOCTOR.getRoleName()));
-
     }
 }

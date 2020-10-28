@@ -25,7 +25,6 @@ public abstract class Repository<T, K> implements IRepository<T, K> {
             e.printStackTrace();
         }
         return Optional.empty();
-
     }
 
     /**

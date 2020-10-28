@@ -26,12 +26,20 @@ public class Patient {
     private String address;
     private Date dob;
     private Gender gender;
-
+    private Date lastConsultedOrSignedUp;
     @ManyToOne
     private Doctor doctor;
 
     @OneToMany(mappedBy = "patient",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Measurement> listOfMeasurement= new ArrayList<>();
+    private List<Consultation> listOfConsultations = new ArrayList<>();
 
+    public boolean checkIfInNeed()
+    {
+        return false;
+    }
 
+    public void addConsultation(Consultation consultation)
+    {
+        listOfConsultations.add(consultation);
+    }
 }

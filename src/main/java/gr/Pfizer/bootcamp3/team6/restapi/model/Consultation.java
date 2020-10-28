@@ -5,8 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-
+import java.util.Date;
 
 @Setter
 @Getter
@@ -16,9 +15,9 @@ public class Consultation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private LocalDate creationDate;
+    private Date dateCreated;
     private String description;
 
     @ManyToOne
-    private Doctor doctor;
+    private Patient patient;
 }

@@ -12,12 +12,10 @@ public class Shield {
         this.application = application;
     }
 
-
     public ChallengeAuthenticator createApiGuard() {
 
         ChallengeAuthenticator apiGuard = new ChallengeAuthenticator(
                 application.getContext(), ChallengeScheme.HTTP_BASIC, "realm");
-
 
         // - Verifier : checks authentication
         // - Enroler : to check authorization (roles)

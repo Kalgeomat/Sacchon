@@ -21,5 +21,4 @@ public abstract class Measurement {
 
     @ManyToOne
     private Patient patient;
-
 }

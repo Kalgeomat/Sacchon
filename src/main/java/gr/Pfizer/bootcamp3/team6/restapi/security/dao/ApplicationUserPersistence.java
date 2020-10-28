@@ -1,6 +1,5 @@
 package gr.Pfizer.bootcamp3.team6.restapi.security.dao;
 
-
 import gr.Pfizer.bootcamp3.team6.restapi.security.CustomRole;
 import org.restlet.Context;
 
@@ -16,7 +15,6 @@ public class ApplicationUserPersistence {
     public static synchronized ApplicationUserPersistence getApplicationUserPersistence() {
         return applicationUserPersistence;
     }
-
 
      public ApplicationUser findById(String username) throws SQLException {
         Context.getCurrentLogger().finer(
@@ -45,7 +43,6 @@ public class ApplicationUserPersistence {
         }
     }
 
-
     protected Connection getConnection() throws SQLException {
         Context.getCurrentLogger().finer("Get a fresh connection to database");
         Connection result = DriverManager.getConnection(DatabaseCredentials.URL, DatabaseCredentials.USER, DatabaseCredentials.PASSWORD);
@@ -61,7 +58,5 @@ public class ApplicationUserPersistence {
             Context.getCurrentLogger().finer(
                     "Connection released: " + Objects.toString(connection));
         }
-
     }
-
 }

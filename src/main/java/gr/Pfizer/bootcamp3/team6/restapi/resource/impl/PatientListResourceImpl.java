@@ -25,12 +25,9 @@ public class PatientListResourceImpl extends ServerResource implements PatientLi
         try {
             em = JpaUtil.getEntityManager();
             patientRepository = new PatientRepository(em);
-
         }
         catch(Exception ex){
-
             throw new ResourceException(ex);
-
         }
     }
 
@@ -39,27 +36,23 @@ public class PatientListResourceImpl extends ServerResource implements PatientLi
         em.close();
     }
 
-
-
     @Override
     public PatientRepresentation add(PatientRepresentation patientIn) throws BadEntityException {
 
-        ResourceUtils.checkRole(this, CustomRole.ROLE_CHIEF_DOCTOR.getRoleName());
+        ResourceUtils.checkRole(this, CustomRole.ROLE_PATIENT.getRoleName());
         if (patientIn==null) throw new  BadEntityException("Null patient representation error");
         if (patientIn.getLastName().equals("admin")) throw new  BadEntityException("Invalid patient name error");
 
         Patient patient = PatientRepresentation.getPatient(patientIn);
 
-
         patientRepository.save(patient);
-
 
         return PatientRepresentation.getPatientRepresentation(patient);
     }
 
     @Override
-    public List<PatientRepresentation> getPatients() throws NotFoundException {
-        ResourceUtils.checkRole(this, CustomRole.ROLE_CHIEF_DOCTOR.getRoleName());
+    public List<PatientRepresentation> getPatients(){
+        ResourceUtils.checkRole(this, CustomRole.ROLE_DOCTOR.getRoleName());
         List<Patient> patients= patientRepository.findAll();
 
         List<PatientRepresentation> patientRepresentationList = new ArrayList<>();
@@ -67,10 +60,5 @@ public class PatientListResourceImpl extends ServerResource implements PatientLi
         patients.forEach(patient -> patientRepresentationList.add(PatientRepresentation.getPatientRepresentation(patient)));
 
         return patientRepresentationList;
-
     }
-
-
-
 }
-

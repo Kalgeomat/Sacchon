@@ -17,44 +17,36 @@ import javax.persistence.EntityManager;
 import java.util.Optional;
 
 public class PatientResourceImpl extends ServerResource implements PatientResource {
-
     private PatientRepository patientRepository ;
     private EntityManager em;
     private long id;
-
-
 
     @Override
     protected void doInit() {
         try {
             em = JpaUtil.getEntityManager();
-            patientRepository = new PatientRepository(em); //parametro pou pairnoun ta repository
-            id = Long.parseLong(getAttribute("id")); //to diavazei apo to path kai to metatrepei
+            patientRepository = new PatientRepository(em);
+            id = Long.parseLong(getAttribute("id")); // takes the "id" from the path and transforms it to long
         }
         catch(Exception ex){
-
             throw new ResourceException(ex);
-
         }
     }
+
     @Override
     protected void doRelease() {
         em.close();
     }
 
-
     @Override
     public PatientRepresentation getPatient() throws NotFoundException, ResourceException {
-
-
-        ResourceUtils.checkRole(this, CustomRole.ROLE_PATIENT.getRoleName());
+        ResourceUtils.checkRole(this, CustomRole.ROLE_DOCTOR.getRoleName());
         Optional<Patient> patient = patientRepository.findById(id);
         setExisting(patient.isPresent());
-        if (!patient.isPresent())  throw new NotFoundException("Doctor is not found");
+        if (!patient.isPresent())  throw new NotFoundException("Patient is not found");
         PatientRepresentation patientRepresentation = PatientRepresentation.getPatientRepresentation(patient.get());
         return patientRepresentation;
     }
-
 
     @Override
     public void remove() throws NotFoundException {
