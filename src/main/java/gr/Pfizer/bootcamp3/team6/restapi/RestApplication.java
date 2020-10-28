@@ -1,6 +1,7 @@
 package gr.Pfizer.bootcamp3.team6.restapi;
 
 import gr.Pfizer.bootcamp3.team6.restapi.repository.util.JpaUtil;
+import gr.Pfizer.bootcamp3.team6.restapi.resource.impl.ConsultationListResourceImpl;
 import gr.Pfizer.bootcamp3.team6.restapi.router.CustomRouter;
 import gr.Pfizer.bootcamp3.team6.restapi.security.CustomRole;
 import gr.Pfizer.bootcamp3.team6.restapi.security.Shield;
@@ -35,6 +36,7 @@ public class RestApplication extends Application {
 
         LOGGER.info("Sacchon Web API started");
         LOGGER.info("URL: http://localhost:9000/SacchonApp/");
+        LOGGER.info("URL: http://localhost:9000/SacchonApp/patients/1/consultations");
     }
     @Override
     public Restlet createInboundRoot() {

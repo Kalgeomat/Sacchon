@@ -40,7 +40,7 @@ public class PatientListResourceImpl extends ServerResource implements PatientLi
     public PatientRepresentation add(PatientRepresentation patientIn) throws BadEntityException {
         ResourceUtils.checkRole(this, CustomRole.ROLE_PATIENT.getRoleName());
         if (patientIn==null) throw new  BadEntityException("Null patient representation error");
-        if (patientIn.getLastName().equals("admin")) throw new  BadEntityException("Invalid patient name error");
+        //if (patientIn.getLastName().equals("patient")) throw new  BadEntityException("Invalid patient name error");
 
         Patient patient = PatientRepresentation.getPatient(patientIn);
         patientRepository.save(patient);

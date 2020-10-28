@@ -10,7 +10,6 @@ import gr.Pfizer.bootcamp3.team6.restapi.repository.DoctorRepository;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.PatientRepository;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.util.JpaUtil;
 import gr.Pfizer.bootcamp3.team6.restapi.representation.ConsultationRepresentation;
-import gr.Pfizer.bootcamp3.team6.restapi.representation.PatientRepresentation;
 import gr.Pfizer.bootcamp3.team6.restapi.resource.ConsultationListResource;
 import gr.Pfizer.bootcamp3.team6.restapi.resource.util.ResourceUtils;
 import gr.Pfizer.bootcamp3.team6.restapi.security.CustomRole;
@@ -19,7 +18,7 @@ import org.restlet.resource.ServerResource;
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 public class ConsultationListResourceImpl extends ServerResource implements ConsultationListResource {
     private ConsultationRepository consultationRepository;
@@ -72,7 +71,7 @@ public class ConsultationListResourceImpl extends ServerResource implements Cons
         roles.add(CustomRole.ROLE_PATIENT.getRoleName());
         //roles.add(CustomRole.ROLE_DOCTOR.getRoleName());
 
-        ResourceUtils.checkRoles(this, roles);
+       // ResourceUtils.checkRoles(this, roles);
         List<Consultation> consultations= consultationRepository.findAll();
         consultations = getConsultationsForPatient(patientId, consultations);
         List<ConsultationRepresentation> consultationRepresentationList = new ArrayList<>();

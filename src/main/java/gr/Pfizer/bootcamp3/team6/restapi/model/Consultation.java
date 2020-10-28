@@ -20,4 +20,5 @@ public class Consultation {
 
     @ManyToOne
     private Patient patient;
+
 }

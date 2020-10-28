@@ -19,17 +19,17 @@ public class CustomRouter {
         // the repetition is happening because of the trailing slash issue
         // Patient's endpoints
 
-        router.attach("/patients", PatientListResourceImpl.class); // GET
-        router.attach("/patients/", PatientListResourceImpl.class); // GET
+        router.attach("/patients", PatientListResourceImpl.class); // GET,POST
+        router.attach("/patients/", PatientListResourceImpl.class); // GET,POST
 
         router.attach("/patients/{id}", PatientResourceImpl.class); // GET
         router.attach("/patients/{id}/", PatientResourceImpl.class); // GET
 
         // Doctor's endpoints
-        router.attach("/doctors", DoctorListResourceImpl.class); // GET
-        router.attach("/doctors/", DoctorListResourceImpl.class); // GET
+        router.attach("/doctors", DoctorListResourceImpl.class); // GET,POST
+        router.attach("/doctors/", DoctorListResourceImpl.class); // GET,POST
 
-        router.attach("/doctors/{id}", DoctorResourceImpl.class); // GET
+        router.attach("/doctors/{id}", DoctorResourceImpl.class); // GET,REMOVE
         router.attach("/doctors/{id}/", DoctorResourceImpl.class); // GET
         //router.attach("/doctors/{id}/patients", DoctorPatientsResourceImpl.class);
         //router.attach("/doctors/{id}/patients/", DoctorPatientsResourceImpl.class);
@@ -40,6 +40,12 @@ public class CustomRouter {
 
         router.attach("/patients/{id}/consultations", ConsultationListResourceImpl.class); // POST/GET
         router.attach("/patients/{id}/consultations/", ConsultationListResourceImpl.class); // POST/GET
+
+        router.attach("/patients/{id}/carbs", CarbListResourceImpl.class); // POST/GET
+        router.attach("/patients/{id}/carbs/", CarbListResourceImpl.class); // POST/GET
+
+
+
 
         return router;
     }

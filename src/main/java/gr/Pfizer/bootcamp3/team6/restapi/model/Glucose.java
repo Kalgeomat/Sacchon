@@ -15,6 +15,9 @@ import java.time.LocalTime;
 @Entity
 public class Glucose {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     private LocalTime creationTime;
     private double bloodGlucoseLevel;
 
