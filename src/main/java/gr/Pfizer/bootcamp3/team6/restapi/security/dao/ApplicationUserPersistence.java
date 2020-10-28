@@ -7,7 +7,6 @@ import java.sql.*;
 import java.util.Objects;
 
 public class ApplicationUserPersistence {
-
     // Singleton pattern.
     private static ApplicationUserPersistence applicationUserPersistence = new ApplicationUserPersistence();
     private ApplicationUserPersistence() {

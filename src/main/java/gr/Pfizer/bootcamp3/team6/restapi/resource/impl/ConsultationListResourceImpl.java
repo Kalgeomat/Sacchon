@@ -49,13 +49,15 @@ public class ConsultationListResourceImpl extends ServerResource implements Cons
         if (consultationRepresentation == null) throw new  BadEntityException("Null consultation representation error");
 
         Consultation consultation = ConsultationRepresentation.getConsultation(consultationRepresentation);
-        consultationRepository.save(consultation);
 
         // this is where the mapping or relationship is done
         System.out.println("The doctor id of the consultation: " + consultationRepresentation.getDoctorId());
         Doctor doctorConsulting = doctorRepository.findById(consultationRepresentation.getDoctorId()).get();
         Patient patientConsulted = patientRepository.findById(consultationRepresentation.getPatientId()).get();
+        consultation.setPatient(patientConsulted);
         doctorConsulting.consultPatient(patientConsulted,consultation);
+        // this where the consultation is persisted
+        consultationRepository.save(consultation);
 
         return ConsultationRepresentation.getConsultationRepresentation(consultation);
     }

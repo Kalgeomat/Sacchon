@@ -32,6 +32,7 @@ public class Doctor {
     public void consultPatient(Patient patient, Consultation consultation)
     {
         patient.addConsultation(consultation);
+        patient.setDoctor(this);
         listOfPatients.add(patient);
     }
 }
