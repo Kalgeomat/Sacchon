@@ -35,13 +35,13 @@ public class CustomRouter {
         //router.attach("/doctors/{id}/patients/", DoctorPatientsResourceImpl.class);
 
         // Consultation's endpoints
-        //router.attach("/patients/{id}/consultations/{id}", ConsultationResourceImpl.class); // GET
-        //router.attach("/patients/{id}/consultations/{id}/", ConsultationResourceImpl.class); // GET
+        router.attach("/consultations/{id}", ConsultationResourceImpl.class); // GET
+        router.attach("/consultations/{id}/", ConsultationResourceImpl.class); // GET
 
         router.attach("/patients/{id}/consultations", ConsultationListResourceImpl.class); // POST/GET
         router.attach("/patients/{id}/consultations/", ConsultationListResourceImpl.class); // POST/GET
 
-        // Measurment's endpoints
+        // Measurement's endpoints
         router.attach("/patients/{id}/carbs", CarbListResourceImpl.class); // POST/GET
         router.attach("/patients/{id}/carbs/", CarbListResourceImpl.class); // POST/GET
 
