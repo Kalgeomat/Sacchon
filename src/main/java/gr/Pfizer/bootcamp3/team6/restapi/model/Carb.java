@@ -5,15 +5,20 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 
 
 @Setter
 @Getter
 @NoArgsConstructor
 @Entity
-public class Carb extends Measurement{
-
+public class Carb {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     private double carbInTake;
+    private Date dateMeasured;
 
-
+    @ManyToOne
+    private Patient patient;
 }

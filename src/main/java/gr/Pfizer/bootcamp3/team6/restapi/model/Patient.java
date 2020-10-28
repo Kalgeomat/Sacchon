@@ -33,6 +33,9 @@ public class Patient {
     @OneToMany(mappedBy = "patient",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Consultation> listOfConsultations = new ArrayList<>();
 
+    @OneToMany(mappedBy = "patient",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Carb> listOfCarbMeasurements = new ArrayList<>();
+
     public boolean checkIfInNeed()
     {
         return false;
@@ -41,5 +44,11 @@ public class Patient {
     public void addConsultation(Consultation consultation)
     {
         listOfConsultations.add(consultation);
+    }
+
+    public void addCarbMeasurement(Carb carbMeasurement)
+    {
+        carbMeasurement.setPatient(this);
+        listOfCarbMeasurements.add(carbMeasurement);
     }
 }

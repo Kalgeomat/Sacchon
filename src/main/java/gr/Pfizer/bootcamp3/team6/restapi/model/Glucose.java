@@ -13,7 +13,7 @@ import java.time.LocalTime;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Glucose extends Measurement {
+public class Glucose {
 
     private LocalTime creationTime;
     private double bloodGlucoseLevel;
