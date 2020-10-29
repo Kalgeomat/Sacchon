@@ -28,8 +28,8 @@ public class CustomRouter {
         router.attach("/doctors", DoctorListResourceImpl.class); // GET,POST
         router.attach("/doctors/", DoctorListResourceImpl.class); // GET,POST
 
-        router.attach("/doctors/{id}", DoctorResourceImpl.class); // GET,REMOVE
-        router.attach("/doctors/{id}/", DoctorResourceImpl.class); // GET
+        router.attach("/doctors/{id}", DoctorResourceImpl.class); // GET,DELETE
+        router.attach("/doctors/{id}/", DoctorResourceImpl.class); // GET,DELETE
 
         router.attach("/doctors/{id}/patients", DoctorPatientsListResourceImpl.class); //GET
         router.attach("/doctors/{id}/patients/", DoctorPatientsListResourceImpl.class); //GET

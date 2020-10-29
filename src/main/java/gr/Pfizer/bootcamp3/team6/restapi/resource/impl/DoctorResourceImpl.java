@@ -54,8 +54,12 @@ public class DoctorResourceImpl extends ServerResource implements DoctorResource
     }
 
     @Override
-    public void remove() throws NotFoundException {
-
+    public void remove() throws NotFoundException, DeletedEntityException {
+        ResourceUtils.checkRole(this, CustomRole.ROLE_DOCTOR.getRoleName());
+        Optional<Doctor> doctor = doctorRepository.findById(id);
+        setExisting(doctor.isPresent());
+        if (!doctor.isPresent())  throw new NotFoundException("Doctor is not found");
+        doctorRepository.deleteById(id);
 
     }
 
