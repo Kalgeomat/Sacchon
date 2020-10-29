@@ -50,8 +50,12 @@ public class PatientResourceImpl extends ServerResource implements PatientResour
     }
 
     @Override
-    public void remove() throws NotFoundException {
-
+    public void remove() throws NotFoundException, DeletedEntityException {
+        ResourceUtils.checkRole(this, CustomRole.ROLE_PATIENT.getRoleName());
+        Optional<Patient> patient = patientRepository.findById(id);
+        setExisting(patient.isPresent());
+        if (!patient.isPresent())  throw new NotFoundException("Patient is not found");
+        patientRepository.deleteById(id);
     }
 
     @Override

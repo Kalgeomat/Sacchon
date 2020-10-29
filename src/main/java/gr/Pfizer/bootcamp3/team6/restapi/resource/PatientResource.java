@@ -14,7 +14,7 @@ public interface PatientResource {
     PatientRepresentation getPatient() throws NotFoundException, DeletedEntityException;
 
     @Delete
-    void remove() throws NotFoundException;
+    void remove() throws NotFoundException, DeletedEntityException;
 
     @Put("json")
     PatientRepresentation update(PatientRepresentation patientReprIn)

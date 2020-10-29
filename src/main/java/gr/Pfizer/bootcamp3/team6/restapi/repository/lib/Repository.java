@@ -42,9 +42,6 @@ public abstract class Repository<T, K> implements IRepository<T, K> {
      */
     @Override
     public Optional<T> save(T t) throws DeletedEntityException {
-        if(checkIfDeleted(t))
-            throw new DeletedEntityException("This entity has been deleted.");
-
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(t);
@@ -59,7 +56,8 @@ public abstract class Repository<T, K> implements IRepository<T, K> {
     @Override
     public List<T> findAll() {
         TypedQuery<T> query = entityManager.createQuery("from " + getEntityClassName(), getEntityClass());
-        return query.getResultList();
+        List<T> allEntities = query.getResultList();
+        return retrieveOnlyActive(allEntities);
     }
 
 
@@ -68,7 +66,8 @@ public abstract class Repository<T, K> implements IRepository<T, K> {
     public abstract String getEntityClassName();
 
     protected abstract boolean checkIfDeleted(T t);
-    protected abstract void deleteEntity(T t);
+    protected abstract void deleteEntity(T t) throws DeletedEntityException;
+    protected abstract List<T> retrieveOnlyActive(List<T> allEntities);
 
     /**
      * Deleting a persistent instance
@@ -77,7 +76,7 @@ public abstract class Repository<T, K> implements IRepository<T, K> {
      * @return success
      */
     @Override
-    public boolean deleteById(K id) {
+    public boolean deleteById(K id) throws DeletedEntityException {
         T persistentInstance = entityManager.find(getEntityClass(), id);
         if (persistentInstance != null && !checkIfDeleted(persistentInstance)) {
 

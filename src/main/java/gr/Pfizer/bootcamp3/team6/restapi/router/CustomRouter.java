@@ -18,12 +18,11 @@ public class CustomRouter {
 
         // the repetition is happening because of the trailing slash issue
         // Patient's endpoints
-
         router.attach("/patients", PatientListResourceImpl.class); // GET,POST
         router.attach("/patients/", PatientListResourceImpl.class); // GET,POST
 
-        router.attach("/patients/{id}", PatientResourceImpl.class); // GET
-        router.attach("/patients/{id}/", PatientResourceImpl.class); // GET
+        router.attach("/patients/{id}", PatientResourceImpl.class); // GET/DELETE
+        router.attach("/patients/{id}/", PatientResourceImpl.class); // GET/DELETE
 
         // Doctor's endpoints
         router.attach("/doctors", DoctorListResourceImpl.class); // GET,POST

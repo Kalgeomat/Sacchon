@@ -4,6 +4,7 @@ import gr.Pfizer.bootcamp3.team6.restapi.model.Doctor;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.lib.Repository;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 import java.util.Optional;
 
 public class DoctorRepository extends Repository<Doctor,Long> {
@@ -32,5 +33,10 @@ public class DoctorRepository extends Repository<Doctor,Long> {
     @Override
     protected void deleteEntity(Doctor doctor) {
 
+    }
+
+    @Override
+    protected List<Doctor> retrieveOnlyActive(List<Doctor> allEntities) {
+        return null;
     }
 }

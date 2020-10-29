@@ -4,6 +4,7 @@ import gr.Pfizer.bootcamp3.team6.restapi.model.Consultation;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.lib.Repository;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 public class ConsultationRepository extends Repository<Consultation, Long> {
 
@@ -29,5 +30,10 @@ public class ConsultationRepository extends Repository<Consultation, Long> {
     @Override
     protected void deleteEntity(Consultation consultation) {
 
+    }
+
+    @Override
+    protected List<Consultation> retrieveOnlyActive(List<Consultation> allEntities) {
+        return null;
     }
 }

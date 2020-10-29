@@ -3,17 +3,16 @@ package gr.Pfizer.bootcamp3.team6.restapi.repository;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Carb;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Consultation;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.lib.Repository;
-import lombok.Data;
 
 import javax.persistence.EntityManager;
-import java.util.Optional;
-
+import java.util.List;
 
 public class CarbRepository extends Repository<Carb, Long> {
 
     public CarbRepository(EntityManager entityManager) {
         super(entityManager);
     }
+
     @Override
     public Class<Carb> getEntityClass() {
         return Carb.class;
@@ -34,4 +33,8 @@ public class CarbRepository extends Repository<Carb, Long> {
 
     }
 
+    @Override
+    protected List<Carb> retrieveOnlyActive(List<Carb> allEntities) {
+        return null;
+    }
 }

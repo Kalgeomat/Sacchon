@@ -40,8 +40,6 @@ public class DoctorListResourceImpl extends ServerResource implements DoctorList
         em.close();
     }
 
-
-
     @Override
     public DoctorRepresentation add(DoctorRepresentation doctorIn) throws BadEntityException, DeletedEntityException {
 
@@ -57,7 +55,7 @@ public class DoctorListResourceImpl extends ServerResource implements DoctorList
 
     @Override
     public List<DoctorRepresentation> getDoctors() {
-        ResourceUtils.checkRole(this, CustomRole.ROLE_DOCTOR.getRoleName());
+        ResourceUtils.checkRole(this, CustomRole.ROLE_CHIEF_DOCTOR.getRoleName());
         List<Doctor> doctors= doctorRepository.findAll();
 
         List<DoctorRepresentation> doctorRepresentationList = new ArrayList<>();

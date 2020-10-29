@@ -5,6 +5,7 @@ import gr.Pfizer.bootcamp3.team6.restapi.model.Glucose;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.lib.Repository;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 public class GlucoseRepository extends Repository<Glucose, Long> {
 
@@ -30,5 +31,10 @@ public class GlucoseRepository extends Repository<Glucose, Long> {
     @Override
     protected void deleteEntity(Glucose glucose) {
 
+    }
+
+    @Override
+    protected List<Glucose> retrieveOnlyActive(List<Glucose> allEntities) {
+        return null;
     }
 }
