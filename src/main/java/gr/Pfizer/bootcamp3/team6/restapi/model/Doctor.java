@@ -29,8 +29,7 @@ public class Doctor {
     @OneToMany(mappedBy = "doctor",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Patient> listOfPatients = new ArrayList<>();
 
-    public Doctor()
-    {
+    public Doctor() {
         setActive(true);
     }
 
@@ -45,4 +44,6 @@ public class Doctor {
     {
         return isActive;
     }
+
+
 }

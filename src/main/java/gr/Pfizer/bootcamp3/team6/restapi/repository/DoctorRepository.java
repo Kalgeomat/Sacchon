@@ -1,11 +1,13 @@
 package gr.Pfizer.bootcamp3.team6.restapi.repository;
 
+import gr.Pfizer.bootcamp3.team6.restapi.exceptions.DeletedEntityException;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Doctor;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.lib.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class DoctorRepository extends Repository<Doctor,Long> {
 
@@ -27,16 +29,17 @@ public class DoctorRepository extends Repository<Doctor,Long> {
 
     @Override
     protected boolean checkIfDeleted(Doctor doctor) {
-        return false;
+        return !doctor.checkIfActive();
     }
 
     @Override
-    protected void deleteEntity(Doctor doctor) {
-
+    protected void deleteEntity(Doctor doctor)  throws DeletedEntityException {
+        doctor.setActive(false);
+        save(doctor);
     }
 
     @Override
     protected List<Doctor> retrieveOnlyActive(List<Doctor> allEntities) {
-        return null;
+        return allEntities.stream().filter(doctor -> doctor.checkIfActive()).collect(Collectors.toList());
     }
 }

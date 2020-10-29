@@ -23,8 +23,8 @@ HTTP GET => baseUrl + /patients/id/carb/start/end (MDR view data page)
 _Post a patient:_
 HTTP POST => baseUrl + /patients (MDR sign up page) **DONE**
 
-_Delete a patient (patient removes account):_
-HTTP DELETE => baseUrl + /patients/id (MDR account page in "REMOVE ACCOUNT")
+_Delete a patient (patient removes account):_  
+HTTP DELETE => baseUrl + /patients/id (MDR account page in "REMOVE ACCOUNT")  **DONE**
 
 **Consultation**
 
@@ -81,16 +81,16 @@ _Get a doctor:_
 HTTP GET => baseUrl + /doctors/id (DA homepage) **DONE**
 
 _Get a doctor's patients:_
-HTTP GET => baseUrl + /doctors/id/patients (DA homepage in "ALL MY PATIENTS")
+HTTP GET => baseUrl + /doctors/id/patients (DA homepage in "ALL MY PATIENTS") **DONE**
 
 _Get a doctor's patients in need:_
 HTTP GET => baseUrl + /doctors/id/patients/ineed (DA homepage in "MY PATIENTS IN NEED OF CONSULTING")
 
 _Get a doctor's patient:_
-HTTP GET => baseUrl + /doctors/id/patients/id (DA one-patient page)
+HTTP GET => baseUrl + /doctors/id/patients/id (DA one-patient page) **DONE**
 
 _Delete a doctor (doctor removes account):_
-HTTP DELETE => baseUrl + /doctors/id (DA account page in "REMOVE ACCOUNT")
+HTTP DELETE => baseUrl + /doctors/id (DA account page in "REMOVE ACCOUNT") **DONE**
 
 **Reporter(Chief)**
 
