@@ -18,8 +18,4 @@ public interface ConsultationResource {
     @Put("json")
     ConsultationRepresentation update(ConsultationRepresentation consultationRepresentation)
             throws NotFoundException, BadEntityException;
-
-    @Delete
-    void remove() throws NotFoundException;
-
 }

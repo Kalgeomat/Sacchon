@@ -18,24 +18,24 @@ public class CustomRouter {
 
         // the repetition is happening because of the trailing slash issue
         // Patient's endpoints
-        router.attach("/patients", PatientListResourceImpl.class); // GET,POST
-        router.attach("/patients/", PatientListResourceImpl.class); // GET,POST
+        router.attach("/patients", PatientListResourceImpl.class); // GET/POST
+        router.attach("/patients/", PatientListResourceImpl.class); // GET/POST
 
         router.attach("/patients/{id}", PatientResourceImpl.class); // GET/DELETE
         router.attach("/patients/{id}/", PatientResourceImpl.class); // GET/DELETE
 
         // Doctor's endpoints
-        router.attach("/doctors", DoctorListResourceImpl.class); // GET,POST
-        router.attach("/doctors/", DoctorListResourceImpl.class); // GET,POST
+        router.attach("/doctors", DoctorListResourceImpl.class); // GET/POST
+        router.attach("/doctors/", DoctorListResourceImpl.class); // GET/POST
 
-        router.attach("/doctors/{id}", DoctorResourceImpl.class); // GET,REMOVE
-        router.attach("/doctors/{id}/", DoctorResourceImpl.class); // GET
+        router.attach("/doctors/{id}", DoctorResourceImpl.class); // GET/DELETE
+        router.attach("/doctors/{id}/", DoctorResourceImpl.class); // GET/DELETE
         //router.attach("/doctors/{id}/patients", DoctorPatientsResourceImpl.class);
         //router.attach("/doctors/{id}/patients/", DoctorPatientsResourceImpl.class);
 
         // Consultation's endpoints
-        router.attach("/consultations/{id}", ConsultationResourceImpl.class); // GET
-        router.attach("/consultations/{id}/", ConsultationResourceImpl.class); // GET
+        router.attach("/consultations/{id}", ConsultationResourceImpl.class); // GET/PUT
+        router.attach("/consultations/{id}/", ConsultationResourceImpl.class); // GET/PUT
 
         router.attach("/patients/{id}/consultations", ConsultationListResourceImpl.class); // POST/GET
         router.attach("/patients/{id}/consultations/", ConsultationListResourceImpl.class); // POST/GET

@@ -57,9 +57,4 @@ public class PatientResourceImpl extends ServerResource implements PatientResour
         if (!patient.isPresent())  throw new NotFoundException("Patient is not found");
         patientRepository.deleteById(id);
     }
-
-    @Override
-    public PatientRepresentation update(PatientRepresentation patientReprIn) throws NotFoundException, BadEntityException {
-        return null;
-    }
 }

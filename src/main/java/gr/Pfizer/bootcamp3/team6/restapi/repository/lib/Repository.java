@@ -41,7 +41,7 @@ public abstract class Repository<T, K> implements IRepository<T, K> {
      * @return the saved entity
      */
     @Override
-    public Optional<T> save(T t) throws DeletedEntityException {
+    public Optional<T> save(T t){
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(t);

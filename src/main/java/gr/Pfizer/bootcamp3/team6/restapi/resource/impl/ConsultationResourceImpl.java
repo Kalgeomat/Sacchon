@@ -56,11 +56,22 @@ public class ConsultationResourceImpl extends ServerResource implements Consulta
 
     @Override
     public ConsultationRepresentation update(ConsultationRepresentation consultationRepresentation) throws NotFoundException, BadEntityException {
-        return null;
-    }
+        ResourceUtils.checkRole(this, CustomRole.ROLE_DOCTOR.getRoleName());
+        if (consultationRepresentation == null) throw new  BadEntityException("Null consultation representation error");
 
-    @Override
-    public void remove() throws NotFoundException {
+        Consultation newConsultation = ConsultationRepresentation.getConsultation(consultationRepresentation);
+        Optional<Consultation> consultationToUpdateOptional = consultationRepository.findById(consultationId);
+        setExisting(consultationToUpdateOptional.isPresent());
+        if (!consultationToUpdateOptional.isPresent())  throw new NotFoundException("Consultation is not found");
+        Consultation consultationToUpdate = consultationToUpdateOptional.get();
 
+        // this where the consultation is updated in the application
+        consultationToUpdate.setDescription(newConsultation.getDescription());
+        consultationToUpdate.setDateCreated(newConsultation.getDateCreated());
+
+        // this where the consultation is updated in the database
+        consultationRepository.save(consultationToUpdate);
+
+        return ConsultationRepresentation.getConsultationRepresentation(consultationToUpdate);
     }
 }

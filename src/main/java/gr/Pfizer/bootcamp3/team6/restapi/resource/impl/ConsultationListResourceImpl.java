@@ -55,7 +55,6 @@ public class ConsultationListResourceImpl extends ServerResource implements Cons
         Consultation consultation = ConsultationRepresentation.getConsultation(consultationRepresentation);
 
         // this is where the mapping or relationship is done
-        System.out.println("The doctor id of the consultation: " + consultationRepresentation.getDoctorId());
         Doctor doctorConsulting = doctorRepository.findById(consultationRepresentation.getDoctorId()).get();
         Patient patientConsulted = patientRepository.findById(patientId).get();
         consultation.setPatient(patientConsulted);
