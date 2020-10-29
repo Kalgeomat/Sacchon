@@ -20,4 +20,14 @@ public class PatientRepository extends Repository<Patient,Long>{
     public String getEntityClassName() {
         return Patient.class.getName();
     }
+
+    @Override
+    protected boolean checkIfDeleted(Patient patient) {
+        return false;
+    }
+
+    @Override
+    protected void deleteEntity(Patient patient) {
+
+    }
 }

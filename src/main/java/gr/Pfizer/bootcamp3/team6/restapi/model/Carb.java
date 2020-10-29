@@ -10,7 +10,6 @@ import java.util.Date;
 
 @Setter
 @Getter
-@NoArgsConstructor
 @Entity
 public class Carb {
     @Id
@@ -18,7 +17,18 @@ public class Carb {
     private long id;
     private double carbInTake;
     private Date dateMeasured;
+    private boolean isActive;
 
     @ManyToOne
     private Patient patient;
+
+    public Carb()
+    {
+        setActive(true);
+    }
+
+    public boolean checkIfActive()
+    {
+        return isActive;
+    }
 }

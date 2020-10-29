@@ -24,6 +24,13 @@ public class DoctorRepository extends Repository<Doctor,Long> {
         return Doctor.class.getName();
     }
 
+    @Override
+    protected boolean checkIfDeleted(Doctor doctor) {
+        return false;
+    }
 
+    @Override
+    protected void deleteEntity(Doctor doctor) {
 
+    }
 }

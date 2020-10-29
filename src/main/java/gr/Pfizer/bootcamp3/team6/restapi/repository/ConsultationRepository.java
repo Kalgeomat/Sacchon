@@ -20,4 +20,14 @@ public class ConsultationRepository extends Repository<Consultation, Long> {
     public String getEntityClassName() {
         return Consultation.class.getName();
     }
+
+    @Override
+    protected boolean checkIfDeleted(Consultation consultation) {
+        return false;
+    }
+
+    @Override
+    protected void deleteEntity(Consultation consultation) {
+
+    }
 }

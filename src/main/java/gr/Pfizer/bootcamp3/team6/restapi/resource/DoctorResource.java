@@ -1,6 +1,7 @@
 package gr.Pfizer.bootcamp3.team6.restapi.resource;
 
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.BadEntityException;
+import gr.Pfizer.bootcamp3.team6.restapi.exceptions.DeletedEntityException;
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.NotFoundException;
 import gr.Pfizer.bootcamp3.team6.restapi.representation.DoctorRepresentation;
 import gr.Pfizer.bootcamp3.team6.restapi.representation.PatientRepresentation;
@@ -12,12 +13,12 @@ public interface DoctorResource {
 
 
     @Get("json")
-    public DoctorRepresentation getDoctor() throws NotFoundException;
+    DoctorRepresentation getDoctor() throws NotFoundException, DeletedEntityException;
 
     @Delete
-    public void remove() throws NotFoundException;
+    void remove() throws NotFoundException;
 
     @Put("json")
-    public DoctorRepresentation update(DoctorRepresentation doctorReprIn)
+    DoctorRepresentation update(DoctorRepresentation doctorReprIn)
             throws NotFoundException, BadEntityException;
 }

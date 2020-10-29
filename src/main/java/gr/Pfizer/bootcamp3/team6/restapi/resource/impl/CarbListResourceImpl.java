@@ -1,6 +1,7 @@
 package gr.Pfizer.bootcamp3.team6.restapi.resource.impl;
 
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.BadEntityException;
+import gr.Pfizer.bootcamp3.team6.restapi.exceptions.DeletedEntityException;
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.NotFoundException;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Carb;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Patient;
@@ -43,7 +44,7 @@ public class CarbListResourceImpl extends ServerResource implements CarbListReso
     }
 
     @Override
-    public CarbRepresentation add(CarbRepresentation carbRepresentation) throws BadEntityException {
+    public CarbRepresentation add(CarbRepresentation carbRepresentation) throws BadEntityException, DeletedEntityException {
         ResourceUtils.checkRole(this, CustomRole.ROLE_PATIENT.getRoleName());
         if (carbRepresentation == null) throw new  BadEntityException("Null carb representation error");
 

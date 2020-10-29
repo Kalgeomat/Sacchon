@@ -1,6 +1,7 @@
 package gr.Pfizer.bootcamp3.team6.restapi.resource.impl;
 
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.BadEntityException;
+import gr.Pfizer.bootcamp3.team6.restapi.exceptions.DeletedEntityException;
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.NotFoundException;
 
 import gr.Pfizer.bootcamp3.team6.restapi.model.Patient;
@@ -39,7 +40,7 @@ public class PatientResourceImpl extends ServerResource implements PatientResour
     }
 
     @Override
-    public PatientRepresentation getPatient() throws NotFoundException, ResourceException {
+    public PatientRepresentation getPatient() throws NotFoundException, ResourceException, DeletedEntityException {
         ResourceUtils.checkRole(this, CustomRole.ROLE_DOCTOR.getRoleName());
         Optional<Patient> patient = patientRepository.findById(id);
         setExisting(patient.isPresent());

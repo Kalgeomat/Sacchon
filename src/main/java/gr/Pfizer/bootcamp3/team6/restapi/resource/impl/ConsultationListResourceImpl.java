@@ -1,6 +1,7 @@
 package gr.Pfizer.bootcamp3.team6.restapi.resource.impl;
 
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.BadEntityException;
+import gr.Pfizer.bootcamp3.team6.restapi.exceptions.DeletedEntityException;
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.NotFoundException;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Consultation;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Doctor;
@@ -47,7 +48,7 @@ public class ConsultationListResourceImpl extends ServerResource implements Cons
     }
 
     @Override
-    public ConsultationRepresentation add(ConsultationRepresentation consultationRepresentation) throws BadEntityException {
+    public ConsultationRepresentation add(ConsultationRepresentation consultationRepresentation) throws BadEntityException, DeletedEntityException {
         ResourceUtils.checkRole(this, CustomRole.ROLE_DOCTOR.getRoleName());
         if (consultationRepresentation == null) throw new  BadEntityException("Null consultation representation error");
 

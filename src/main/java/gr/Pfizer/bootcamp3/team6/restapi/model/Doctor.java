@@ -11,7 +11,6 @@ import java.util.List;
 
 @Setter
 @Getter
-@NoArgsConstructor
 @Entity
 public class Doctor {
     @Id
@@ -25,14 +24,25 @@ public class Doctor {
     private String address;
     private Date dob;
     private Gender gender;
+    private boolean isActive;
 
     @OneToMany(mappedBy = "doctor",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Patient> listOfPatients = new ArrayList<>();
+
+    public Doctor()
+    {
+        setActive(true);
+    }
 
     public void consultPatient(Patient patient, Consultation consultation)
     {
         patient.addConsultation(consultation);
         patient.setDoctor(this);
         listOfPatients.add(patient);
+    }
+
+    public boolean checkIfActive()
+    {
+        return isActive;
     }
 }

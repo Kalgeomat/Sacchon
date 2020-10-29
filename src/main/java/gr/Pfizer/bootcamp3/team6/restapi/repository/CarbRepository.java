@@ -21,4 +21,14 @@ public class CarbRepository extends Repository<Carb, Long> {
     public String getEntityClassName() {
         return Carb.class.getName();
     }
+
+    @Override
+    protected boolean checkIfDeleted(Carb carb) {
+        return false;
+    }
+
+    @Override
+    protected void deleteEntity(Carb carb) {
+
+    }
 }

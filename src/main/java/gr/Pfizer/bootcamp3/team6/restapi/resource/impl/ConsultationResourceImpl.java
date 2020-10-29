@@ -1,6 +1,7 @@
 package gr.Pfizer.bootcamp3.team6.restapi.resource.impl;
 
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.BadEntityException;
+import gr.Pfizer.bootcamp3.team6.restapi.exceptions.DeletedEntityException;
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.NotFoundException;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Consultation;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.ConsultationRepository;
@@ -40,7 +41,7 @@ public class ConsultationResourceImpl extends ServerResource implements Consulta
     }
 
     @Override
-    public ConsultationRepresentation getConsultation() throws NotFoundException, ResourceException {
+    public ConsultationRepresentation getConsultation() throws NotFoundException, ResourceException, DeletedEntityException {
         List<String> roles = new ArrayList<>();
         roles.add(CustomRole.ROLE_PATIENT.getRoleName());
         roles.add(CustomRole.ROLE_DOCTOR.getRoleName());

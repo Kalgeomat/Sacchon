@@ -1,6 +1,8 @@
 package gr.Pfizer.bootcamp3.team6.restapi.repository.lib;
 
 
+import gr.Pfizer.bootcamp3.team6.restapi.exceptions.DeletedEntityException;
+
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
@@ -15,15 +17,20 @@ public abstract class Repository<T, K> implements IRepository<T, K> {
     }
 
     @Override
-    public Optional<T> findById(K id) {
+    public Optional<T> findById(K id){
         try {
             entityManager.getTransaction().begin();
             T t = entityManager.find(getEntityClass(), id);
             entityManager.getTransaction().commit();
+
+            if(checkIfDeleted(t))
+                throw new DeletedEntityException("This entity has been deleted.");
+
             return Optional.of(t);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return Optional.empty();
     }
 
@@ -34,7 +41,10 @@ public abstract class Repository<T, K> implements IRepository<T, K> {
      * @return the saved entity
      */
     @Override
-    public Optional<T> save(T t) {
+    public Optional<T> save(T t) throws DeletedEntityException {
+        if(checkIfDeleted(t))
+            throw new DeletedEntityException("This entity has been deleted.");
+
         try {
             entityManager.getTransaction().begin(); //to transaction to xrisimopoioume otan kanoume allages
             entityManager.persist(t);
@@ -57,6 +67,9 @@ public abstract class Repository<T, K> implements IRepository<T, K> {
 
     public abstract String getEntityClassName();
 
+    protected abstract boolean checkIfDeleted(T t);
+    protected abstract void deleteEntity(T t);
+
     /**
      * Deleting a persistent instance
      *
@@ -66,19 +79,20 @@ public abstract class Repository<T, K> implements IRepository<T, K> {
     @Override
     public boolean deleteById(K id) {
         T persistentInstance = entityManager.find(getEntityClass(), id);
-        if (persistentInstance != null) {
+        if (persistentInstance != null && !checkIfDeleted(persistentInstance)) {
 
-            try {
+            /*try {
                 entityManager.getTransaction().begin();
                 entityManager.remove(persistentInstance);
                 entityManager.getTransaction().commit();
             } catch (Exception e) {
                 //e.printStackTrace();
                 return false;
-            }
+            }*/
+            deleteEntity(persistentInstance);
+
             return true;
         }
         return false;
     }
-
 }

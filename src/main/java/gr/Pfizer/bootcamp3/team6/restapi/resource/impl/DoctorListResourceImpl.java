@@ -1,6 +1,7 @@
 package gr.Pfizer.bootcamp3.team6.restapi.resource.impl;
 
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.BadEntityException;
+import gr.Pfizer.bootcamp3.team6.restapi.exceptions.DeletedEntityException;
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.NotFoundException;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Doctor;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.DoctorRepository;
@@ -42,7 +43,7 @@ public class DoctorListResourceImpl extends ServerResource implements DoctorList
 
 
     @Override
-    public DoctorRepresentation add(DoctorRepresentation doctorIn) throws BadEntityException {
+    public DoctorRepresentation add(DoctorRepresentation doctorIn) throws BadEntityException, DeletedEntityException {
 
         ResourceUtils.checkRole(this, CustomRole.ROLE_DOCTOR.getRoleName());
         if (doctorIn==null) throw new  BadEntityException("Null doctor representation error");
@@ -58,7 +59,7 @@ public class DoctorListResourceImpl extends ServerResource implements DoctorList
     }
 
     @Override
-    public List<DoctorRepresentation> getDoctors() throws NotFoundException {
+    public List<DoctorRepresentation> getDoctors() {
         ResourceUtils.checkRole(this, CustomRole.ROLE_DOCTOR.getRoleName());
         List<Doctor> doctors= doctorRepository.findAll();
 

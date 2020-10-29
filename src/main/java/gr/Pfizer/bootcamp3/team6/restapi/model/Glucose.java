@@ -12,7 +12,6 @@ import java.util.Date;
 
 @Setter
 @Getter
-@NoArgsConstructor
 @Entity
 public class Glucose {
     @Id
@@ -20,7 +19,18 @@ public class Glucose {
     private long id;
     private Date creationTime;
     private double bloodGlucoseLevel;
+    private boolean isActive;
 
     @ManyToOne
     private Patient patient;
+
+    public Glucose()
+    {
+        setActive(true);
+    }
+
+    public boolean checkIfActive()
+    {
+        return isActive;
+    }
 }

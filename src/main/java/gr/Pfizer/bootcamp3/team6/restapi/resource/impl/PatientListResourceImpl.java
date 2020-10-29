@@ -1,6 +1,7 @@
 package gr.Pfizer.bootcamp3.team6.restapi.resource.impl;
 
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.BadEntityException;
+import gr.Pfizer.bootcamp3.team6.restapi.exceptions.DeletedEntityException;
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.NotFoundException;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Patient;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.PatientRepository;
@@ -37,7 +38,7 @@ public class PatientListResourceImpl extends ServerResource implements PatientLi
     }
 
     @Override
-    public PatientRepresentation add(PatientRepresentation patientIn) throws BadEntityException {
+    public PatientRepresentation add(PatientRepresentation patientIn) throws BadEntityException, DeletedEntityException {
         ResourceUtils.checkRole(this, CustomRole.ROLE_PATIENT.getRoleName());
         if (patientIn==null) throw new  BadEntityException("Null patient representation error");
         //if (patientIn.getLastName().equals("patient")) throw new  BadEntityException("Invalid patient name error");
