@@ -1,7 +1,6 @@
 package gr.Pfizer.bootcamp3.team6.restapi.representation;
 
 import gr.Pfizer.bootcamp3.team6.restapi.model.Carb;
-import gr.Pfizer.bootcamp3.team6.restapi.model.Consultation;
 import lombok.Data;
 
 import java.util.Date;
@@ -30,7 +29,7 @@ public class CarbRepresentation {
         carbRepresentation.setCarbInTake(carb.getCarbInTake());
         carbRepresentation.setDateMeasured(carb.getDateMeasured());
         carbRepresentation.setPatientId(carb.getPatient().getId());
-        carbRepresentation.setUri("http://localhost:9000/SacchonApp/patients/" +carb.getPatient().getId() + "/carbs/" + carb.getId());
+        carbRepresentation.setUri("http://localhost:9000/SacchonApp/carbs/" + carb.getId());
 
         return carbRepresentation;
     }

@@ -34,7 +34,7 @@ public class GlucoseRepresentation {
             glucoseRepresentation.setBloodGlucoseLevel(glucose.getBloodGlucoseLevel());
             glucoseRepresentation.setDateMeasured(glucose.getDateMeasured());
             glucoseRepresentation.setPatientId(glucose.getPatient().getId());
-            glucoseRepresentation.setUri("http://localhost:9000/SacchonApp/patients/" +glucose.getPatient().getId() + "/glucose/" + glucose.getId());
+            glucoseRepresentation.setUri("http://localhost:9000/SacchonApp/glucose/"+glucose.getId());
 
             return glucoseRepresentation;
         }

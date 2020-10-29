@@ -3,21 +3,20 @@ package gr.Pfizer.bootcamp3.team6.restapi.resource;
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.BadEntityException;
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.DeletedEntityException;
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.NotFoundException;
-import gr.Pfizer.bootcamp3.team6.restapi.representation.DoctorRepresentation;
+import gr.Pfizer.bootcamp3.team6.restapi.representation.CarbRepresentation;
 import org.restlet.resource.Delete;
 import org.restlet.resource.Get;
 import org.restlet.resource.Put;
 
-public interface DoctorResource {
-
+public interface CarbResource {
 
     @Get("json")
-    DoctorRepresentation getDoctor() throws NotFoundException, DeletedEntityException;
+    CarbRepresentation getCarb() throws NotFoundException, DeletedEntityException;
 
     @Delete
     void remove() throws NotFoundException;
 
     @Put("json")
-    DoctorRepresentation update(DoctorRepresentation doctorReprIn)
+    void update(CarbRepresentation carbReprIn)
             throws NotFoundException, BadEntityException;
 }

@@ -10,14 +10,12 @@ import gr.Pfizer.bootcamp3.team6.restapi.representation.DoctorRepresentation;
 import gr.Pfizer.bootcamp3.team6.restapi.resource.DoctorResource;
 import gr.Pfizer.bootcamp3.team6.restapi.resource.util.ResourceUtils;
 import gr.Pfizer.bootcamp3.team6.restapi.security.CustomRole;
-import org.restlet.engine.Engine;
 import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
 
 import javax.persistence.EntityManager;
 import java.util.Optional;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 public class DoctorResourceImpl extends ServerResource implements DoctorResource {
 
