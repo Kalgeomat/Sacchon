@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Time;
 import java.time.LocalTime;
 import java.util.Date;
 
@@ -17,7 +18,7 @@ public class Glucose {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private Date creationTime;
+    private Time creationTime;
     private Date dateMeasured;
     private double bloodGlucoseLevel;
     private boolean isActive;

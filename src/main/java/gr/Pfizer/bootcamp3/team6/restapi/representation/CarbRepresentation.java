@@ -30,7 +30,7 @@ public class CarbRepresentation {
         carbRepresentation.setCarbInTake(carb.getCarbInTake());
         carbRepresentation.setDateMeasured(carb.getDateMeasured());
         carbRepresentation.setPatientId(carb.getPatient().getId());
-        carbRepresentation.setUri("http://localhost:9000/SacchonApp/carbs/" +carb.getPatient().getId() + "/consultations/" + carb.getId());
+        carbRepresentation.setUri("http://localhost:9000/SacchonApp/patients/" +carb.getPatient().getId() + "/carbs/" + carb.getId());
 
         return carbRepresentation;
     }

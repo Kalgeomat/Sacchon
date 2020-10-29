@@ -19,7 +19,7 @@ public class GlucoseRepository extends Repository<Glucose, Long> {
 
     @Override
     public String getEntityClassName() {
-        return Carb.class.getName();
+        return Glucose.class.getName();
     }
 
     @Override

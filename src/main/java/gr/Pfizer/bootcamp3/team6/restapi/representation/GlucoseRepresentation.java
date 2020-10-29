@@ -4,12 +4,13 @@ import gr.Pfizer.bootcamp3.team6.restapi.model.Carb;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Glucose;
 import lombok.Data;
 
+import java.sql.Time;
 import java.util.Date;
 
 @Data
 public class GlucoseRepresentation {
         private long id;
-        private Date creationTime;
+        private Time creationTime;
         private double bloodGlucoseLevel;
         private Date dateMeasured;
         private long patientId;

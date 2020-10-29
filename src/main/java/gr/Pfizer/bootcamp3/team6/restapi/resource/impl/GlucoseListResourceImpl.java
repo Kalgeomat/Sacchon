@@ -2,11 +2,13 @@ package gr.Pfizer.bootcamp3.team6.restapi.resource.impl;
 
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.BadEntityException;
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.DeletedEntityException;
+import gr.Pfizer.bootcamp3.team6.restapi.model.Carb;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Glucose;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Patient;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.GlucoseRepository;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.PatientRepository;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.util.JpaUtil;
+import gr.Pfizer.bootcamp3.team6.restapi.representation.CarbRepresentation;
 import gr.Pfizer.bootcamp3.team6.restapi.representation.GlucoseRepresentation;
 import gr.Pfizer.bootcamp3.team6.restapi.resource.GlucoseListResource;
 import gr.Pfizer.bootcamp3.team6.restapi.resource.util.ResourceUtils;
@@ -15,6 +17,7 @@ import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
 
 import javax.persistence.EntityManager;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GlucoseListResourceImpl extends ServerResource implements GlucoseListResource {
@@ -55,8 +58,32 @@ public class GlucoseListResourceImpl extends ServerResource implements GlucoseLi
         return GlucoseRepresentation.getGlucoseRepresentation(glucose);
     }
 
+
     @Override
     public List<GlucoseRepresentation> getGlucose(){
-        return null;
+        List<String> roles = new ArrayList<>();
+        roles.add(CustomRole.ROLE_PATIENT.getRoleName());
+        roles.add(CustomRole.ROLE_DOCTOR.getRoleName());
+        //ResourceUtils.checkRoles(this, roles);
+
+        List<Glucose> glucoseMeasurements= glucoseRepository.findAll();
+        glucoseMeasurements = getGlucoseForPatient(glucoseMeasurements);
+        List<GlucoseRepresentation>  glucoseRepresentationList = new ArrayList<>();
+        glucoseMeasurements.forEach(glucose -> glucoseRepresentationList.add(GlucoseRepresentation.getGlucoseRepresentation(glucose)));
+
+        return glucoseRepresentationList;
+    }
+
+    private List<Glucose> getGlucoseForPatient(List<Glucose> allGlucoseMeasurements)
+    {
+        List<Glucose> patientGlucoseMeasurements = new ArrayList<>();
+
+        allGlucoseMeasurements.forEach(glucose -> {
+            if(glucose.getPatient().getId() == patientId)
+                patientGlucoseMeasurements.add(glucose);
+        });
+        return patientGlucoseMeasurements;
     }
 }
+
+
