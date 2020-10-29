@@ -45,7 +45,7 @@ public class ConsultationResourceImpl extends ServerResource implements Consulta
         List<String> roles = new ArrayList<>();
         roles.add(CustomRole.ROLE_PATIENT.getRoleName());
         roles.add(CustomRole.ROLE_DOCTOR.getRoleName());
-        ResourceUtils.checkRoles(this, roles);
+        //ResourceUtils.checkRoles(this, roles);
 
         Optional<Consultation> consultation = consultationRepository.findById(consultationId);
         setExisting(consultation.isPresent());

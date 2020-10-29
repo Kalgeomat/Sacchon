@@ -18,6 +18,7 @@ public class Glucose {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private Date creationTime;
+    private Date dateMeasured;
     private double bloodGlucoseLevel;
     private boolean isActive;
 

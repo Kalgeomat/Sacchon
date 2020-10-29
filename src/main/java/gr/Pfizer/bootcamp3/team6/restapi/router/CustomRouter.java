@@ -44,6 +44,8 @@ public class CustomRouter {
         // Measurement's endpoints
         router.attach("/patients/{id}/carbs", CarbListResourceImpl.class); // POST/GET
         router.attach("/patients/{id}/carbs/", CarbListResourceImpl.class); // POST/GET
+        router.attach("/patients/{id}/glucose", GlucoseListResourceImpl.class); // POST/GET
+        router.attach("/patients/{id}/glucose/",GlucoseListResourceImpl.class); // POST/GET
 
         return router;
     }
