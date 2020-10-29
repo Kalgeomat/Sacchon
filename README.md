@@ -32,7 +32,7 @@ _Get a patient's consultations:_
 HTTP GET => baseUrl + /patients/id/consultations (MDR past consultations page) **DONE**
 
 _Get a patient's consultation:_
-HTTP GET => baseUrl + /patients/id/consultations/id (MDR homepage)
+HTTP GET => baseUrl + consultations/id (MDR homepage) **DONE**
 
 _Post a consultation for a patient:_
 HTTP POST => baseUrl + /patients/id/consultations (DA consultation page) **DONE**
@@ -49,10 +49,10 @@ _Get a patient's measurements:_
 HTTP GET => baseUrl + /patients/id/glucose (MDR view data page, DA one-patient page) **DONE**
 
 _Get a patient's measurement:_
-HTTP GET => baseUrl + /patients/id/carbs/id (we don't know yet)
+HTTP GET => baseUrl + /carbs/id (we don't know yet) **DONE**
 
 _Get a patient's measurement:_
-HTTP GET => baseUrl + /patients/id/glucose/id (we don't know yet)
+HTTP GET => baseUrl +id/glucose/id (we don't know yet) **DONE**
 
 _Post a patient's measurement:_
 HTTP POST => baseUrl + /patients/id/carbs (MDR homepage) **DONE**
