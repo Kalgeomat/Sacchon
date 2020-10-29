@@ -29,7 +29,8 @@ public class ResourceUtils {
 
     // this method is similar to the above one, with only difference that it checks multiple roles.
     public static void checkRoles(ServerResource serverResource, List<String> roles) throws ResourceException {
-        if (roles.stream().noneMatch(role -> serverResource.isInRole(role))) {
+        boolean isNotAuthorized = roles.stream().noneMatch(role -> serverResource.isInRole(role));
+        if (isNotAuthorized) {
             throw new ResourceException(
                     Status.CLIENT_ERROR_FORBIDDEN.getCode(),
                     "You're not authorized to send this call.");

@@ -71,7 +71,7 @@ public class ConsultationListResourceImpl extends ServerResource implements Cons
         List<String> roles = new ArrayList<>();
         roles.add(CustomRole.ROLE_PATIENT.getRoleName());
         roles.add(CustomRole.ROLE_DOCTOR.getRoleName());
-        //ResourceUtils.checkRoles(this, roles);
+        ResourceUtils.checkRoles(this, roles);
 
         List<Consultation> consultations= consultationRepository.findAll();
         consultations = getConsultationsForPatient(consultations);

@@ -21,8 +21,7 @@ public class CustomVerifier extends SecretVerifier {
         }
 
         //user contains both user hints and roles
-        if (user!=null
-                && compare(user.getPassword().toCharArray(), secret)) {
+        if (user!=null && compare(user.getPassword().toCharArray(), secret)) {
             Request request = Request.getCurrent();
             request.getClientInfo().getRoles().add(new Role(user.getRole().getRoleName()));
             return SecretVerifier.RESULT_VALID;

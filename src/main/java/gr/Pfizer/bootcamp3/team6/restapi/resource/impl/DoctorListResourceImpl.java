@@ -45,17 +45,14 @@ public class DoctorListResourceImpl extends ServerResource implements DoctorList
     @Override
     public DoctorRepresentation add(DoctorRepresentation doctorIn) throws BadEntityException, DeletedEntityException {
 
-        ResourceUtils.checkRole(this, CustomRole.ROLE_DOCTOR.getRoleName());
+        ResourceUtils.checkRole(this, CustomRole.ROLE_CHIEF_DOCTOR.getRoleName());
         if (doctorIn==null) throw new  BadEntityException("Null doctor representation error");
         //if (doctorIn.getLastName().equals("admin")) throw new  BadEntityException("Invalid doctor name error");
 
         Doctor doctor = DoctorRepresentation.getDoctor(doctorIn);
-
-
         doctorRepository.save(doctor);
 
-
-       return DoctorRepresentation.getDoctorRepresentation(doctor);
+        return DoctorRepresentation.getDoctorRepresentation(doctor);
     }
 
     @Override
@@ -64,10 +61,8 @@ public class DoctorListResourceImpl extends ServerResource implements DoctorList
         List<Doctor> doctors= doctorRepository.findAll();
 
         List<DoctorRepresentation> doctorRepresentationList = new ArrayList<>();
-
         doctors.forEach(doctor -> doctorRepresentationList.add(DoctorRepresentation.getDoctorRepresentation(doctor)));
 
         return doctorRepresentationList;
-
     }
 }

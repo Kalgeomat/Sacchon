@@ -46,7 +46,7 @@ public abstract class Repository<T, K> implements IRepository<T, K> {
             throw new DeletedEntityException("This entity has been deleted.");
 
         try {
-            entityManager.getTransaction().begin(); //to transaction to xrisimopoioume otan kanoume allages
+            entityManager.getTransaction().begin();
             entityManager.persist(t);
             entityManager.getTransaction().commit();
             return Optional.of(t);

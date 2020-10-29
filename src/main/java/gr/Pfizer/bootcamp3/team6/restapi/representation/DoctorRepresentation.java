@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Data
 public class DoctorRepresentation {
-
+    private long id;
     private String firstName;
     private String lastName;
     private String email;
@@ -17,7 +17,6 @@ public class DoctorRepresentation {
     private String address;
     private Date dob;
     private Gender gender;
-
     private String uri;
 
     static public Doctor getDoctor(DoctorRepresentation doctorRepresentation){
@@ -38,6 +37,7 @@ public class DoctorRepresentation {
         DoctorRepresentation  doctorRepresentation  = new DoctorRepresentation ();
         //Doctor d = (Doctor)user;
 
+        doctorRepresentation.setId(doctor.getId());
         doctorRepresentation.setFirstName(doctor.getFirstName());
         doctorRepresentation.setLastName(doctor.getLastName());
         doctorRepresentation.setEmail(doctor.getEmail());
@@ -48,11 +48,6 @@ public class DoctorRepresentation {
         doctorRepresentation.setGender(doctor.getGender());
         doctorRepresentation.setUri("http://localhost:9000/SacchonApp/doctor/"+doctor.getId());
 
-
         return doctorRepresentation;
-
     }
-
-
-
 }
