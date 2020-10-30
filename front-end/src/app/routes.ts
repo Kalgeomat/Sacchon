@@ -18,7 +18,8 @@ import { RePatReportModule } from './re-pat-report/re-pat-report.module';
 import { RePatReportComponent } from './re-pat-report/re-pat-report/re-pat-report.component';
 
 export const routes: Routes =[
-    {path: '', component: LogInComponent },
+    {path: '', redirectTo: 'login', pathMatch: 'full'},
+    {path: 'login', component: LogInComponent },
     {path: 'signup', component: PatientSignUpComponent},
     {path: 'medidatarepo', component: MdrHomeComponent},
     {path: 'medidatarepo/account', component: AccountComponent},

@@ -20,7 +20,7 @@
             <!-- <ul> 
                 <li *ngFor="let d of dataD">{{d.firstName}} {{d.lastName}}</li>
             </ul> -->
-            <table class="table">
+            <table class="table" *ngIf="dataD?.length">
                 <thead>
                   <tr>
                     <th scope="col">Doctors</th>

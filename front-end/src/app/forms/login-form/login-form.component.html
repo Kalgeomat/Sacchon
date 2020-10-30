@@ -5,14 +5,14 @@
 
     <form [formGroup]="loginForm">
         <div>
-            <label>Email</label><br>
-            <input type="email" formControlName="email">
+            <label>Username</label><br>
+            <input type="text" formControlName="username">
         </div>
         <div>
             <label>Password</label><br>
             <input type="password" formControlName="password">
         </div><br>
-        <button type="button" class="btn btn-default btn-md btn-primary">
+        <button type="button" class="btn btn-default btn-md btn-primary" (click)="logIn()">
             Sign In
         </button>
     </form>

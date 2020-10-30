@@ -9,15 +9,7 @@ import { HttpDoctorsService } from 'src/app/http-doctors.service';
 })
 export class ReDocReportComponent implements OnInit {
 
-  dataD: Doctor = {
-    email: '',
-    password: '',
-    firstName: '',
-    lastName: '',
-    address: '',
-    telephoneNumber: 0,
-    gender: 0
-  };
+  dataD: Doctor[];   
 
   constructor(private httpDoctors: HttpDoctorsService) { }
 

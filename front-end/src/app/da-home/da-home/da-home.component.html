@@ -10,16 +10,37 @@
     <div class="col-sm-3">
         <h3 class="center"> My Patients in need of Consulting </h3>
         <!-- TODO list of doctors patients ready for consulting -->
-        <!-- <ul>
-            <li *ngFor="let item of items; let idx=index;">
-            {{idx}} : {{item}}  <button type="button" class="btn btn-primary">View Data</button>
-            </li>
-        </ul> -->
+        <table class="table" *ngIf="dataPI?.length">
+            <thead>
+              <tr>
+                <th scope="col">Patients In Need of Consulting</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let pi of dataPI">
+                <td>{{pi.firstName}} {{pi.lastName}}</td>
+              </tr>                  
+            </tbody>
+          </table>
     </div>
     <div class="col-sm-2"></div>
     <div class="col-sm-3">
         <h3 class="center"> All my Patients </h3>
         <!-- TODO list of all doctors patients -->
+        
+        <table class="table" *ngIf="dataP?.length">
+            <thead>
+              <tr>
+                <th scope="col">Patients</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let p of dataP">
+                <td>{{p.firstName}} {{p.lastName}}</td>
+              </tr>                  
+            </tbody>
+          </table>
+
         <!-- <ul>
             <li *ngFor="let item of items; let idx=index;">
             {{idx}} : {{item}}  <button type="button" class="btn btn-primary">View Data</button>

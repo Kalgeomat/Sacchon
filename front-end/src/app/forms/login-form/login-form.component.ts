@@ -1,5 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { LoginService } from 'src/app/login.service';
 
 @Component({
   selector: 'app-login-form',
@@ -9,13 +11,15 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class LoginFormComponent implements OnInit, AfterViewInit {
 
   loginForm: FormGroup;
+  username: string;
+  password: string;
 
-  constructor() { }
+  constructor(private router: Router, private loginService: LoginService) { }
   
   ngOnInit(): void {
     //form instatiation, configuration, pedia formas
     this.loginForm = new FormGroup({
-      email: new FormControl(),
+      username: new FormControl(),
       password: new FormControl()
     });
   }
@@ -25,17 +29,19 @@ export class LoginFormComponent implements OnInit, AfterViewInit {
     console.log(isPasswordValid);
   }
 
-  // logIn() {
-  //   var responseString = this.loginService.authorization(this.form);
-  //   if (responseString == "OK") {
-  //     this.username = this.form.get('login').value;
-  //     this.password = this.form.get('password').value;
-  //     sessionStorage.setItem("credentials", this.login + ":" + this.password)
-  //     this.router.navigate(['view'])
-  //   }
-  //   else {
-  //     alert("Wrong login or password!!!");
-  //   }
-  // }
+  logIn() {
+    var responseString = this.loginService.authorization(this.loginForm);
+    if (responseString == "OK") {
+      this.username = this.loginForm.get('username').value;
+      this.password = this.loginForm.get('password').value;
+      sessionStorage.setItem("credentials", this.username + ":" + this.password);
+      this.router.navigate(['medidatarepo']);
+      // this.router.navigate(['doctoradvice'])
+      // this.router.navigate(['reporter'])
+    }
+    else {
+      alert("Wrong login or password!!!");
+    }
+  }
 
 }
