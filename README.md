@@ -6,10 +6,10 @@ _Get all patients:_
 HTTP GET => baseUrl + /patients (R Patient Report Page in the "Choose a patient" dropdown) **DONE**
 
 _Get all new patients:_
-HTTP GET => baseUrl + /patients/new (DA new patient's page)
+HTTP GET => baseUrl + /patients/new (DA new patient's page) 
 
 _Get all patients in need:_
-HTTP GET => baseUrl + /patients/ineed (R Patient Report Page in the "Patients Waiting for Consultation"
+HTTP GET => baseUrl + /patients/need (R Patient Report Page in the "Patients Waiting for Consultation" **DONE**
 
 _Get a patient:_
 HTTP GET => baseUrl + /patients/id (MDR Homepage, DA one-patient page) **DONE**
@@ -38,7 +38,7 @@ _Post a consultation for a patient:_
 HTTP POST => baseUrl + /patients/id/consultations (DA consultation page) **DONE**
 
 _Update a patient's consultation:_
-HTTP PUT => baseUrl + /patients/id/consultations/id (we don't know yet)
+HTTP PUT => baseUrl + /patients/id/consultations/id (we don't know yet) **DONE**
 
 **Measurement**
 
@@ -61,16 +61,16 @@ _Post a patient's measurement:_
 HTTP POST => baseUrl + /patients/id/glucose (MDR homepage) **DONE**
 
 _Update a patient's measurement:_
-HTTP PUT => baseUrl + /patients/id/carbs/id (MDR view data page)
+HTTP PUT => baseUrl + /patients/id/carbs/id (MDR view data page) **DONE**
 
 _Update a patient's measurement:_
-HTTP PUT => baseUrl + /patients/id/glucoses/id (MDR view data page)
+HTTP PUT => baseUrl + /patients/id/glucoses/id (MDR view data page) **DONE**
 
 _Delete a patient's measurement:_
-HTTP DELETE => baseUrl + /patients/id/carbs/id (MDR view data page)
+HTTP DELETE => baseUrl + /patients/id/carbs/id (MDR view data page) **DONE**
 
 _Delete a patient's measurement:_
-HTTP DELETE => baseUrl + /patients/id/glucose/id (MDR view data page)
+HTTP DELETE => baseUrl + /patients/id/glucose/id (MDR view data page) **DONE**
 
 **Doctor**
 
