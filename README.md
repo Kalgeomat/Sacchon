@@ -52,7 +52,7 @@ _Get a patient's measurement:_
 HTTP GET => baseUrl + /carbs/id (we don't know yet) **DONE**
 
 _Get a patient's measurement:_
-HTTP GET => baseUrl +id/glucose/id (we don't know yet) **DONE**
+HTTP GET => baseUrl +/glucose/id (we don't know yet) **DONE**
 
 _Post a patient's measurement:_
 HTTP POST => baseUrl + /patients/id/carbs (MDR homepage) **DONE**
@@ -61,16 +61,16 @@ _Post a patient's measurement:_
 HTTP POST => baseUrl + /patients/id/glucose (MDR homepage) **DONE**
 
 _Update a patient's measurement:_
-HTTP PUT => baseUrl + /patients/id/carbs/id (MDR view data page) **DONE**
+HTTP PUT => baseUrl + /carbs/id (MDR view data page) **DONE**
 
 _Update a patient's measurement:_
-HTTP PUT => baseUrl + /patients/id/glucoses/id (MDR view data page) **DONE**
+HTTP PUT => baseUrl + /glucoses/id (MDR view data page) **DONE**
 
 _Delete a patient's measurement:_
-HTTP DELETE => baseUrl + /patients/id/carbs/id (MDR view data page) **DONE**
+HTTP DELETE => baseUrl +/carbs/id (MDR view data page) **DONE**
 
 _Delete a patient's measurement:_
-HTTP DELETE => baseUrl + /patients/id/glucose/id (MDR view data page) **DONE**
+HTTP DELETE => baseUrl + glucose/id (MDR view data page) **DONE**
 
 **Doctor**
 
@@ -84,10 +84,10 @@ _Get a doctor's patients:_
 HTTP GET => baseUrl + /doctors/id/patients (DA homepage in "ALL MY PATIENTS") **DONE**
 
 _Get a doctor's patients in need:_
-HTTP GET => baseUrl + /doctors/id/patients/ineed (DA homepage in "MY PATIENTS IN NEED OF CONSULTING")
+HTTP GET => baseUrl + /doctors/id/patients/ineed (DA homepage in "MY PATIENTS IN NEED OF CONSULTING") **DONE**
 
 _Get a doctor's patient:_
-HTTP GET => baseUrl + /doctors/id/patients/id (DA one-patient page) **DONE**
+HTTP GET => baseUrl + /patients/id (DA one-patient page) **DONE** 
 
 _Delete a doctor (doctor removes account):_
 HTTP DELETE => baseUrl + /doctors/id (DA account page in "REMOVE ACCOUNT") **DONE**
