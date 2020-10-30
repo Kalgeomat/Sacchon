@@ -20,4 +20,18 @@ export class CarbIntakeFormComponent implements OnInit {
     });
   }
 
+  onClickSubmit() {
+    let carb:Carb ={
+      carbInTake:this.carbIntakeForm.get('cilevel').value,
+      dateMeasured:this.carbIntakeForm.get('cidate').value,
+      patient_id:1
+    };
+
+    this.carbService.addCarb(carb).subscribe(data => {
+      alert(JSON.stringify(data));
+      this.ngOnInit();
+    });
+    
+  }
+
 }

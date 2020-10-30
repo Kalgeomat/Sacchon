@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Doctor } from 'src/app/doctor';
+import { HttpDoctorsService } from 'src/app/http-doctors.service';
 
 @Component({
   selector: 'app-signup-doctor-form',
@@ -10,7 +12,7 @@ export class SignupDoctorFormComponent implements OnInit {
 
   signupDoctorForm: FormGroup;
 
-  constructor() { }
+  constructor(private doctorService: HttpDoctorsService) { }
   
   ngOnInit(): void {
     //form instatiation, configuration, pedia formas
@@ -24,5 +26,28 @@ export class SignupDoctorFormComponent implements OnInit {
       sdbirthday: new FormControl("", Validators.required)
     });
   }
+
+  // doctors: Doctors[];
+
+  onClickSubmit() {
+    let doctor:Doctor ={
+      email:this.signupDoctorForm.get('sdemail').value,
+      password:this.signupDoctorForm.get('sdpassword').value,
+      firstName:this.signupDoctorForm.get('sdname').value,
+      lastName:this.signupDoctorForm.get('sdsurname').value,
+      address:this.signupDoctorForm.get('sdaddress').value,
+      telephoneNumber:this.signupDoctorForm.get('sdtelephone').value,
+      // dob:this.signupDoctorForm.get('sdbirthday').value,
+      gender:1
+    };
+
+    this.doctorService.addDoctor(doctor).subscribe(data => {
+      alert(JSON.stringify(data));
+      this.ngOnInit();
+    });
+    
+  }
+
+
 
 }

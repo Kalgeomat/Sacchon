@@ -15,14 +15,15 @@ export class SignupPatientFormComponent implements OnInit {
   ngOnInit(): void {
     //form instatiation, configuration, pedia formas
     this.signupPatientForm = new FormGroup({
-      spemail: new FormControl("", Validators.required),
-      spname: new FormControl("", Validators.required),
-      sppassword: new FormControl("", Validators.required),
-      spsurname: new FormControl("", Validators.required),
-      spaddress: new FormControl(),
-      sptelephone: new FormControl(),
-      spbirthday: new FormControl("", Validators.required),
-      spsex: new FormControl("", Validators.required)
+      email: new FormControl("", Validators.required),
+      firstName: new FormControl("", Validators.required),
+      password: new FormControl("", Validators.required),
+      lastName: new FormControl("", Validators.required),
+      address: new FormControl(),
+      telephoneNumber: new FormControl(),
+      dob: new FormControl("", Validators.required),
+      gender: new FormControl("", Validators.required)
+      // doctor_id: 1
     });
 
   }

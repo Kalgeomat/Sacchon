@@ -18,19 +18,24 @@ import { MdrViewDataModule } from './mdr-view-data/mdr-view-data.module';
 import { MdrPastConsultationsModule } from './mdr-past-consultations/mdr-past-consultations.module';
 import { LogInModule } from './log-in/log-in.module';
 import { PatientSignUpModule } from './patient-sign-up/patient-sign-up.module';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { routes } from './routes';
 
 @NgModule({
   declarations: [
     AppComponent    
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     SharedModule,
     FormsModule,
     AccountModule, 
     DaConsultationModule, DaHomeModule, DaNewPatientModule, DaOnePatientModule,
     ReDocReportModule, ReHomeModule, RePatReportModule,
-    MdrHomeModule, MdrViewDataModule, MdrPastConsultationsModule, LogInModule, PatientSignUpModule
+    MdrHomeModule, MdrViewDataModule, MdrPastConsultationsModule, LogInModule, PatientSignUpModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]

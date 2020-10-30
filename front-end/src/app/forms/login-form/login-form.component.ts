@@ -25,4 +25,17 @@ export class LoginFormComponent implements OnInit, AfterViewInit {
     console.log(isPasswordValid);
   }
 
+  // logIn() {
+  //   var responseString = this.loginService.authorization(this.form);
+  //   if (responseString == "OK") {
+  //     this.username = this.form.get('login').value;
+  //     this.password = this.form.get('password').value;
+  //     sessionStorage.setItem("credentials", this.login + ":" + this.password)
+  //     this.router.navigate(['view'])
+  //   }
+  //   else {
+  //     alert("Wrong login or password!!!");
+  //   }
+  // }
+
 }
