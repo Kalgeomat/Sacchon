@@ -14,9 +14,9 @@ public interface GlucoseResource {
     GlucoseRepresentation getGlucose() throws NotFoundException, DeletedEntityException;
 
     @Delete
-    void remove() throws NotFoundException;
+    void remove() throws NotFoundException, DeletedEntityException;
 
     @Put("json")
-    void update(GlucoseRepresentation glucoseReprIn)
+    GlucoseRepresentation update(GlucoseRepresentation glucoseReprIn)
             throws NotFoundException, BadEntityException;
 }

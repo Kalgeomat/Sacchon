@@ -1,6 +1,6 @@
 package gr.Pfizer.bootcamp3.team6.restapi.repository;
 
-import gr.Pfizer.bootcamp3.team6.restapi.model.Carb;
+
 import gr.Pfizer.bootcamp3.team6.restapi.model.Glucose;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.lib.Repository;
 
@@ -31,7 +31,8 @@ public class GlucoseRepository extends Repository<Glucose, Long> {
 
     @Override
     protected void deleteEntity(Glucose glucose) {
-
+        glucose.setActive(false);
+        save(glucose);
     }
 
     @Override

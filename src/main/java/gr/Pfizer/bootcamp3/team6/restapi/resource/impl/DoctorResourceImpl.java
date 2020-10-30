@@ -63,8 +63,4 @@ public class DoctorResourceImpl extends ServerResource implements DoctorResource
 
     }
 
-    @Override
-    public DoctorRepresentation update(DoctorRepresentation doctorReprIn) throws NotFoundException, BadEntityException {
-        return null;
-    }
 }

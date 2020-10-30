@@ -14,9 +14,9 @@ public interface CarbResource {
     CarbRepresentation getCarb() throws NotFoundException, DeletedEntityException;
 
     @Delete
-    void remove() throws NotFoundException;
+    void remove() throws NotFoundException, DeletedEntityException;
 
     @Put("json")
-    void update(CarbRepresentation carbReprIn)
+    CarbRepresentation update(CarbRepresentation carbReprIn)
             throws NotFoundException, BadEntityException;
 }

@@ -58,20 +58,42 @@ public class CarbResourceImpl  extends ServerResource implements CarbResource {
 
         return carbRepresentation;
     }
-    List<String> roles = new ArrayList<>();
+
 
 
 
     @Override
-    public void remove() throws NotFoundException {
-
+    public void remove() throws NotFoundException, DeletedEntityException {
+        ResourceUtils.checkRole(this, CustomRole.ROLE_PATIENT.getRoleName());
+        Optional<Carb> carbRemove = carbRepository.findById(carbId);
+        setExisting(carbRemove.isPresent());
+        if (!carbRemove.isPresent())  throw new NotFoundException("Carb is not found");
+        carbRepository.deleteById(carbId);
 
     }
 
     @Override
-    public void update(CarbRepresentation carbReprIn) throws NotFoundException, BadEntityException {
+    public CarbRepresentation update(CarbRepresentation carbReprIn) throws NotFoundException, BadEntityException {
+        ResourceUtils.checkRole(this, CustomRole.ROLE_PATIENT.getRoleName());
+        if (carbReprIn == null) throw new  BadEntityException("Null carb representation error");
 
+        Carb newCarb = CarbRepresentation.getCarb(carbReprIn);
+        Optional<Carb> carbToUpdateOptional = carbRepository.findById(carbId);
+        setExisting(carbToUpdateOptional.isPresent());
+        if (!carbToUpdateOptional.isPresent())  throw new NotFoundException("Carb is not found");
+        Carb carbToUpdate = carbToUpdateOptional.get();
+
+        // this where the carb is updated in the application
+        carbToUpdate.setCarbInTake(newCarb.getCarbInTake());
+        carbToUpdate.setDateMeasured(newCarb.getDateMeasured());
+
+        // this where the carb is updated in the database
+        carbRepository.save(carbToUpdate);
+
+        return CarbRepresentation.getCarbRepresentation(carbToUpdate);
     }
+
+
 
 
 }

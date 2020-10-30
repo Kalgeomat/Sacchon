@@ -22,13 +22,11 @@ public class Carb {
     @ManyToOne
     private Patient patient;
 
-    public Carb()
-    {
+    public Carb(){
         setActive(true);
     }
 
-    public boolean checkIfActive()
-    {
+    public boolean checkIfActive(){
         return isActive;
     }
 }

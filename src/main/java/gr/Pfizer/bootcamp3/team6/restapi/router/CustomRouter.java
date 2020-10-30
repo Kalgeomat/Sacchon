@@ -51,11 +51,11 @@ public class CustomRouter {
         router.attach("/patients/{id}/glucose", GlucoseListResourceImpl.class); // POST/GET
         router.attach("/patients/{id}/glucose/",GlucoseListResourceImpl.class); // POST/GET
 
-        router.attach("/carbs/{id}", CarbResourceImpl.class); //GET
-        router.attach("/carbs/{id}/", CarbResourceImpl.class); //GET
+        router.attach("/carbs/{id}", CarbResourceImpl.class); //GET,PUT,DELETE
+        router.attach("/carbs/{id}/", CarbResourceImpl.class); //GET,PUT,DELETE
 
-        router.attach("/glucose/{id}", GlucoseResourceImpl.class); //GET
-        router.attach("/glucose/{id}/", GlucoseResourceImpl.class); //GET
+        router.attach("/glucose/{id}", GlucoseResourceImpl.class); //GET,PUT,DELETE
+        router.attach("/glucose/{id}/", GlucoseResourceImpl.class); //GET,PUT,DELETE
 
         return router;
     }

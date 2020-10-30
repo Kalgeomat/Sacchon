@@ -61,15 +61,38 @@ public class GlucoseResourceImpl extends ServerResource implements GlucoseResour
 
 
     @Override
-    public void remove() throws NotFoundException {
+    public void remove() throws NotFoundException, DeletedEntityException {
 
+        ResourceUtils.checkRole(this, CustomRole.ROLE_PATIENT.getRoleName());
+        Optional<Glucose> glucoseRemove = glucoseRepository.findById(glucoseId);
+        setExisting(glucoseRemove.isPresent());
+        if (!glucoseRemove.isPresent())  throw new NotFoundException("Glucose is not found");
+        glucoseRepository.deleteById(glucoseId);
 
     }
 
     @Override
-    public void update(GlucoseRepresentation glucoseReprIn) throws NotFoundException, BadEntityException {
+    public GlucoseRepresentation update(GlucoseRepresentation glucoseReprIn) throws NotFoundException, BadEntityException {
+        ResourceUtils.checkRole(this, CustomRole.ROLE_PATIENT.getRoleName());
+        if (glucoseReprIn == null) throw new  BadEntityException("Null glucose representation error");
 
+        Glucose newGlucose = GlucoseRepresentation.getGlucose(glucoseReprIn);
+        Optional<Glucose> glucoseToUpdateOptional = glucoseRepository.findById(glucoseId);
+        setExisting(glucoseToUpdateOptional.isPresent());
+        if (!glucoseToUpdateOptional.isPresent())  throw new NotFoundException("Glucose is not found");
+        Glucose glucoseToUpdate = glucoseToUpdateOptional.get();
+
+        // this where the glucose is updated in the application
+        glucoseToUpdate.setCreationTime(newGlucose.getCreationTime());
+        glucoseToUpdate.setBloodGlucoseLevel(newGlucose.getBloodGlucoseLevel());
+        glucoseToUpdate.setDateMeasured(newGlucose.getDateMeasured());
+
+        // this where the glucose is updated in the database
+        glucoseRepository.save(glucoseToUpdate);
+
+        return GlucoseRepresentation.getGlucoseRepresentation(glucoseToUpdate);
     }
+
 
 
 }
