@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Doctor } from 'src/app/doctor';
-import { HttpDoctorsService } from 'src/app/http-doctors.service';
+import { DoctorsService } from 'src/app/doctors.service';
 
 @Component({
   selector: 'app-signup-doctor-form',
@@ -12,7 +12,7 @@ export class SignupDoctorFormComponent implements OnInit {
 
   signupDoctorForm: FormGroup;
 
-  constructor(private doctorService: HttpDoctorsService) { }
+  constructor(private doctorService: DoctorsService) { }
   
   ngOnInit(): void {
     //form instatiation, configuration, pedia formas

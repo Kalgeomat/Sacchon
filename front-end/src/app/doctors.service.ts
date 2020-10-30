@@ -6,7 +6,7 @@ import { Doctor } from './doctor';
 @Injectable({
   providedIn: 'root'
 })
-export class HttpDoctorsService {
+export class DoctorsService {
   endpoint = 'http://localhost:9000/SacchonApp/doctors/';
   // endpoint2 = 'http://localhost:9000/SacchonApp/doctors';;
 

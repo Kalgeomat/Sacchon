@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Doctor } from 'src/app/doctor';
-import { HttpDoctorsService } from 'src/app/http-doctors.service';
+import { DoctorsService } from 'src/app/doctors.service';
 
 @Component({
   selector: 'app-re-doc-report',
@@ -11,7 +11,7 @@ export class ReDocReportComponent implements OnInit {
 
   dataD: Doctor[];   
 
-  constructor(private httpDoctors: HttpDoctorsService) { }
+  constructor(private httpDoctors: DoctorsService) { }
 
   ngOnInit(): void {
 

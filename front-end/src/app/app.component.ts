@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { HttpDoctorsService } from './http-doctors.service';
 import { LoginService } from './login.service';
 
 @Component({
@@ -28,9 +27,6 @@ export class AppComponent implements OnInit,OnDestroy{
     //   sessionStorage.setItem("credentials", this.username + ":" + this.password)
       // this.router.navigate(['view'])
 
-    // this.httpDoctors.getDoctors().subscribe((data) => {
-    //   console.log(data);      
-    // });
 
     if(sessionStorage.getItem("credentials") === null){
       this.isLogged = false
