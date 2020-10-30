@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Carb } from 'src/app/carb';
+import { CarbService } from 'src/app/carb.service';
 
 @Component({
   selector: 'app-carb-intake-form',
@@ -10,7 +12,7 @@ export class CarbIntakeFormComponent implements OnInit {
 
   carbIntakeForm: FormGroup;
 
-  constructor() { }
+  constructor(private carbService: CarbService) { }
   
   ngOnInit(): void {
     //form instatiation, configuration, pedia formas

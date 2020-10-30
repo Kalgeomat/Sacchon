@@ -4,9 +4,7 @@
             <h3>Consultation Submissions</h3>
             Choose a Doctor:
             <select formControlName="rrdoctor">
-                <option>Doctor</option>
-                <option>Doctor</option>
-                <option>Doctor</option>
+                <option *ngFor="let d of dataD">{{d.firstName}} {{d.lastName}}</option>
                 <!--TODO bring all the active doctors of db to the front-->
             </select>
             <app-period-form></app-period-form>
@@ -18,6 +16,22 @@
         <div class="col-md-6">
             <h3>Doctors with no activity</h3>
             <app-period-form></app-period-form>
+
+            <!-- <ul> 
+                <li *ngFor="let d of dataD">{{d.firstName}} {{d.lastName}}</li>
+            </ul> -->
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Doctors</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let d of dataD">
+                    <td>{{d.firstName}} {{d.lastName}}</td>
+                  </tr>                  
+                </tbody>
+              </table>
             <!-- <ul *ngIf="doctors.length">
                 <li *ngFor="let item of items">
                 <span *ngIf="item==='one'">

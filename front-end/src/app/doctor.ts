@@ -5,7 +5,5 @@ export interface Doctor {
     lastName: string;
     address: string;
     telephoneNumber: number;
-    // dob: string;
     gender: number;
-    // isActive: 1;
 }

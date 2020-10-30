@@ -12,9 +12,9 @@ export class HttpDoctorsService {
 
   constructor(private http: HttpClient) {   }
 
-  // getDoctors(): Observable<any> {
-  //   return this.http.get(this.endpoint,{headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
-  // }
+  getDoctors(): Observable<any> {
+    return this.http.get(this.endpoint,{headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
+  }
 
   addDoctor(values:Doctor):Observable<any> { 
     return this.http.post(this.endpoint,

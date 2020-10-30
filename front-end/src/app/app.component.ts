@@ -22,9 +22,9 @@ export class AppComponent implements OnInit{
       sessionStorage.setItem("credentials", this.username + ":" + this.password)
       // this.router.navigate(['view'])
 
-    // this.httpDoctors.getDoctors().subscribe((data) => {
-    //   console.log(data);      
-    // });
+    this.httpDoctors.getDoctors().subscribe((data) => {
+      console.log(data);      
+    });
     
    
   }
