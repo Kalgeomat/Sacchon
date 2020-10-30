@@ -1,5 +1,6 @@
 package gr.Pfizer.bootcamp3.team6.restapi.resource.impl;
 
+import gr.Pfizer.bootcamp3.team6.restapi.exceptions.NotFoundException;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Patient;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.PatientRepository;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.util.JpaUtil;
@@ -34,8 +35,8 @@ public class PatientIneedListResourceImpl extends ServerResource implements Pati
     }
 
     @Override
-    public List<PatientRepresentation> getPatients(){
-        ResourceUtils.checkRole(this, CustomRole.ROLE_CHIEF_DOCTOR.getRoleName());
+    public List<PatientRepresentation> getPatients() throws NotFoundException, ResourceException {
+        ResourceUtils.checkRole(this, CustomRole.ROLE_DOCTOR.getRoleName());
 
         List<Patient> patients= patientRepository.findAll();
         patients = getPatientIneed(patients);

@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface PatientIneedListResource {
     @Get("json")
-    List<PatientRepresentation> getPatients();
+    List<PatientRepresentation> getPatients() throws NotFoundException;
 }

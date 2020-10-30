@@ -47,7 +47,7 @@ public class Patient {
     public boolean checkIfInNeed()
     {
         long daysWithoutConsultation = DAYS.between(lastConsultedOrSignedUp,LocalDate.now(Clock.systemUTC()));
-        return daysWithoutConsultation > 30;
+        return daysWithoutConsultation >= 29;
     }
 
     public void addConsultation(Consultation consultation)
