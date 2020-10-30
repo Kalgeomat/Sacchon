@@ -38,6 +38,9 @@ public class CustomRouter {
         router.attach("/doctors/{id}/patients", DoctorPatientsListResourceImpl.class); //GET
         router.attach("/doctors/{id}/patients/", DoctorPatientsListResourceImpl.class); //GET
 
+        router.attach("/doctors/{id}/patients/need", DoctorPatientNeedImplResource.class); //GET
+        router.attach("/doctors/{id}/patients/need/",DoctorPatientNeedImplResource.class); //GET
+
         // Consultation's endpoints
         router.attach("/consultations/{id}", ConsultationResourceImpl.class); // GET,PUT
         router.attach("/consultations/{id}/", ConsultationResourceImpl.class); // GET,PUT
