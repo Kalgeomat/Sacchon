@@ -33,7 +33,7 @@ public class DoctorRepository extends Repository<Doctor,Long> {
     }
 
     @Override
-    protected void deleteEntity(Doctor doctor)  throws DeletedEntityException {
+    protected void deleteEntity(Doctor doctor) {
         doctor.setActive(false);
         save(doctor);
     }

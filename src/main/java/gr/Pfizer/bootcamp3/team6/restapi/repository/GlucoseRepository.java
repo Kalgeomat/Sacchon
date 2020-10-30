@@ -6,6 +6,7 @@ import gr.Pfizer.bootcamp3.team6.restapi.repository.lib.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GlucoseRepository extends Repository<Glucose, Long> {
 
@@ -25,7 +26,7 @@ public class GlucoseRepository extends Repository<Glucose, Long> {
 
     @Override
     protected boolean checkIfDeleted(Glucose glucose) {
-        return false;
+        return !glucose.checkIfActive();
     }
 
     @Override
@@ -35,6 +36,6 @@ public class GlucoseRepository extends Repository<Glucose, Long> {
 
     @Override
     protected List<Glucose> retrieveOnlyActive(List<Glucose> allEntities) {
-        return null;
+        return allEntities.stream().filter(glucose -> glucose.checkIfActive()).collect(Collectors.toList());
     }
 }

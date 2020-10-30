@@ -17,9 +17,13 @@ public class CustomRouter {
         Router router = new Router(application.getContext());
 
         // the repetition is happening because of the trailing slash issue
+        // the order of the endpoints attached to the router matters, first are the ones without any path parameter and then the other ones that have a parameter.
         // Patient's endpoints
         router.attach("/patients", PatientListResourceImpl.class); // GET,POST
         router.attach("/patients/", PatientListResourceImpl.class); // GET,POST
+
+        router.attach("/patients/need", PatientIneedListResourceImpl.class); // GET
+        router.attach("/patients/need/", PatientIneedListResourceImpl.class); // GET
 
         router.attach("/patients/{id}", PatientResourceImpl.class); // GET/DELETE
         router.attach("/patients/{id}/", PatientResourceImpl.class); // GET/DELETE
@@ -35,8 +39,8 @@ public class CustomRouter {
         router.attach("/doctors/{id}/patients/", DoctorPatientsListResourceImpl.class); //GET
 
         // Consultation's endpoints
-        router.attach("/consultations/{id}", ConsultationResourceImpl.class); // GET
-        router.attach("/consultations/{id}/", ConsultationResourceImpl.class); // GET
+        router.attach("/consultations/{id}", ConsultationResourceImpl.class); // GET,PUT
+        router.attach("/consultations/{id}/", ConsultationResourceImpl.class); // GET,PUT
 
         router.attach("/patients/{id}/consultations", ConsultationListResourceImpl.class); // POST/GET
         router.attach("/patients/{id}/consultations/", ConsultationListResourceImpl.class); // POST/GET
@@ -52,8 +56,6 @@ public class CustomRouter {
 
         router.attach("/glucose/{id}", GlucoseResourceImpl.class); //GET
         router.attach("/glucose/{id}/", GlucoseResourceImpl.class); //GET
-
-
 
         return router;
     }

@@ -1,17 +1,22 @@
 package gr.Pfizer.bootcamp3.team6.restapi.model;
 
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.Clock;
+import java.time.Duration;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static java.time.temporal.ChronoUnit.DAYS;
+
 @Setter
 @Getter
+@NoArgsConstructor
 @Entity
 public class Patient {
     @Id
@@ -25,7 +30,7 @@ public class Patient {
     private String address;
     private Date dob;
     private Gender gender;
-    private Date lastConsultedOrSignedUp;
+    private LocalDate lastConsultedOrSignedUp;
     private boolean isActive;
     @ManyToOne
     private Doctor doctor;
@@ -39,19 +44,16 @@ public class Patient {
     @OneToMany(mappedBy = "patient",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Glucose> listOfGlucoseMeasurements = new ArrayList<>();
 
-    public Patient()
-    {
-        setActive(true);
-    }
-
     public boolean checkIfInNeed()
     {
-        return false;
+        long daysWithoutConsultation = DAYS.between(lastConsultedOrSignedUp,LocalDate.now(Clock.systemUTC()));
+        return daysWithoutConsultation > 30;
     }
 
     public void addConsultation(Consultation consultation)
     {
         listOfConsultations.add(consultation);
+        lastConsultedOrSignedUp = LocalDate.now(Clock.systemUTC());
     }
 
     public void addCarbMeasurement(Carb carbMeasurement)

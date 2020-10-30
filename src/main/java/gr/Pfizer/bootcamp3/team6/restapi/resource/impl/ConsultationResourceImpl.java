@@ -12,7 +12,6 @@ import gr.Pfizer.bootcamp3.team6.restapi.resource.util.ResourceUtils;
 import gr.Pfizer.bootcamp3.team6.restapi.security.CustomRole;
 import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
-
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;

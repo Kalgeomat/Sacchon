@@ -14,7 +14,10 @@ import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
 
 import javax.persistence.EntityManager;
+import java.time.Clock;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class PatientListResourceImpl extends ServerResource implements PatientListResource {
@@ -44,6 +47,8 @@ public class PatientListResourceImpl extends ServerResource implements PatientLi
         //if (patientIn.getLastName().equals("patient")) throw new  BadEntityException("Invalid patient name error");
 
         Patient patient = PatientRepresentation.getPatient(patientIn);
+        patient.setActive(true);
+        patient.setLastConsultedOrSignedUp(LocalDate.now(Clock.systemUTC()));
         patientRepository.save(patient);
 
         return PatientRepresentation.getPatientRepresentation(patient);

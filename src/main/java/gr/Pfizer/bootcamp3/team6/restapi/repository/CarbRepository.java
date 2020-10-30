@@ -6,6 +6,7 @@ import gr.Pfizer.bootcamp3.team6.restapi.repository.lib.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CarbRepository extends Repository<Carb, Long> {
 
@@ -25,7 +26,7 @@ public class CarbRepository extends Repository<Carb, Long> {
 
     @Override
     protected boolean checkIfDeleted(Carb carb) {
-        return false;
+        return !carb.checkIfActive();
     }
 
     @Override
@@ -35,6 +36,6 @@ public class CarbRepository extends Repository<Carb, Long> {
 
     @Override
     protected List<Carb> retrieveOnlyActive(List<Carb> allEntities) {
-        return null;
+        return allEntities.stream().filter(carb -> carb.checkIfActive()).collect(Collectors.toList());
     }
 }
