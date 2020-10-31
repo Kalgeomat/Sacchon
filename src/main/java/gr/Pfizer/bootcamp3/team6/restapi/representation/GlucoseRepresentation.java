@@ -10,7 +10,6 @@ import java.util.Date;
 @Data
 public class GlucoseRepresentation {
         private long id;
-        private Time creationTime;
         private double bloodGlucoseLevel;
         private Date dateMeasured;
         private long patientId;
@@ -19,7 +18,6 @@ public class GlucoseRepresentation {
         static public Glucose getGlucose(GlucoseRepresentation glucoseRepresentation){
             Glucose glucose = new Glucose();
 
-            glucose.setCreationTime(glucoseRepresentation.getCreationTime());
             glucose.setBloodGlucoseLevel(glucoseRepresentation.getBloodGlucoseLevel());
             glucose.setDateMeasured(glucoseRepresentation.getDateMeasured());
 
@@ -30,7 +28,6 @@ public class GlucoseRepresentation {
             GlucoseRepresentation  glucoseRepresentation  = new GlucoseRepresentation();
 
             glucoseRepresentation.setId(glucose.getId());
-            glucoseRepresentation.setCreationTime(glucose.getCreationTime());
             glucoseRepresentation.setBloodGlucoseLevel(glucose.getBloodGlucoseLevel());
             glucoseRepresentation.setDateMeasured(glucose.getDateMeasured());
             glucoseRepresentation.setPatientId(glucose.getPatient().getId());

@@ -60,6 +60,9 @@ public class CustomRouter {
         router.attach("/glucose/{id}", GlucoseResourceImpl.class); //GET,PUT,DELETE
         router.attach("/glucose/{id}/", GlucoseResourceImpl.class); //GET,PUT,DELETE
 
+        router.attach("/patients/{id}/glucose/{startDate}/{endDate}", GlucoseStatisticsResourceImpl.class); // POST/GET
+        router.attach("/patients/{id}/glucose/{startDate}/{endDate}/",GlucoseStatisticsResourceImpl.class); // POST/GET
+
         return router;
     }
 

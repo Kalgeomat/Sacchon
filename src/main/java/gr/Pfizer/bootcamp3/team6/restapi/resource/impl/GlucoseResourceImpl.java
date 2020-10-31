@@ -82,8 +82,7 @@ public class GlucoseResourceImpl extends ServerResource implements GlucoseResour
         if (!glucoseToUpdateOptional.isPresent())  throw new NotFoundException("Glucose is not found");
         Glucose glucoseToUpdate = glucoseToUpdateOptional.get();
 
-        // this where the glucose is updated in the application
-        glucoseToUpdate.setCreationTime(newGlucose.getCreationTime());
+        // this is where the glucose is updated in the application
         glucoseToUpdate.setBloodGlucoseLevel(newGlucose.getBloodGlucoseLevel());
         glucoseToUpdate.setDateMeasured(newGlucose.getDateMeasured());
 
@@ -92,7 +91,4 @@ public class GlucoseResourceImpl extends ServerResource implements GlucoseResour
 
         return GlucoseRepresentation.getGlucoseRepresentation(glucoseToUpdate);
     }
-
-
-
 }
