@@ -38,7 +38,7 @@ _Post a consultation for a patient:_
 HTTP POST => baseUrl + /patients/id/consultations (DA consultation page) **DONE**
 
 _Update a patient's consultation:_
-HTTP PUT => baseUrl + /patients/id/consultations/id (we don't know yet) **DONE**
+HTTP PUT => baseUrl + /consultations/id (we don't know yet) **DONE**
 
 **Measurement**
 
