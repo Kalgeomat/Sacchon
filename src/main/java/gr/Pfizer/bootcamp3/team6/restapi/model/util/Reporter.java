@@ -1,5 +1,6 @@
 package gr.Pfizer.bootcamp3.team6.restapi.model.util;
 
+import gr.Pfizer.bootcamp3.team6.restapi.model.Carb;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Glucose;
 import org.apache.commons.lang3.time.DateUtils;
 
@@ -16,22 +17,28 @@ public class Reporter {
         return getGlucoseAverage(neededMeasurements); // just for testing
     }
 
-    // utility methods
-    private static List<Glucose> getNeededMearurements(List<Glucose> glucoseMeasurements, Date startDate, Date endDate)
-    {
-        List<Glucose> neededMeasurements = new ArrayList<>();
+//    public static double getCarbAverage(List<Carb> carbMeasurements, Date startDate, Date endDate)
+//    {
+//
+//    }
 
-        glucoseMeasurements.forEach(measurement->{
-            if(startDate.before(measurement.getDateMeasured()) && endDate.after(measurement.getDateMeasured())) {
-                neededMeasurements.add(measurement);
-            }
-        });
+    // utility methods
+    private static <T> List<T> getNeededMearurements(List<T> measurements, Date startDate, Date endDate)
+    {
+        List<T> neededMeasurements = new ArrayList<>();
+
+//        measurements.forEach(measurement->{
+//            if(startDate.before(measurement.getDateMeasured()) && endDate.after(measurement.getDateMeasured())) {
+//                neededMeasurements.add(measurement);
+//            }
+//        });
 
         return neededMeasurements;
     }
 
     private static double getGlucoseAverage(List<Glucose> glucoseMeasurements)
     {
+        // the measurements need to be sorted according to the date that they were taken, so that the below algorithm can be applied.
         Collections.sort(glucoseMeasurements, (x, y) -> x.getDateMeasured().compareTo(y.getDateMeasured()));
 
         double sumGlucose = 0;
@@ -51,24 +58,17 @@ public class Reporter {
                 continue;
             }
 
-            if(DateUtils.isSameDay(dateOfMeasurement,measurement.getDateMeasured()))
-            {
-                sumGlucose += measurement.getBloodGlucoseLevel();
-                numberOfMeasurementsForDay++;
-            }
-            else
-            {
+            if (!DateUtils.isSameDay(dateOfMeasurement, measurement.getDateMeasured())) {
                 dateOfMeasurement = measurement.getDateMeasured();
-                averageForDay = sumGlucose/numberOfMeasurementsForDay;
+                averageForDay = sumGlucose / numberOfMeasurementsForDay;
                 dailyAverages.add(averageForDay);
 
                 sumGlucose = 0;
                 numberOfMeasurementsForDay = 0;
                 averageForDay = 0;
-
-                sumGlucose += measurement.getBloodGlucoseLevel();
-                numberOfMeasurementsForDay++;
             }
+            sumGlucose += measurement.getBloodGlucoseLevel();
+            numberOfMeasurementsForDay++;
         }
 
         // calculations for the last day

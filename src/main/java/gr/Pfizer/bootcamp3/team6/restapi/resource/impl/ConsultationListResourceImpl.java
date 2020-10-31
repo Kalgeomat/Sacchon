@@ -18,6 +18,7 @@ import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -89,6 +90,8 @@ public class ConsultationListResourceImpl extends ServerResource implements Cons
             if(consultation.getPatient().getId() == patientId)
                 patientConsultations.add(consultation);
         });
+
+        Collections.reverse(patientConsultations);
 
         return patientConsultations;
     }

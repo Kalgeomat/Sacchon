@@ -11,6 +11,7 @@ public class ConsultationRepresentation {
     private String description;
     private Date dateCreated;
     private long doctorId;
+    private String doctorName;
     private long patientId;
     private String uri;
 
@@ -30,6 +31,7 @@ public class ConsultationRepresentation {
         consultationRepresentation.setDateCreated(consultation.getDateCreated());
         consultationRepresentation.setDescription(consultation.getDescription());
         consultationRepresentation.setDoctorId(consultation.getPatient().getDoctor().getId());
+        consultationRepresentation.setDoctorName(consultation.getPatient().getDoctor().getFirstName() + " " + consultation.getPatient().getDoctor().getLastName());
         consultationRepresentation.setPatientId(consultation.getPatient().getId());
         consultationRepresentation.setUri("http://localhost:9000/SacchonApp/consultations/" + consultation.getId());
 
