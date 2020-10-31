@@ -72,7 +72,6 @@ public class Reporter {
             sumGlucose += measurement.getMeasurementData();
             numberOfMeasurementsForDay++;
         }
-
         // calculations for the last day
         averageForDay = sumGlucose/numberOfMeasurementsForDay;
         dailyAverages.add(averageForDay);

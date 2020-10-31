@@ -1,12 +1,12 @@
 package gr.Pfizer.bootcamp3.team6.restapi.resource.impl;
 
-import gr.Pfizer.bootcamp3.team6.restapi.model.Glucose;
+import gr.Pfizer.bootcamp3.team6.restapi.model.Carb;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Patient;
 import gr.Pfizer.bootcamp3.team6.restapi.model.util.Reporter;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.PatientRepository;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.util.JpaUtil;
-import gr.Pfizer.bootcamp3.team6.restapi.representation.GlucoseStatisticsRepresentation;
-import gr.Pfizer.bootcamp3.team6.restapi.resource.GlucoseStatisticsResource;
+import gr.Pfizer.bootcamp3.team6.restapi.representation.CarbsStatisticsRepresentation;
+import gr.Pfizer.bootcamp3.team6.restapi.resource.CarbsStatisticsResource;
 import gr.Pfizer.bootcamp3.team6.restapi.resource.util.ResourceUtils;
 import gr.Pfizer.bootcamp3.team6.restapi.security.CustomRole;
 import org.restlet.resource.ResourceException;
@@ -16,7 +16,7 @@ import javax.persistence.EntityManager;
 import java.util.Date;
 import java.util.List;
 
-public class GlucoseStatisticsResourceImpl extends ServerResource implements GlucoseStatisticsResource {
+public class CarbsStatisticsResourceImpl extends ServerResource implements CarbsStatisticsResource {
     private PatientRepository patientRepository;
     private EntityManager em;
     private long patientId;
@@ -45,19 +45,19 @@ public class GlucoseStatisticsResourceImpl extends ServerResource implements Glu
     }
 
     @Override
-    public GlucoseStatisticsRepresentation getGlucoseStatistics() {
+    public CarbsStatisticsRepresentation getCarbsStatistics() {
         ResourceUtils.checkRole(this, CustomRole.ROLE_PATIENT.getRoleName());
 
-        Patient patientOfGlucose = patientRepository.findById(patientId).get();
-        List<Glucose> glucoseMeasurements = patientOfGlucose.getListOfGlucoseMeasurements();
-        double glucoseAverage = Reporter.getGlucoseAverageReport(glucoseMeasurements, startDate, endDate);
+        Patient patientOfCarb = patientRepository.findById(patientId).get();
+        List<Carb> carbMeasurements = patientOfCarb.getListOfCarbMeasurements();
+        double carbAverage = Reporter.getCarbAverageReport(carbMeasurements, startDate, endDate);
 
-        GlucoseStatisticsRepresentation glucoseStatRep = new GlucoseStatisticsRepresentation();
-        glucoseStatRep.setPatientId(patientId);
-        glucoseStatRep.setStartDate(startDate);
-        glucoseStatRep.setEndDate(endDate);
-        glucoseStatRep.setGlucoseStatistics(glucoseAverage);
+        CarbsStatisticsRepresentation carbStatRep = new CarbsStatisticsRepresentation();
+        carbStatRep.setPatientId(patientId);
+        carbStatRep.setStartDate(startDate);
+        carbStatRep.setEndDate(endDate);
+        carbStatRep.setCarbsStatistics(carbAverage);
 
-        return glucoseStatRep;
+        return carbStatRep;
     }
 }
