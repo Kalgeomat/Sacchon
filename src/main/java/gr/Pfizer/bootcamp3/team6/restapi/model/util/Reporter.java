@@ -77,6 +77,6 @@ public class Reporter {
 
         sumOfAllAverages = dailyAverages.stream().mapToDouble(a -> a).sum();
 
-        return dailyAverages.get(0);
+        return sumOfAllAverages/dailyAverages.size();
     }
 }
