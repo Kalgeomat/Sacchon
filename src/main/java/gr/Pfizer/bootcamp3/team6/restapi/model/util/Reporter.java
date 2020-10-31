@@ -2,6 +2,7 @@ package gr.Pfizer.bootcamp3.team6.restapi.model.util;
 
 import gr.Pfizer.bootcamp3.team6.restapi.model.Carb;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Glucose;
+import gr.Pfizer.bootcamp3.team6.restapi.model.interfaces.Measurement;
 import org.apache.commons.lang3.time.DateUtils;
 
 
@@ -13,30 +14,31 @@ import java.util.List;
 public class Reporter {
     public static double getGlucoseAverageReport(List<Glucose> glucoseMeasurements, Date startDate, Date endDate)
     {
-        List<Glucose> neededMeasurements = getNeededMearurements(glucoseMeasurements,startDate,endDate);
-        return getGlucoseAverage(neededMeasurements); // just for testing
+        List<Measurement> neededMeasurements = getNeededMearurements(glucoseMeasurements,startDate,endDate);
+        return getGlucoseAverage(neededMeasurements);
     }
 
-//    public static double getCarbAverage(List<Carb> carbMeasurements, Date startDate, Date endDate)
-//    {
-//
-//    }
+    public static double getCarbAverageReport(List<Carb> carbMeasurements, Date startDate, Date endDate)
+    {
+        List<Measurement> neededMeasurements = getNeededMearurements(carbMeasurements,startDate,endDate);
+        return getCarbAverage(neededMeasurements);
+    }
 
     // utility methods
-    private static <T> List<T> getNeededMearurements(List<T> measurements, Date startDate, Date endDate)
+    private static <T extends Measurement> List<Measurement> getNeededMearurements(List<T> measurements, Date startDate, Date endDate)
     {
-        List<T> neededMeasurements = new ArrayList<>();
+        List<Measurement> neededMeasurements = new ArrayList<>();
 
-//        measurements.forEach(measurement->{
-//            if(startDate.before(measurement.getDateMeasured()) && endDate.after(measurement.getDateMeasured())) {
-//                neededMeasurements.add(measurement);
-//            }
-//        });
+        measurements.forEach(measurement->{
+            if(startDate.before(measurement.getDateMeasured()) && endDate.after(measurement.getDateMeasured())) {
+                neededMeasurements.add(measurement);
+            }
+        });
 
         return neededMeasurements;
     }
 
-    private static double getGlucoseAverage(List<Glucose> glucoseMeasurements)
+    private static <T extends Measurement> double getGlucoseAverage(List<T> glucoseMeasurements)
     {
         // the measurements need to be sorted according to the date that they were taken, so that the below algorithm can be applied.
         Collections.sort(glucoseMeasurements, (x, y) -> x.getDateMeasured().compareTo(y.getDateMeasured()));
@@ -48,12 +50,12 @@ public class Reporter {
         List<Double> dailyAverages = new ArrayList<>();
         double sumOfAllAverages = 0;
 
-        for (Glucose measurement: glucoseMeasurements)
+        for (Measurement measurement: glucoseMeasurements)
         {
             if(dateOfMeasurement == null)
             {
                 dateOfMeasurement = measurement.getDateMeasured();
-                sumGlucose += measurement.getBloodGlucoseLevel();
+                sumGlucose += measurement.getMeasurementData();
                 numberOfMeasurementsForDay++;
                 continue;
             }
@@ -67,7 +69,7 @@ public class Reporter {
                 numberOfMeasurementsForDay = 0;
                 averageForDay = 0;
             }
-            sumGlucose += measurement.getBloodGlucoseLevel();
+            sumGlucose += measurement.getMeasurementData();
             numberOfMeasurementsForDay++;
         }
 
@@ -78,5 +80,11 @@ public class Reporter {
         sumOfAllAverages = dailyAverages.stream().mapToDouble(a -> a).sum();
 
         return sumOfAllAverages/dailyAverages.size();
+    }
+
+    private static <T extends Measurement> double getCarbAverage(List<T> carbMeasurements)
+    {
+        double sumCarbIntake = carbMeasurements.stream().mapToDouble(measurement -> measurement.getMeasurementData()).sum();
+        return sumCarbIntake/carbMeasurements.size();
     }
 }

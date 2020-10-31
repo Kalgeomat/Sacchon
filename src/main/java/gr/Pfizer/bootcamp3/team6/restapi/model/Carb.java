@@ -1,5 +1,6 @@
 package gr.Pfizer.bootcamp3.team6.restapi.model;
 
+import gr.Pfizer.bootcamp3.team6.restapi.model.interfaces.Measurement;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,11 +12,12 @@ import java.util.Date;
 @Setter
 @Getter
 @Entity
-public class Carb {
+public class Carb implements Measurement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private double carbInTake;
+    @Column(name = "carbInTake")
+    private double measurementData;
     private Date dateMeasured;
     private boolean isActive;
 

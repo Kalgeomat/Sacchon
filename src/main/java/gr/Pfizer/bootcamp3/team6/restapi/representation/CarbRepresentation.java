@@ -15,7 +15,7 @@ public class CarbRepresentation {
     static public Carb getCarb(CarbRepresentation carbRepresentation){
         Carb carb = new Carb();
 
-        carb.setCarbInTake(carbRepresentation.getCarbInTake());
+        carb.setMeasurementData(carbRepresentation.getCarbInTake());
         carb.setDateMeasured(carbRepresentation.getDateMeasured());
 
         return carb;
@@ -25,7 +25,7 @@ public class CarbRepresentation {
         CarbRepresentation  carbRepresentation  = new CarbRepresentation();
 
         carbRepresentation.setId(carb.getId());
-        carbRepresentation.setCarbInTake(carb.getCarbInTake());
+        carbRepresentation.setCarbInTake(carb.getMeasurementData());
         carbRepresentation.setDateMeasured(carb.getDateMeasured());
         carbRepresentation.setPatientId(carb.getPatient().getId());
         carbRepresentation.setUri("http://localhost:9000/SacchonApp/carbs/" + carb.getId());

@@ -84,7 +84,7 @@ public class CarbResourceImpl  extends ServerResource implements CarbResource {
         Carb carbToUpdate = carbToUpdateOptional.get();
 
         // this where the carb is updated in the application
-        carbToUpdate.setCarbInTake(newCarb.getCarbInTake());
+        carbToUpdate.setMeasurementData(newCarb.getMeasurementData());
         carbToUpdate.setDateMeasured(newCarb.getDateMeasured());
 
         // this where the carb is updated in the database

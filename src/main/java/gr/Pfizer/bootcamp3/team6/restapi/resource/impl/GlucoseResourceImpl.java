@@ -83,7 +83,7 @@ public class GlucoseResourceImpl extends ServerResource implements GlucoseResour
         Glucose glucoseToUpdate = glucoseToUpdateOptional.get();
 
         // this is where the glucose is updated in the application
-        glucoseToUpdate.setBloodGlucoseLevel(newGlucose.getBloodGlucoseLevel());
+        glucoseToUpdate.setMeasurementData(newGlucose.getMeasurementData());
         glucoseToUpdate.setDateMeasured(newGlucose.getDateMeasured());
 
         // this where the glucose is updated in the database
