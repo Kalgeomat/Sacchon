@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Carb } from 'src/app/carb';
+import { Consultation } from 'src/app/consultation';
+import { ConsultationsService } from 'src/app/consultations.service';
+import { Glucose } from 'src/app/glucose';
+import { MeasurementsService } from 'src/app/measurements.service';
 
 @Component({
   selector: 'app-da-one-patient',
@@ -7,9 +13,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DaOnePatientComponent implements OnInit {
 
-  constructor() { }
+  carbs: Carb[];   
+  glucoses: Glucose[];
+  consults: Consultation[];
+
+  constructor(private measurements: MeasurementsService, private consultations: ConsultationsService, private router:Router) { }
 
   ngOnInit(): void {
+
+    this.measurements.getCarbs().subscribe( result => this.carbs = result );
+    this.measurements.getGlucose().subscribe( result => this.glucoses = result );
+
+    this.consultations.getConsultations().subscribe( result => this.consults = result );
+
+  }
+
+  consult() {
+    this.router.navigate(['doctoradvice/consultation']);
   }
 
 }

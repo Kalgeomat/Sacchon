@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DaConsultationComponent } from './da-consultation/da-consultation.component';
+import { FormsModule } from '../forms/forms.module';
 
 
 
 @NgModule({
   declarations: [DaConsultationComponent],
   imports: [
-    CommonModule
+    CommonModule, FormsModule
   ],
   exports: [
     DaConsultationComponent
