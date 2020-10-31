@@ -34,8 +34,10 @@ public class GlucoseStatisticsResourceImpl extends ServerResource implements Glu
             patientRepository = new PatientRepository(em);
             patientId = Long.parseLong(getAttribute("id")); // takes the "id" from the path and transforms it to long
             System.out.println("Test ody" + new Date(Long.parseLong(getAttribute("startDate"))));
-            startDate = new Date(Long.parseLong(getAttribute("startDate"))); // takes the "startDate" from the path and transforms it to long
-            endDate = new Date(Long.parseLong(getAttribute("endDate"))); // takes the "endDate" from the path and transforms it to long
+            long start = Long.parseLong(getAttribute("startDate")); // takes the "startDate" from the path and transforms it to long
+            long end = Long.parseLong(getAttribute("endDate")); // takes the "endDate" from the path and transforms it to long
+            startDate = new Date(start);
+            endDate = new Date(end);
         }
         catch(Exception ex){
             throw new ResourceException(ex);
