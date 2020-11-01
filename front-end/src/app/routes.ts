@@ -24,7 +24,6 @@ export const routes: Routes =[
     {path: 'medidatarepo', component: MdrHomeComponent},
     {path: 'medidatarepo/account', component: AccountComponent},
     {path: 'medidatarepo/viewdata', component: MdrViewDataComponent},
-    {path: 'medidatarepo/consultations', component: MdrPastConsultationsComponent},
     {path: 'doctoradvice', component: DaHomeComponent},
     {path: 'doctoradvice/account', component: AccountComponent},
     {path: 'doctoradvice/patient', component: DaOnePatientComponent},
