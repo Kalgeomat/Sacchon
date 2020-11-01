@@ -21,10 +21,11 @@ import { PatientSignUpModule } from './patient-sign-up/patient-sign-up.module';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { routes } from './routes';
+import { ReversePipe } from './reverse.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent    
+    AppComponent 
   ],
   imports: [
     HttpClientModule,

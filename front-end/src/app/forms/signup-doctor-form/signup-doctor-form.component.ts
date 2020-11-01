@@ -27,7 +27,6 @@ export class SignupDoctorFormComponent implements OnInit {
     });
   }
 
-  // doctors: Doctors[];
 
   onClickSubmit() {
     let doctor:Doctor ={
@@ -37,9 +36,10 @@ export class SignupDoctorFormComponent implements OnInit {
       lastName:this.signupDoctorForm.get('sdsurname').value,
       address:this.signupDoctorForm.get('sdaddress').value,
       telephoneNumber:this.signupDoctorForm.get('sdtelephone').value,
-      // dob:this.signupDoctorForm.get('sdbirthday').value,
+      dob:this.signupDoctorForm.get('sdbirthday').value,
       gender:1
     };
+   
 
     this.doctorService.addDoctor(doctor).subscribe(data => {
       alert(JSON.stringify(data));

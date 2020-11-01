@@ -1,7 +1,6 @@
 export interface Glucose {
     // isActive: 1;
     bloodGlucoseLevel: number;
-    creationTime: Date;
-    dateMeasured: Date;
+    dateMeasured: string;
     patient_id: number;
 }

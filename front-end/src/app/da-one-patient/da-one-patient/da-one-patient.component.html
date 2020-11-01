@@ -24,8 +24,8 @@
             <tbody>
              <tr *ngFor="let g of glucoses">
                 <td>{{g.bloodGlucoseLevel}}</td> 
-                <td>{{g.dateMeasured}}</td>  
-                <td>{{g.creationTime}}</td>                                  
+                <td>{{ g.dateMeasured | date }}</td>  
+                <td>{{ g.dateMeasured | date:'shortTime'}}</td>                                  
               </tr>                   
             </tbody>
           </table>
@@ -43,7 +43,7 @@
             <tbody>
               <tr *ngFor="let c of carbs">
                 <td>{{c.carbInTake}}</td> 
-                <td>{{c.dateMeasured}}</td>                                   
+                <td>{{ c.dateMeasured | date }}</td>                                   
               </tr>                   
             </tbody>
           </table>
@@ -55,15 +55,34 @@
             <thead>
               <tr>
                 <th scope="col">Consultation</th>
+                <th scope="col"></th>
                 <th scope="col">Doctor</th>
                 <th scope="col">Date</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let con of consults">
-                <td>{{con.description}}</td> 
-                <td>doctor</td>  
-                <td>{{con.dateCreated}}</td>                                  
+              <tr *ngFor="let con of consults; let isFirst=first;">
+                <td *ngIf="enableEdit && isFirst;else elseBlock">
+                  <form [formGroup]="consultationForm">
+                    <input formControlName="consultation" [ngModel]="con.description">     
+                  </form>        
+                </td> 
+                <ng-template #elseBlock>
+                  <td>
+                    {{con.description}}               
+                  </td> 
+                </ng-template>
+                
+                <td>
+                  <span *ngIf="isFirst">
+                    <button *ngIf="!enableEdit" type="button" class="btn-sm btn-primary" (click)="onEditClick($event, i)">Edit</button>
+                    <button *ngIf="enableEdit && enableEditIndex == i" (click)="enableEdit=false" class="btn-sm page-secondary-action-btn" ng-click="cancel()">Cancel</button>
+                    <button *ngIf="enableEdit && enableEditIndex == i" id="saveBtn" class="btn-sm page-primary-action-btn" (click)="saveConsult(con.dateCreated)" type="submit">Save</button>
+                  </span>
+                </td>
+                <!-- <td>Dr {{doctor.firstName}} {{doctor.lastName}}</td>   -->
+                <!-- TODO uncomment when back sends it in right format -->
+                <td>{{ con.dateCreated | date }}</td>        
               </tr>                 
             </tbody>
           </table>

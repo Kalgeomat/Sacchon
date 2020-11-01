@@ -6,4 +6,6 @@ export interface Doctor {
     address: string;
     telephoneNumber: number;
     gender: number;
+    dob: string;
+
 }

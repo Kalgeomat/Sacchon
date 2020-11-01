@@ -1,6 +1,6 @@
 export interface Carb {
     // isActive: 1;
     carbInTake: number;
-    dateMeasured: Date;
+    dateMeasured: string;
     patient_id: number;
 }

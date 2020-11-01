@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DoctorsService } from 'src/app/doctors.service';
 
 @Component({
   selector: 'app-account',
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccountComponent implements OnInit {
 
-  constructor() { }
+  isLogged:boolean;
+
+  constructor(private doctorService: DoctorsService, private router:Router) { }
 
   ngOnInit(): void {
+  }
+
+  onClickRemove(){
+    this.doctorService.deleteDoctor().subscribe(data => {
+      alert("Account Removed!");
+      this.ngOnInit();
+      sessionStorage.removeItem("credentials");
+      this.isLogged = false;
+      this.router.navigate(['login']); 
+    });
+
+
+
   }
 
 }

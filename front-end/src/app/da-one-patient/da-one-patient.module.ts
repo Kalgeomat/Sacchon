@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DaOnePatientComponent } from './da-one-patient/da-one-patient.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReversePipe } from '../reverse.pipe';
 
 
 
@@ -9,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   declarations: [DaOnePatientComponent],
   imports: [
     CommonModule, 
-    FormsModule
+    FormsModule, ReactiveFormsModule
   ],
   exports: [
     DaOnePatientComponent

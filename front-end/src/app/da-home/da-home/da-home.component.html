@@ -18,7 +18,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let pi of dataPI">
-                <td>{{pi.firstName}} {{pi.lastName}}</td>
+                <td>{{pi.firstName}} {{pi.lastName}} <button type="button" class="btn-sm btn-primary" (click)="viewOPData()">View Data</button></td>
               </tr>                  
             </tbody>
           </table>
@@ -36,7 +36,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let p of dataP">
-                <td>{{p.firstName}} {{p.lastName}}</td>
+                <td>{{p.firstName}} {{p.lastName}} <button type="button" class="btn-sm btn-primary" (click)="viewOPData()">View Data</button></td>
               </tr>                  
             </tbody>
           </table>
