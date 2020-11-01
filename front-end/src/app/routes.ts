@@ -7,7 +7,6 @@ import { DaOnePatientComponent } from './da-one-patient/da-one-patient/da-one-pa
 import { SignupDoctorFormComponent } from './forms/signup-doctor-form/signup-doctor-form.component';
 import { LogInComponent } from './log-in/log-in/log-in.component';
 import { MdrHomeComponent } from './mdr-home/mdr-home/mdr-home.component';
-import { MdrPastConsultationsComponent } from './mdr-past-consultations/mdr-past-consultations/mdr-past-consultations.component';
 import { MdrViewDataComponent } from './mdr-view-data/mdr-view-data/mdr-view-data.component';
 import { PatientSignUpModule } from './patient-sign-up/patient-sign-up.module';
 import { PatientSignUpComponent } from './patient-sign-up/patient-sign-up/patient-sign-up.component';
