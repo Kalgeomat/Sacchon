@@ -7,5 +7,6 @@ export interface Patient {
     telephoneNumber: number;
     gender: number;
     dob: string;
+    username: string;
 
 }

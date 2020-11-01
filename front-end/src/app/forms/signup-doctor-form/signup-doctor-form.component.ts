@@ -30,6 +30,7 @@ export class SignupDoctorFormComponent implements OnInit {
 
   onClickSubmit() {
     let doctor:Doctor ={
+      username:this.signupDoctorForm.get('sdusername').value,
       email:this.signupDoctorForm.get('sdemail').value,
       password:this.signupDoctorForm.get('sdpassword').value,
       firstName:this.signupDoctorForm.get('sdname').value,

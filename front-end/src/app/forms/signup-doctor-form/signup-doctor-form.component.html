@@ -5,6 +5,13 @@
 
     <form [formGroup]="signupDoctorForm">
         <div>
+            <label>Username</label><br>
+            <input type="text" formControlName="sdusername">
+            <div *ngIf="signupDoctorForm.get('sdusername').invalid && signupDoctorForm.get('sdusername').dirty" class="warningmessages">
+                *The field is required
+            </div>
+        </div>
+        <div>
             <label>Email</label><br>
             <input type="email" formControlName="sdemail">
             <div *ngIf="signupDoctorForm.get('sdemail').invalid && signupDoctorForm.get('sdemail').dirty" class="warningmessages">
