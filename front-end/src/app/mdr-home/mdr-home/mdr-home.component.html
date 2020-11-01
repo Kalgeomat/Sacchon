@@ -12,9 +12,14 @@
         </div>
         <div class="col-md-6">
             <h4>Your last Consultation:</h4>
-            <div>
-                <p> by: Dr Name  at Date</p>
-                <p>last consultation here</p>
+            <div *ngIf="consults?.length">
+                <div *ngFor="let c of consults; let isFirst=first;">
+                    <div *ngIf="isFirst">
+                        <p> by: Dr {{c.doctorName}}  at {{c.dateCreated | date}}</p>
+                        <p>{{c.description}}</p>
+                    </div>
+                </div>
+                
             </div>
             
         </div>

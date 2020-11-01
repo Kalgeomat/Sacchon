@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Consultation } from 'src/app/consultation';
+import { ConsultationsService } from 'src/app/consultations.service';
 
 @Component({
   selector: 'app-mdr-home',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MdrHomeComponent implements OnInit {
 
-  constructor() { }
+  consults: Consultation[];
+
+  constructor(private consultationsService: ConsultationsService) { }
 
   ngOnInit(): void {
+
+    this.consultationsService.getConsultations().subscribe( result => this.consults = result );
+
+
   }
 
 }

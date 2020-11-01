@@ -26,14 +26,14 @@ export class DaOnePatientComponent implements OnInit {
   doctor: Doctor;
   consultationForm: FormGroup;
 
-  constructor(private doctorId: DoctorsService, private consultationsService: ConsultationsService, private measurements: MeasurementsService, private consultations: ConsultationsService, private router:Router) { }
+  constructor(private doctorId: DoctorsService, private consultationsService: ConsultationsService, private measurements: MeasurementsService, private router:Router) { }
 
   ngOnInit(): void {
 
     this.measurements.getCarbs().subscribe( result => this.carbs = result );
     this.measurements.getGlucose().subscribe( result => this.glucoses = result );
 
-    this.consultations.getConsultations().subscribe( result => this.consults = result );
+    this.consultationsService.getConsultations().subscribe( result => this.consults = result );
 
     // this.doctorId.getDoctorById().subscribe( result => this.doctor = result );
 
