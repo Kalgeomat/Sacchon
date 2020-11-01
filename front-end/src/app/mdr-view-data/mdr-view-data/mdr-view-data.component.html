@@ -31,8 +31,8 @@
                             <span>
                               <button *ngIf="!enableEdit" type="button" class="btn-sm btn-primary" (click)="onEditClick($event, i)">Edit</button>
                               <button *ngIf="!enableEdit" type="button" class="btn-sm btn-danger" (click)="onDeleteClick()">Delete</button>
+                              <button *ngIf="enableEdit && enableEditIndex == i" id="saveBtn" class="btn-sm page-primary-action-btn" (click)="saveGlucose()" type="submit">Save</button>
                               <button *ngIf="enableEdit && enableEditIndex == i" (click)="enableEdit=false" class="btn-sm page-secondary-action-btn" ng-click="cancel()">Cancel</button>
-                              <button *ngIf="enableEdit && enableEditIndex == i" id="saveBtn" class="btn-sm page-primary-action-btn" (click)="saveConsult()" type="submit">Save</button>
                             </span>
                           </td>                                  
                         </tr>                   
@@ -63,14 +63,24 @@
                     </thead>
                     <tbody>
                       <tr *ngFor="let c of carbs">
-                        <td>{{c.carbInTake}}</td> 
-                        <td>{{ c.dateMeasured | date }}</td>  
+                        <td *ngIf="enableEdit;else elseBlock">
+                          <form [formGroup]="carbIntakeForm">
+                            <input formControlName="cilevel" [ngModel]="c.carbInTake">     
+                            <input type="date" formControlName="cidate" [ngModel]="2020-08-07">   
+                          </form>        
+                        </td> 
+                        <ng-template #elseBlock>                          
+                          <td>{{c.carbInTake}}</td> 
+                          <td>{{ c.dateMeasured | date }}</td>
+                        </ng-template>
+                        <!-- <td>{{c.carbInTake}}</td> 
+                        <td>{{ c.dateMeasured | date }}</td>   -->
                         <td>
                           <span>
                             <button *ngIf="!enableEdit" type="button" class="btn-sm btn-primary" (click)="onEditClick($event, i)">Edit</button>
                             <button *ngIf="!enableEdit" type="button" class="btn-sm btn-danger" (click)="onDeleteClick()">Delete</button>
+                            <button *ngIf="enableEdit && enableEditIndex == i" id="saveBtn" class="btn-sm page-primary-action-btn" (click)="saveCarb()" type="submit">Save</button>
                             <button *ngIf="enableEdit && enableEditIndex == i" (click)="enableEdit=false" class="btn-sm page-secondary-action-btn" ng-click="cancel()">Cancel</button>
-                            <button *ngIf="enableEdit && enableEditIndex == i" id="saveBtn" class="btn-sm page-primary-action-btn" (click)="saveConsult()" type="submit">Save</button>
                           </span>
                         </td>                                 
                       </tr>                   

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Carb } from 'src/app/carb';
-import { CarbService } from 'src/app/carb.service';
+import { MeasurementsService } from 'src/app/measurements.service';
 
 @Component({
   selector: 'app-carb-intake-form',
@@ -12,7 +12,7 @@ export class CarbIntakeFormComponent implements OnInit {
 
   carbIntakeForm: FormGroup;
 
-  constructor(private carbService: CarbService) { }
+  constructor(private measurementsService: MeasurementsService) { }
   
   ngOnInit(): void {
     //form instatiation, configuration, pedia formas
@@ -26,10 +26,10 @@ export class CarbIntakeFormComponent implements OnInit {
     let carb:Carb ={
       carbInTake:this.carbIntakeForm.get('cilevel').value,
       dateMeasured:this.carbIntakeForm.get('cidate').value,
-      patient_id:1
+      patientId:1
     };
 
-    this.carbService.addCarb(carb).subscribe(data => {
+    this.measurementsService.addCarb(carb).subscribe(data => {
       alert(JSON.stringify(data));
       this.ngOnInit();
     });
