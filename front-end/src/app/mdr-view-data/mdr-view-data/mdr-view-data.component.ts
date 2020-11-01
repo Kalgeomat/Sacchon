@@ -6,6 +6,7 @@ import { CarbU } from 'src/app/carbU';
 import { Consultation } from 'src/app/consultation';
 import { ConsultationsService } from 'src/app/consultations.service';
 import { Glucose } from 'src/app/glucose';
+import { GlucoseU } from 'src/app/glucoseU';
 import { MeasurementsService } from 'src/app/measurements.service';
 
 @Component({
@@ -22,6 +23,7 @@ export class MdrViewDataComponent implements OnInit {
   enableEditIndex = null;
   // consultationForm: FormGroup;
   carbIntakeForm: FormGroup;
+  bloodGlucoseForm: FormGroup;
 
   constructor(private consultationsService: ConsultationsService, private measurements: MeasurementsService, private router:Router) { }
 
@@ -52,17 +54,30 @@ export class MdrViewDataComponent implements OnInit {
     console.log(i, e);
   }
 
-  onDeleteClick(e, i) {
+  onCarbDeleteClick(e, i) {
     console.log(i, e);
 
     this.measurements.deleteCarb().subscribe(data => {
-      alert("Carb input Removed!");
+      alert("Carb input removed!");
+      this.ngOnInit();       
+    });
+
+    
+  }
+
+  
+  onGlucoseDeleteClick(e, i) {
+    console.log(i, e);
+
+    
+
+    this.measurements.deleteGlucose().subscribe(data => {
+      alert("Blood Glucose input removed!");
       this.ngOnInit();       
     });
   }
 
   saveCarb() {
-
 
     let carb:CarbU ={
       carbInTake:this.carbIntakeForm.get('cilevel').value,
@@ -80,21 +95,25 @@ export class MdrViewDataComponent implements OnInit {
 
   saveGlucose() {
 
+    // let gDateTime;
+    // let gdate = this.bloodGlucoseForm.get('bgdate').value;
+    // let gtime = this.bloodGlucoseForm.get('bgtime').value;
+
+    let glucose:GlucoseU ={
+      bloodGlucoseLevel:this.bloodGlucoseForm.get('bglevel').value,
+      dateMeasured:this.bloodGlucoseForm.get('bgdatetime').value
+    };
+
+    this.measurements.updateGlucose(glucose).subscribe(data => {
+      alert(JSON.stringify(data));
+      this.ngOnInit();
+    });
+
+    this.enableEdit = false;
+
+
   }
 
-  // saveConsult(dc) {
-  //   let consultation:ConsultationU ={
-  //     description:this.consultationForm.get('consultation').value,
-  //     dateCreated:dc 
-  //   };
 
-  //   this.consultationsService.updateConsultation(consultation).subscribe(data => {
-  //     alert(JSON.stringify(data));
-  //     this.ngOnInit();
-  //   });
-
-  //   this.enableEdit = false;
-
-  // }
 
 }

@@ -24,13 +24,22 @@
                     </thead>
                     <tbody>
                       <tr *ngFor="let g of glucoses">
+                        <ng-template *ngIf="enableEdit;else elseBlock">
+                          <form [formGroup]="bloodGlucoseForm">
+                            <td><input formControlName="bglevel" [ngModel]="g.bloodGlucoseLevel"></td>     
+                            <td><input type="datetime-local" formControlName="bgdatetime" value="2017-06-01T08:30"></td>
+                            <td></td>
+                          </form> 
+                        </ng-template> 
+                        <ng-template #elseBlock>
                           <td>{{g.bloodGlucoseLevel}}</td> 
                           <td>{{ g.dateMeasured | date }}</td>  
                           <td>{{ g.dateMeasured | date:'shortTime'}}</td>
+                        </ng-template>
                           <td>
                             <span>
                               <button *ngIf="!enableEdit" type="button" class="btn-sm btn-primary" (click)="onEditClick($event, i)">Edit</button>
-                              <button *ngIf="!enableEdit" type="button" class="btn-sm btn-danger" (click)="onDeleteClick()">Delete</button>
+                              <button *ngIf="!enableEdit" type="button" class="btn-sm btn-danger" (click)="onGlucoseDeleteClick()">Delete</button>
                               <button *ngIf="enableEdit && enableEditIndex == i" id="saveBtn" class="btn-sm page-primary-action-btn" (click)="saveGlucose()" type="submit">Save</button>
                               <button *ngIf="enableEdit && enableEditIndex == i" (click)="enableEdit=false" class="btn-sm page-secondary-action-btn" ng-click="cancel()">Cancel</button>
                             </span>
@@ -78,7 +87,7 @@
                         <td>
                           <span>
                             <button *ngIf="!enableEdit" type="button" class="btn-sm btn-primary" (click)="onEditClick($event, i)">Edit</button>
-                            <button *ngIf="!enableEdit" type="button" class="btn-sm btn-danger" (click)="onDeleteClick()">Delete</button>
+                            <button *ngIf="!enableEdit" type="button" class="btn-sm btn-danger" (click)="onCarbDeleteClick()">Delete</button>
                             <button *ngIf="enableEdit && enableEditIndex == i" id="saveBtn" class="btn-sm page-primary-action-btn" (click)="saveCarb()" type="submit">Save</button>
                             <button *ngIf="enableEdit && enableEditIndex == i" (click)="enableEdit=false" class="btn-sm page-secondary-action-btn" ng-click="cancel()">Cancel</button>
                           </span>

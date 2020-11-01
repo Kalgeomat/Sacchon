@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Carb } from './carb';
 import { CarbU } from './carbU';
 import { Glucose } from './glucose';
+import { GlucoseU } from './glucoseU';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,9 @@ import { Glucose } from './glucose';
 export class MeasurementsService {
 
   endpointc = 'http://localhost:9000/SacchonApp/patients/1/carbs';
-  endpointc1 = 'http://localhost:9000/SacchonApp/carbs/1';
+  endpointc1 = 'http://localhost:9000/SacchonApp/carbs/2';
   endpointg = 'http://localhost:9000/SacchonApp/patients/1/glucose';
-  endpointg1 = 'http://localhost:9000/SacchonApp/glucose/1';
+  endpointg1 = 'http://localhost:9000/SacchonApp/glucose/2';
 
   constructor(private http:HttpClient) { }
 
@@ -43,15 +44,18 @@ export class MeasurementsService {
       {headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
   }
 
-  // updateGlucose(values:Carb):Observable<any> {
-  //   return this.http.put(this.endpointc1,
-  //     values,
-  //     {headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
-  // }
+  updateGlucose(values:GlucoseU):Observable<any> {
+    return this.http.put(this.endpointg1,
+      values,
+      {headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
+  }
 
   deleteCarb():Observable<any> {
     return this.http.delete(this.endpointc1,{headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
   }
 
+  deleteGlucose():Observable<any> {
+    return this.http.delete(this.endpointg1,{headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
+  }
 
 }

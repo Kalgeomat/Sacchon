@@ -9,6 +9,7 @@ export class PatientsService {
 
   endpoint = 'http://localhost:9000/SacchonApp/doctors/1/patients';
   endpoint2 = 'http://localhost:9000/SacchonApp/doctors/1/patients/need';
+  endpoint3 = 'http://localhost:9000/SacchonApp/patients/3';
 
   constructor(private http: HttpClient) { }
 
@@ -20,13 +21,7 @@ export class PatientsService {
     return this.http.get(this.endpoint2,{headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
   }
 
-  // getDoctors(): Observable<any> {
-  //   return this.http.get(this.endpoint,{headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
-  // }
-
-  // addDoctor(values:Doctor):Observable<any> { 
-  //   return this.http.post(this.endpoint,
-  //   values,
-  //   {headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
-  // }
+  deletePatient():Observable<any> {
+    return this.http.delete(this.endpoint3,{headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
+  }
 }
