@@ -45,6 +45,11 @@ export class MdrViewDataComponent implements OnInit {
       cidate: new FormControl()
     });
 
+    this.bloodGlucoseForm = new FormGroup({
+      bglevel: new FormControl(),
+      bgdatetime: new FormControl()
+    });
+
   }
 
   

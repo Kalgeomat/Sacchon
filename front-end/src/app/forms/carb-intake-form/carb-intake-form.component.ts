@@ -22,7 +22,7 @@ export class CarbIntakeFormComponent implements OnInit {
     });
   }
 
-  onClickSubmit() {
+  onClickCSubmit() {
     let carb:Carb ={
       carbInTake:this.carbIntakeForm.get('cilevel').value,
       dateMeasured:this.carbIntakeForm.get('cidate').value,

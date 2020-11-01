@@ -20,4 +20,8 @@ export class MdrHomeComponent implements OnInit {
 
   }
 
+  onClickCSubmit() {}
+
+  onClickGSubmit() {}
+
 }
