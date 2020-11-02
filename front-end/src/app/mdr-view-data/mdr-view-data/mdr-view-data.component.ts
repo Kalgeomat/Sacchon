@@ -24,6 +24,7 @@ export class MdrViewDataComponent implements OnInit {
   // consultationForm: FormGroup;
   carbIntakeForm: FormGroup;
   bloodGlucoseForm: FormGroup;
+  selectedItem = null;
 
   constructor(private consultationsService: ConsultationsService, private measurements: MeasurementsService, private router:Router) { }
 
@@ -56,6 +57,7 @@ export class MdrViewDataComponent implements OnInit {
   onEditClick(e, i) {
     this.enableEdit = true;
     this.enableEditIndex = i;
+    // this.selectedItem = c.id;
     console.log(i, e);
   }
 
@@ -72,9 +74,7 @@ export class MdrViewDataComponent implements OnInit {
 
   
   onGlucoseDeleteClick(e, i) {
-    console.log(i, e);
-
-    
+    console.log(i, e);    
 
     this.measurements.deleteGlucose().subscribe(data => {
       alert("Blood Glucose input removed!");
@@ -100,13 +100,12 @@ export class MdrViewDataComponent implements OnInit {
 
   saveGlucose() {
 
-    // let gDateTime;
-    // let gdate = this.bloodGlucoseForm.get('bgdate').value;
-    // let gtime = this.bloodGlucoseForm.get('bgtime').value;
+    let datetime=this.bloodGlucoseForm.get('bgdatetime').value;    
+    let rightdatetime=new Date(datetime.replace(/-/g,'/').replace('T',' '));    
 
     let glucose:GlucoseU ={
       bloodGlucoseLevel:this.bloodGlucoseForm.get('bglevel').value,
-      dateMeasured:this.bloodGlucoseForm.get('bgdatetime').value
+      dateMeasured:rightdatetime.toISOString()
     };
 
     this.measurements.updateGlucose(glucose).subscribe(data => {

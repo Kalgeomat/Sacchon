@@ -14,7 +14,7 @@ export class MeasurementsService {
   endpointc = 'http://localhost:9000/SacchonApp/patients/1/carbs';
   endpointc1 = 'http://localhost:9000/SacchonApp/carbs/2';
   endpointg = 'http://localhost:9000/SacchonApp/patients/1/glucose';
-  endpointg1 = 'http://localhost:9000/SacchonApp/glucose/2';
+  endpointg1 = 'http://localhost:9000/SacchonApp/glucose/3';
 
   constructor(private http:HttpClient) { }
 

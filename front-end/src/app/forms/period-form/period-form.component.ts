@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ReporterService } from 'src/app/reporter.service';
 
 @Component({
   selector: 'app-period-form',
@@ -8,9 +9,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class PeriodFormComponent implements OnInit {
 
+  dreport: DReport[];
+
   periodForm: FormGroup;
 
-  constructor() { }
+  constructor(private reporterService:ReporterService) { }
   
   ngOnInit(): void {
     //form instatiation, configuration, pedia formas
@@ -18,6 +21,10 @@ export class PeriodFormComponent implements OnInit {
       pfrom: new FormControl("", Validators.required),
       pto: new FormControl("", Validators.required)
     });
+  }
+
+  onClickGo() {
+    this.reporterService.getDoctorActivity().subscribe( result => this.dreport = result );
   }
 
 }
