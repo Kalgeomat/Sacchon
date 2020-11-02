@@ -142,6 +142,7 @@ HTTP POST => baseUrl + /reporter/login (login page) *DONE*
 }
 ```
 *Result*
+```json
 {
     "id": 1,
     "firstName": "Helen",
@@ -154,10 +155,11 @@ HTTP POST => baseUrl + /reporter/login (login page) *DONE*
     "gender": "FEMALE",
     "uri": "http://localhost:9000/SacchonApp/patient/1"
 }
+```
 *2. GET* all patients-->http://localhost:9000/SacchonApp/patients/
 
 *Result*
-
+```json
 [
     {
         "id": 1,
@@ -184,8 +186,11 @@ HTTP POST => baseUrl + /reporter/login (login page) *DONE*
         "uri": "http://localhost:9000/SacchonApp/patient/2"
     }
 ]
+```
 *3. GET* a patient --> http://localhost:9000/SacchonApp/patients/1
+
 *Result*
+```json
 {
     "id": 1,
     "firstName": "Helen",
@@ -198,9 +203,9 @@ HTTP POST => baseUrl + /reporter/login (login page) *DONE*
     "gender": "FEMALE",
     "uri": "http://localhost:9000/SacchonApp/patient/1"
 }
-
+```
 *4. POST* post a doctor--> http://localhost:9000/SacchonApp/doctors/   
-
+```json
 { 
     "firstName": "Maria",
     "lastName": "Smith",
@@ -212,7 +217,9 @@ HTTP POST => baseUrl + /reporter/login (login page) *DONE*
     "gender":1
      
 }
+```
 *Result*
+```json
 {
     "id": 1,
     "firstName": "Maria",
@@ -225,9 +232,10 @@ HTTP POST => baseUrl + /reporter/login (login page) *DONE*
     "gender": "FEMALE",
     "uri": "http://localhost:9000/SacchonApp/doctor/1"
 }
+```
 *5. GET* doctors http://localhost:9000/SacchonApp/doctors/
 *Result*
-
+```json
 [
     {
         "id": 1,
@@ -254,8 +262,11 @@ HTTP POST => baseUrl + /reporter/login (login page) *DONE*
         "uri": "http://localhost:9000/SacchonApp/doctor/2"
     }
 ]
+```
 *6. GET* a specific doctor-->http://localhost:9000/SacchonApp/doctors/1
+
 *Result*
+```json
 {
     "id": 1,
     "firstName": "Maria",
@@ -268,9 +279,11 @@ HTTP POST => baseUrl + /reporter/login (login page) *DONE*
     "gender": "FEMALE",
     "uri": "http://localhost:9000/SacchonApp/doctor/1"
 }
+```
 *7. GET* when you want to see doctor's patients---> http://localhost:9000/SacchonApp/doctors/1/patients
 
 *Result*
+```json
 [
     {
         "id": 1,
@@ -297,13 +310,17 @@ HTTP POST => baseUrl + /reporter/login (login page) *DONE*
         "uri": "http://localhost:9000/SacchonApp/patient/2"
     }
 ]
+```
 *8. POST* a consultation to a patient http://localhost:9000/SacchonApp/patients/1/consultations/
+```json
 {
     "description": "take xanax",
     "dateCreated": "2020-10-05T14:48:00.000Z",
     "doctorId": 1
 }
+```
 *Result*
+```json
 {
     "id": 1,
     "description": "take xanax",
@@ -313,8 +330,11 @@ HTTP POST => baseUrl + /reporter/login (login page) *DONE*
     "patientId": 1,
     "uri": "http://localhost:9000/SacchonApp/consultations/1"
 }
+```
 *9. GET* consultations of a patient http://localhost:9000/SacchonApp/patients/1/consultations/
+
 *Result*
+```json
 [
     {
         "id": 1,
@@ -326,12 +346,16 @@ HTTP POST => baseUrl + /reporter/login (login page) *DONE*
         "uri": "http://localhost:9000/SacchonApp/consultations/1"
     }
 ]
+```
 *10. POST* patient post carb measurements http://localhost:9000/SacchonApp/patients/1/carbs
+```json
 {
       "carbInTake": 23,
       "dateMeasured": "2020-10-05T14:48:00.000Z"
 }
+```
 *Result*
+```json
 {
     "id": 1,
     "carbInTake": 23.0,
@@ -339,12 +363,16 @@ HTTP POST => baseUrl + /reporter/login (login page) *DONE*
     "patientId": 1,
     "uri": "http://localhost:9000/SacchonApp/carbs/1"
 }
+```
 *11.* when a patient *GET/PUT/DELETE* carb measurements  http://localhost:9000/SacchonApp/carbs/1
+```json
 {
       "carbInTake": 75,
       "dateMeasured": "2020-10-07T18:48:00.000Z"
 }
+```
 *Result*
+```json
 {
     "id": 1,
     "carbInTake": 75.0,
@@ -352,12 +380,16 @@ HTTP POST => baseUrl + /reporter/login (login page) *DONE*
     "patientId": 1,
     "uri": "http://localhost:9000/SacchonApp/carbs/1"
 }
+```
 *12.*  when a patient *POST/GET* glucose measurements http://localhost:9000/SacchonApp/patients/1/glucose
+```json
 {
     "bloodGlucoseLevel": 5.3,
     "dateMeasured": "2020-10-07T18:48:00.000Z"
 }
+```
 *Result*
+```json
 {
     "id": 1,
     "bloodGlucoseLevel": 5.3,
@@ -365,9 +397,12 @@ HTTP POST => baseUrl + /reporter/login (login page) *DONE*
     "patientId": 1,
     "uri": "http://localhost:9000/SacchonApp/glucose/1"
 }	
+```
 
 *13. GET* patients tha need consultations http://localhost:9000/SacchonApp/patients/need
+
 *Result*
+```json
 [
     {
         "id": 5,
@@ -382,12 +417,16 @@ HTTP POST => baseUrl + /reporter/login (login page) *DONE*
         "uri": "http://localhost:9000/SacchonApp/patient/5"
     }
 ]
+```
 *14.*  when a patient *GET/PUT/DELETE* glucose measurements http://localhost:9000/SacchonApp/glucose/1
+```json
 {
     "bloodGlucoseLevel": 10,
     "dateMeasured": "2020-10-07T18:48:00.000Z"
 }
+```
 *Result*
+```json
 {
     "id": 1,
     "bloodGlucoseLevel": 10.0,
@@ -395,9 +434,11 @@ HTTP POST => baseUrl + /reporter/login (login page) *DONE*
     "patientId": 1,
     "uri": "http://localhost:9000/SacchonApp/glucose/1"
 }
+```
 *15. GET*  patients of each doctor tha need consultations http://localhost:9000/SacchonApp/doctors/1/patients/need
 
 *Result*
+```json
 [
     {
         "id": 5,
@@ -412,7 +453,7 @@ HTTP POST => baseUrl + /reporter/login (login page) *DONE*
         "uri": "http://localhost:9000/SacchonApp/patient/5"
     }
 ]
-
+```
 
 *Statistics*
 
@@ -422,6 +463,7 @@ HTTP POST => baseUrl + /reporter/login (login page) *DONE*
 Database values: First day  8.3 and 6.3 and the Second day 4.3 , 7.3 , 5.3  date(2020-10-7 , 2020-10-8)
 
 *Result*
+```json
 
 {
     "patientId": 1,
@@ -430,12 +472,14 @@ Database values: First day  8.3 and 6.3 and the Second day 4.3 , 7.3 , 5.3  date
     "glucoseStatistics": 6.466666666666667,
     "uri": "http://localhost:9000/SacchonApp/patients/1"
 }
+```
 
 *17. GET*  patient's average of carb-->http://localhost:9000/SacchonApp/patients/1/carbs/1601758800000/1602104400000
 
 Database  values: Date(2020-1-5) carbInTake=23 , Date(2020-1-6) carbInTake=10, Date(2020-1-7) carbInTake=50
 
 *Result*
+```json
 {
     "patientId": 1,
     "startDate": 1601758800000,
@@ -443,6 +487,7 @@ Database  values: Date(2020-1-5) carbInTake=23 , Date(2020-1-6) carbInTake=10, D
     "carbsStatistics": 27.666666666666668,
     "uri": "http://localhost:9000/SacchonApp/patients/1"
 }
+```
 
 
 
