@@ -14,6 +14,7 @@ import org.restlet.resource.ServerResource;
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DoctorPatientNeedResourceImpl extends ServerResource implements DoctorPatientNeedResource {
     private UserRepository userRepository;
@@ -51,8 +52,8 @@ public class DoctorPatientNeedResourceImpl extends ServerResource implements Doc
 
     private List<Patient> getPatientNeedForDoctor(List<ApplicationUser> allUsers) {
         List<Patient> doctorPatientsIneed = new ArrayList<>();
-
-        allUsers.forEach(user -> {
+        List<ApplicationUser> allPatients = allUsers.stream().filter(user -> user instanceof Patient).collect(Collectors.toList());
+        allPatients.forEach(user -> {
             Patient patient = (Patient) user;
             if (patient.checkIfInNeed() && patient.getDoctor().getId() == doctorId)
                 doctorPatientsIneed.add(patient);

@@ -15,7 +15,6 @@ import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class GlucoseListResourceImpl extends ServerResource implements GlucoseListResource {
@@ -61,25 +60,14 @@ public class GlucoseListResourceImpl extends ServerResource implements GlucoseLi
         roles.add(CustomRole.ROLE_PATIENT.getRoleName());
         roles.add(CustomRole.ROLE_DOCTOR.getRoleName());
         //ResourceUtils.checkRoles(this, roles);
-
-        List<Glucose> glucoseMeasurements= glucoseRepository.findAll();
-        glucoseMeasurements = getGlucoseForPatient(glucoseMeasurements);
+        Patient patientOfGlucose = (Patient) userRepository.findById(patientId).get();
+        List<Glucose> glucoseMeasurements= patientOfGlucose.getListOfGlucoseMeasurements();
         List<GlucoseRepresentation>  glucoseRepresentationList = new ArrayList<>();
         glucoseMeasurements.forEach(glucose -> glucoseRepresentationList.add(GlucoseRepresentation.getGlucoseRepresentation(glucose)));
 
         return glucoseRepresentationList;
     }
 
-    private List<Glucose> getGlucoseForPatient(List<Glucose> allGlucoseMeasurements)
-    {
-        List<Glucose> patientGlucoseMeasurements = new ArrayList<>();
-
-        allGlucoseMeasurements.forEach(glucose -> {
-            if(glucose.getPatient().getId() == patientId)
-                patientGlucoseMeasurements.add(glucose);
-        });
-        return patientGlucoseMeasurements;
-    }
 
 
 }

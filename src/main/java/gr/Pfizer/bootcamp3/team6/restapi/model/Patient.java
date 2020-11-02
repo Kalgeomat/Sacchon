@@ -8,6 +8,8 @@ import java.time.Clock;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import static java.time.temporal.ChronoUnit.DAYS;
 
 @Setter
@@ -61,5 +63,13 @@ public class Patient extends ApplicationUser{
     {
         glucoseMeasurement.setPatient(this);
         listOfGlucoseMeasurements.add(glucoseMeasurement);
+    }
+
+    public List<Carb> getListOfCarbMeasurements() {
+        return listOfCarbMeasurements.stream().filter(carb -> carb.checkIfActive()).collect(Collectors.toList());
+    }
+
+    public List<Glucose> getListOfGlucoseMeasurements() {
+        return listOfGlucoseMeasurements.stream().filter(glucose -> glucose.checkIfActive()).collect(Collectors.toList());
     }
 }

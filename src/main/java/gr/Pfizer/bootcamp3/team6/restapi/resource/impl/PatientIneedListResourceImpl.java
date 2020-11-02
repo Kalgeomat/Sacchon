@@ -14,16 +14,17 @@ import org.restlet.resource.ServerResource;
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PatientIneedListResourceImpl extends ServerResource implements PatientIneedListResource {
-    private UserRepository patientRepository ;
+    private UserRepository userRepository;
     private EntityManager em;
 
     @Override
     protected void doInit() throws ResourceException {
         try {
             em = JpaUtil.getEntityManager();
-            patientRepository = new UserRepository(em);
+            userRepository = new UserRepository(em);
         }
         catch(Exception ex){
             throw new ResourceException(ex);
@@ -39,7 +40,7 @@ public class PatientIneedListResourceImpl extends ServerResource implements Pati
     public List<PatientRepresentation> getPatients() throws NotFoundException, ResourceException {
         ResourceUtils.checkRole(this, CustomRole.ROLE_CHIEF_DOCTOR.getRoleName());
 
-        List<ApplicationUser> users= patientRepository.findAll();
+        List<ApplicationUser> users= userRepository.findAll();
         List<Patient> patients = getPatientIneed(users);
         List<PatientRepresentation> patientRepresentationList = new ArrayList<>();
         patients.forEach(patient ->patientRepresentationList.add(PatientRepresentation.getPatientRepresentation(patient)));
@@ -50,9 +51,10 @@ public class PatientIneedListResourceImpl extends ServerResource implements Pati
     // utility method
     private List<Patient> getPatientIneed(List<ApplicationUser> allUsers)
     {
+        List<ApplicationUser> allPatients = allUsers.stream().filter(user -> user instanceof Patient).collect(Collectors.toList());
         List<Patient> patientsIneed = new ArrayList<>();
 
-        allUsers.forEach(user -> {
+        allPatients.forEach(user -> {
             Patient patient = (Patient) user;
             if(patient.checkIfInNeed())
                 patientsIneed.add(patient);
