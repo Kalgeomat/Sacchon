@@ -1,0 +1,62 @@
+<form [formGroup]="myForm">
+    <div>
+        <h1 style="margin-left: 50px"><img src="src\app\Pfizer-the-total-business.jpg" alt="Trulli" width="33" height="33">SACCHON</h1>
+    </div>
+    <div class= "container">
+    <div class="row">
+            <a class="navbar-brand" style="margin-left: 50px" style="color:black;"[routerLink]="'MDR-home-page'">HOME</a> 
+            <a class="navbar-brand" style="margin-left: 5px" style="color:black;"[routerLink]="'MDR-view-data-page'">VIEW MY DATA</a> 
+            <a class="navbar-brand" style="margin-left: 5px" style="color:black;"[routerLink]="'MDR-past-consultations-page'">CONSULTATIONS</a> 
+            <a class="navbar-brand" style="margin-left: 5px" style="color:black;"[routerLink]="'MDR-account-page'">ACCOUNT</a> 
+            <a class="navbar-brand" style="margin-left: 5px" style="color:black;"[routerLink]="'MDR-login-page'">SIGN OUT</a>
+    </div>
+    <div>
+        <h1 style="margin-left: 50px">VIEW DATA</h1><br>
+    </div>
+    <div>
+        <h5 style="margin-left: 50px">Choose Period to see average data</h5><br>
+    </div>
+    <div style="margin-left: 50px">
+        <label for="date">From</label>:</label>
+        <label  style="margin-left: 100px" for="date">To</label>:</label>
+        <br>
+        <input type="date" id="date_from" name="date_from">
+        <input type="date" id="date_to" name="date_to">
+        <button type="submit">Go</button>
+    </div>
+    <div style="margin-left: 50px">
+        <br><label>Average Daily Glycose</label><br>
+        <input formControlName="Average Daily Glycose" type="text"><br>
+        <br><label>Average Carb Intake</label><br>
+        <input formControlName="Average Carb Intake" type="text"><br>
+    </div>
+    <div>
+        <h1  style="margin-left: 50px">BLOOD LEVEL GLYCOSE INPUTS</h1>
+        <ul style="margin-left: 20px">
+            <li><label for="level">Level</label>
+                <label style="margin-left: 131px" for="date">Date</label>
+                <label style="margin-left: 113px" for="time">Time</label>
+            </li>
+            <li><input type="text" id="level" name="level" value="">
+                <input type="date" id="date" name="date" value="">
+                <input type="time" id="time" name="time" value="">
+                <button type="submit">Edit<a/button>
+                <button type="submit">Delete</button>
+            </li>
+        </ul>
+    </div>
+    <div>
+        <h1 style="margin-left: 50px">CARB INTAKE INPUTS</h1>
+        <ul style="margin-left: 20px">
+            <li><label for="carbe_intake">Carbe Intake</label>
+                <label style="margin-left: 86px" for="date">Date</label>
+            </li>
+            <li>
+                <input type="text" id="carbe_intake" name="carbe_intake" value="">
+                <input type="date" id="date" name="date" value="">
+                <button type="submit">Edit</button>
+                <button type="submit">Delete</button>
+            </li>
+        </ul>
+    </div>
+</form>
