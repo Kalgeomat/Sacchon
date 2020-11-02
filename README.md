@@ -3,102 +3,102 @@
 *Patient*
 
 Get all patients:
-HTTP GET => baseUrl + /patients (R Patient Report Page in the "Choose a patient" dropdown) *DONE*
+HTTP GET => baseUrl + /patients (R Patient Report Page in the "Choose a patient" dropdown) **DONE**
 
 Get all new patients:
-HTTP GET => baseUrl + /patients/new (DA new patient's page) *DONE*
+HTTP GET => baseUrl + /patients/new (DA new patient's page) **DONE**
 
 Get all patients in need:
-HTTP GET => baseUrl + /patients/need (R Patient Report Page in the "Patients Waiting for Consultation" *DONE*
+HTTP GET => baseUrl + /patients/need (R Patient Report Page in the "Patients Waiting for Consultation" **DONE**
 
 Get a patient:
-HTTP GET => baseUrl + /patients/id (MDR Homepage, DA one-patient page) *DONE*
+HTTP GET => baseUrl + /patients/id (MDR Homepage, DA one-patient page) **DONE**
 
 Get a patient's average glucose:
-HTTP GET => baseUrl + /patients/id/glucose/start/end (MDR view data page) *DONE*
+HTTP GET => baseUrl + /patients/id/glucose/start/end (MDR view data page) **DONE**
 
 Get a patient's average carb:
-HTTP GET => baseUrl + /patients/id/carb/start/end (MDR view data page) *DONE*
+HTTP GET => baseUrl + /patients/id/carb/start/end (MDR view data page) **DONE**
 
 Post a patient:
-HTTP POST => baseUrl + /patients (MDR sign up page) *DONE*
+HTTP POST => baseUrl + /patients (MDR sign up page) **DONE**
 
 Delete a patient (patient removes account):  
-HTTP DELETE => baseUrl + /patients/id (MDR account page in "REMOVE ACCOUNT")  *DONE*
+HTTP DELETE => baseUrl + /patients/id (MDR account page in "REMOVE ACCOUNT")  **DONE**
 
 *Consultation*
 
 Get a patient's consultations:
-HTTP GET => baseUrl + /patients/id/consultations (MDR past consultations page) *DONE*
+HTTP GET => baseUrl + /patients/id/consultations (MDR past consultations page)**DONE**
 
 Get a patient's consultation:
-HTTP GET => baseUrl + consultations/id (MDR homepage) *DONE*
+HTTP GET => baseUrl + consultations/id (MDR homepage) **DONE**
 
 Post a consultation for a patient:
-HTTP POST => baseUrl + /patients/id/consultations (DA consultation page) *DONE*
+HTTP POST => baseUrl + /patients/id/consultations (DA consultation page)**DONE**
 
 Update a patient's consultation:
-HTTP PUT => baseUrl + /consultations/id (we don't know yet) *DONE*
+HTTP PUT => baseUrl + /consultations/id (we don't know yet) **DONE**
 
 *Measurement*
 
 Get a patient's measurements:
-HTTP GET => baseUrl + /patients/id/carbs (MDR view data page, DA one-patient page) *DONE*
+HTTP GET => baseUrl + /patients/id/carbs (MDR view data page, DA one-patient page) **DONE**
 
 Get a patient's measurements:
-HTTP GET => baseUrl + /patients/id/glucose (MDR view data page, DA one-patient page) *DONE*
+HTTP GET => baseUrl + /patients/id/glucose (MDR view data page, DA one-patient page) **DONE**
 
 Get a patient's measurement:
-HTTP GET => baseUrl + /carbs/id (we don't know yet) *DONE*
+HTTP GET => baseUrl + /carbs/id (we don't know yet) **DONE**
 
 Get a patient's measurement:
-HTTP GET => baseUrl +/glucose/id (we don't know yet) *DONE*
+HTTP GET => baseUrl +/glucose/id (we don't know yet) **DONE**
 
 Post a patient's measurement:
-HTTP POST => baseUrl + /patients/id/carbs (MDR homepage) *DONE*
+HTTP POST => baseUrl + /patients/id/carbs (MDR homepage) **DONE**
 
 Post a patient's measurement:
-HTTP POST => baseUrl + /patients/id/glucose (MDR homepage) *DONE*
+HTTP POST => baseUrl + /patients/id/glucose (MDR homepage) **DONE**
 
 Update a patient's measurement:
-HTTP PUT => baseUrl + /carbs/id (MDR view data page) *DONE*
+HTTP PUT => baseUrl + /carbs/id (MDR view data page) **DONE**
 
 Update a patient's measurement:
-HTTP PUT => baseUrl + /glucoses/id (MDR view data page) *DONE*
+HTTP PUT => baseUrl + /glucoses/id (MDR view data page) **DONE**
 
 Delete a patient's measurement:
-HTTP DELETE => baseUrl +/carbs/id (MDR view data page) *DONE*
+HTTP DELETE => baseUrl +/carbs/id (MDR view data page) **DONE**
 
 Delete a patient's measurement:
-HTTP DELETE => baseUrl + glucose/id (MDR view data page) *DONE*
+HTTP DELETE => baseUrl + glucose/id (MDR view data page) **DONE**
 
 *Doctor*
 
 Get all doctors:
-HTTP GET => baseUrl + /doctors (R Doctor Report Page in the "Choose a doctor" dropdown) *DONE*
+HTTP GET => baseUrl + /doctors (R Doctor Report Page in the "Choose a doctor" dropdown) **DONE**
 
 Get a doctor:
-HTTP GET => baseUrl + /doctors/id (DA homepage) *DONE*
+HTTP GET => baseUrl + /doctors/id (DA homepage) **DONE**
 
 Get a doctor's patients:
-HTTP GET => baseUrl + /doctors/id/patients (DA homepage in "ALL MY PATIENTS") *DONE*
+HTTP GET => baseUrl + /doctors/id/patients (DA homepage in "ALL MY PATIENTS") **DONE**
 
 Get a doctor's patients in need:
-HTTP GET => baseUrl + /doctors/id/patients/ineed (DA homepage in "MY PATIENTS IN NEED OF CONSULTING") *DONE*
+HTTP GET => baseUrl + /doctors/id/patients/ineed (DA homepage in "MY PATIENTS IN NEED OF CONSULTING") **DONE**
 
 Get a doctor's patient:
-HTTP GET => baseUrl + /patients/id (DA one-patient page) *DONE* 
+HTTP GET => baseUrl + /patients/id (DA one-patient page) **DONE** 
 
 Delete a doctor (doctor removes account):
-HTTP DELETE => baseUrl + /doctors/id (DA account page in "REMOVE ACCOUNT") *DONE*
+HTTP DELETE => baseUrl + /doctors/id (DA account page in "REMOVE ACCOUNT") **DONE**
 
 *Reporter(Chief)*
 
 Get all inactive doctors:
-HTTP GET => baseUrl + /doctors/noactive/start/end (R doctor report page in "DOCTORS WITH NO ACTIVITY")
+HTTP GET => baseUrl + /doctors/noactive/start/end (R doctor report page in "DOCTORS WITH NO ACTIVITY")  **DONE**
 
 Get all inactive patients:
-HTTP GET => baseUrl + /patients/noactive/start/end (R patient report page in "PATIENTS WITH NO ACTIVITY")
+HTTP GET => baseUrl + /patients/noactive/start/end (R patient report page in "PATIENTS WITH NO ACTIVITY")  **DONE**
 
 Get a patient's activity data:
 HTTP GET => baseUrl + /patients/id/activity/start/end (R patient report page in "PERSONAL MONITOR DATA")
@@ -107,26 +107,26 @@ Get a doctor's activity data:
 HTTP GET => baseUrl + /doctors/id/activity/start/end (R doctor report page in "CONSULTATION SUBMISSIONS")
 
 Post a doctor:
-HTTP POST => baseUrl + /doctors (R doctor signup page) *DONE*
+HTTP POST => baseUrl + /doctors (R doctor signup page)  **DONE**
 
 *Authentication*
 
 Sign up a patient:
-HTTP POST => baseUrl + /patients/signup (sign up page) *DONE*
+HTTP POST => baseUrl + /patients/signup (sign up page)  **DONE**
 
 Login a patient:
-HTTP POST => baseUrl + /patients/login (login page) *DONE*
-
+HTTP POST => baseUrl + /patients/login (login page) **DONE**
 Sign up a doctor (from chief's system):
-HTTP POST => baseUrl + /doctors/signup (sign up page) *DONE*
+HTTP POST => baseUrl + /doctors/signup (sign up page)  **DONE**
 
 Login a doctor:
-HTTP POST => baseUrl + /doctors/login (login page) *DONE*
+HTTP POST => baseUrl + /doctors/login (login page)  **DONE**
 
 Login the chief:
-HTTP POST => baseUrl + /reporter/login (login page) *DONE*
+HTTP POST => baseUrl + /reporter/login (login page)  **DONE**
 
-*JSON*
+
+**JSON**
 
 1 POST sign up doctor http://localhost:9000/SacchonApp/doctors/signup
 
