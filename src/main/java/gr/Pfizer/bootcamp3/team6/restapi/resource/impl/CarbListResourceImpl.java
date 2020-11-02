@@ -55,20 +55,32 @@ public class CarbListResourceImpl extends ServerResource implements CarbListReso
 
         return CarbRepresentation.getCarbRepresentation(carb);
     }
-
     @Override
     public List<CarbRepresentation> getCarbs(){
+
         List<String> roles = new ArrayList<>();
         roles.add(CustomRole.ROLE_PATIENT.getRoleName());
         roles.add(CustomRole.ROLE_DOCTOR.getRoleName());
-        ResourceUtils.checkRoles(this, roles);
+        //ResourceUtils.checkRoles(this, roles);
 
-        Patient patientOfGlucose = (Patient) userRepository.findById(patientId).get();
-        List<Carb> carbs= patientOfGlucose.getListOfCarbMeasurements();
+        List<Carb> carbs= carbRepository.findAll();
+        carbs = getCarbsForPatient(carbs);
         List<CarbRepresentation> carbRepresentationList = new ArrayList<>();
-        Collections.reverse(carbs);
         carbs.forEach(carb -> carbRepresentationList.add(CarbRepresentation.getCarbRepresentation(carb)));
 
         return carbRepresentationList;
     }
+
+        private List<Carb> getCarbsForPatient(List<Carb> allCarbs)
+        {
+            List<Carb> patientCarbs = new ArrayList<>();
+
+            allCarbs.forEach(carb -> {
+                if(carb.getPatient().getId() == patientId)
+                    patientCarbs.add(carb);
+            });
+            return patientCarbs;
+        }
+
 }
+

@@ -56,19 +56,30 @@ public class GlucoseListResourceImpl extends ServerResource implements GlucoseLi
         return GlucoseRepresentation.getGlucoseRepresentation(glucose);
     }
 
-    @Override
     public List<GlucoseRepresentation> getGlucose(){
         List<String> roles = new ArrayList<>();
         roles.add(CustomRole.ROLE_PATIENT.getRoleName());
         roles.add(CustomRole.ROLE_DOCTOR.getRoleName());
-        ResourceUtils.checkRoles(this, roles);
+        //ResourceUtils.checkRoles(this, roles);
 
-        Patient patientOfGlucose = (Patient) userRepository.findById(patientId).get();
-        List<Glucose> glucoseMeasurements = patientOfGlucose.getListOfGlucoseMeasurements();
+        List<Glucose> glucoseMeasurements= glucoseRepository.findAll();
+        glucoseMeasurements = getGlucoseForPatient(glucoseMeasurements);
         List<GlucoseRepresentation>  glucoseRepresentationList = new ArrayList<>();
-        Collections.reverse(glucoseMeasurements);
         glucoseMeasurements.forEach(glucose -> glucoseRepresentationList.add(GlucoseRepresentation.getGlucoseRepresentation(glucose)));
 
         return glucoseRepresentationList;
     }
+
+    private List<Glucose> getGlucoseForPatient(List<Glucose> allGlucoseMeasurements)
+    {
+        List<Glucose> patientGlucoseMeasurements = new ArrayList<>();
+
+        allGlucoseMeasurements.forEach(glucose -> {
+            if(glucose.getPatient().getId() == patientId)
+                patientGlucoseMeasurements.add(glucose);
+        });
+        return patientGlucoseMeasurements;
+    }
+
+
 }
