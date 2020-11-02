@@ -128,233 +128,318 @@ HTTP POST => baseUrl + /reporter/login (login page) *DONE*
 
 *JSON*
 
-*1. POST* a patient-->http://localhost:9000/SacchonApp/patients/  
+1 POST sign up doctor http://localhost:9000/SacchonApp/doctors/signup
+
 ```json
-{ 
-    "firstName": "Helen",
-    "lastName": "Chatzi",
-    "email": "helen@freemail.com",
-    "password": "2222",
+{    
+    "username":"smith",
+    "firstName": "Smith",
+    "lastName": "Jenty",
+    "email": "smithj@freemail.com",
+    "password": "smith",
     "telephoneNumber": 2310299999,
-    "address": "Tsimiski 6",
+    "address": "Egnatia 6",
     "dob": "1995-01-01T00:00:00.00Z",
-    "gender":1
+    "gender":0
+     
 }
 ```
-*Result*
+
+**Result**
+
 ```json
 {
-    "id": 1,
-    "firstName": "Helen",
-    "lastName": "Chatzi",
-    "email": "helen@freemail.com",
-    "password": "2222",
+    "id": 4,
+    "username": "smith",
+    "firstName": "Smith",
+    "lastName": "Jenty",
+    "email": "smithj@freemail.com",
+    "password": null,
     "telephoneNumber": 2310299999,
-    "address": "Tsimiski 6",
+    "address": "Egnatia 6",
     "dob": 788918400000,
-    "gender": "FEMALE",
-    "uri": "http://localhost:9000/SacchonApp/patient/1"
+    "gender": null,
+    "uri": "http://localhost:9000/SacchonApp/doctor/4"
 }
 ```
-*2. GET* all patients-->http://localhost:9000/SacchonApp/patients/
 
-*Result*
-```json
-[
-    {
-        "id": 1,
-        "firstName": "Helen",
-        "lastName": "Chatzi",
-        "email": "helen@freemail.com",
-        "password": "2222",
-        "telephoneNumber": 2310299999,
-        "address": "Tsimiski 6",
-        "dob": 788918400000,
-        "gender": "FEMALE",
-        "uri": "http://localhost:9000/SacchonApp/patient/1"
-    },
-    {
-        "id": 2,
-        "firstName": "Evita",
-        "lastName": "Papadopoulou",
-        "email": "evita@freemail.com",
-        "password": "2222",
-        "telephoneNumber": 2310299999,
-        "address": "Tsimiski 6",
-        "dob": 788918400000,
-        "gender": "FEMALE",
-        "uri": "http://localhost:9000/SacchonApp/patient/2"
-    }
-]
-```
-*3. GET* a patient --> http://localhost:9000/SacchonApp/patients/1
+2. POST sign up patient http://localhost:9000/SacchonApp/patients/signup
 
-*Result*
 ```json
-{
-    "id": 1,
-    "firstName": "Helen",
-    "lastName": "Chatzi",
-    "email": "helen@freemail.com",
-    "password": "2222",
-    "telephoneNumber": 2310299999,
-    "address": "Tsimiski 6",
-    "dob": 788918400000,
-    "gender": "FEMALE",
-    "uri": "http://localhost:9000/SacchonApp/patient/1"
-}
-```
-*4. POST* post a doctor--> http://localhost:9000/SacchonApp/doctors/   
-```json
-{ 
+{    
+    "username":"Helen",
     "firstName": "Maria",
-    "lastName": "Smith",
+    "lastName": "Lana",
     "email": "maria@freemail.com",
-    "password": "2222",
+    "password": "helen",
     "telephoneNumber": 2310299999,
-    "address": "Tsimiski 6",
+    "address": "Egnatia 6",
     "dob": "1995-01-01T00:00:00.00Z",
     "gender":1
      
 }
 ```
-*Result*
+
+**Result**
+
 ```json
 {
-    "id": 1,
+    "id": 2,
+    "username": "Helen",
     "firstName": "Maria",
-    "lastName": "Smith",
+    "lastName": "Lana",
     "email": "maria@freemail.com",
-    "password": "2222",
+    "password": null,
     "telephoneNumber": 2310299999,
-    "address": "Tsimiski 6",
+    "address": "Egnatia 6",
     "dob": 788918400000,
-    "gender": "FEMALE",
-    "uri": "http://localhost:9000/SacchonApp/doctor/1"
+    "gender": null,
+    "uri": "http://localhost:9000/SacchonApp/patient/2"
 }
 ```
-*5. GET* doctors http://localhost:9000/SacchonApp/doctors/
-*Result*
+
+
+
+3. GET login doctor http://localhost:9000/SacchonApp/login
+
+**Result**
+
+```json
+{
+    "id": 4,
+    "username": "smith",
+    "firstName": "Smith",
+    "lastName": "Jenty",
+    "email": "smithj@freemail.com",
+    "telephoneNumber": 2310299999,
+    "address": "Egnatia 6",
+    "dob": 788918400000,
+    "gender": null,
+    "role": "ROLE_DOCTOR"
+}
+```
+
+4. GET login patient http://localhost:9000/SacchonApp/login (authorization username and password of the patient)
+
+**Result** 
+
+```json
+{
+    "id": 2,
+    "username": "Helen",
+    "firstName": "Maria",
+    "lastName": "Lana",
+    "email": "maria@freemail.com",
+    "telephoneNumber": 2310299999,
+    "address": "Egnatia 6",
+    "dob": 788918400000,
+    "gender": null,
+    "role": "ROLE_PATIENT"
+}
+```
+
+5. GET all patients-->http://localhost:9000/SacchonApp/patients/
+
+**Result**
+
+
 ```json
 [
     {
         "id": 1,
+        "username": "Maria",
         "firstName": "Maria",
-        "lastName": "Smith",
+        "lastName": "Lana",
         "email": "maria@freemail.com",
-        "password": "2222",
+        "password": null,
         "telephoneNumber": 2310299999,
-        "address": "Tsimiski 6",
+        "address": "Egnatia 6",
         "dob": 788918400000,
-        "gender": "FEMALE",
-        "uri": "http://localhost:9000/SacchonApp/doctor/1"
-    },
-    {
-        "id": 2,
-        "firstName": "Dina",
-        "lastName": "Star",
-        "email": "dinaS@freemail.com",
-        "password": "2222",
-        "telephoneNumber": 2310299999,
-        "address": "Tsimiski 6",
-        "dob": 788918400000,
-        "gender": "FEMALE",
-        "uri": "http://localhost:9000/SacchonApp/doctor/2"
-    }
-]
-```
-*6. GET* a specific doctor-->http://localhost:9000/SacchonApp/doctors/1
-
-*Result*
-```json
-{
-    "id": 1,
-    "firstName": "Maria",
-    "lastName": "Smith",
-    "email": "maria@freemail.com",
-    "password": "2222",
-    "telephoneNumber": 2310299999,
-    "address": "Tsimiski 6",
-    "dob": 788918400000,
-    "gender": "FEMALE",
-    "uri": "http://localhost:9000/SacchonApp/doctor/1"
-}
-```
-*7. GET* when you want to see doctor's patients---> http://localhost:9000/SacchonApp/doctors/1/patients
-
-*Result*
-```json
-[
-    {
-        "id": 1,
-        "firstName": "Helen",
-        "lastName": "Chatzi",
-        "email": "helen@freemail.com",
-        "password": "2222",
-        "telephoneNumber": 2310299999,
-        "address": "Tsimiski 6",
-        "dob": 788918400000,
-        "gender": "FEMALE",
+        "gender": null,
         "uri": "http://localhost:9000/SacchonApp/patient/1"
     },
     {
         "id": 2,
-        "firstName": "Evita",
-        "lastName": "Papadopoulou",
-        "email": "evita@freemail.com",
-        "password": "2222",
+        "username": "Helen",
+        "firstName": "Maria",
+        "lastName": "Lana",
+        "email": "maria@freemail.com",
+        "password": null,
         "telephoneNumber": 2310299999,
-        "address": "Tsimiski 6",
+        "address": "Egnatia 6",
         "dob": 788918400000,
-        "gender": "FEMALE",
+        "gender": null,
         "uri": "http://localhost:9000/SacchonApp/patient/2"
     }
 ]
 ```
-*8. POST* a consultation to a patient http://localhost:9000/SacchonApp/patients/1/consultations/
+
+5. GET/DELETE one specific patient http://localhost:9000/SacchonApp/patients/1
+
+**Result**
+
+```json
+{
+    "id": 1,
+    "username": "Maria",
+    "firstName": "Maria",
+    "lastName": "Lana",
+    "email": "maria@freemail.com",
+    "password": null,
+    "telephoneNumber": 2310299999,
+    "address": "Egnatia 6",
+    "dob": 788918400000,
+    "gender": null,
+    "uri": "http://localhost:9000/SacchonApp/patient/1"
+}
+```
+
+6. GET doctors http://localhost:9000/SacchonApp/doctors/
+
+**Result**
+
+```json
+[
+    {
+        "id": 4,
+        "username": "smith",
+        "firstName": "Smith",
+        "lastName": "Jenty",
+        "email": "smithj@freemail.com",
+        "password": null,
+        "telephoneNumber": 2310299999,
+        "address": "Egnatia 6",
+        "dob": 788918400000,
+        "gender": null,
+        "uri": "http://localhost:9000/SacchonApp/doctor/4"
+    }
+]
+```
+
+7.  GET/DELETE a specific doctor   http://localhost:9000/SacchonApp/doctors/4
+
+**Result**
+
+```json
+{
+    "id": 4,
+    "username": "smith",
+    "firstName": "Smith",
+    "lastName": "Jenty",
+    "email": "smithj@freemail.com",
+    "password": null,
+    "telephoneNumber": 2310299999,
+    "address": "Egnatia 6",
+    "dob": 788918400000,
+    "gender": null,
+    "uri": "http://localhost:9000/SacchonApp/doctor/4"
+}
+```
+
+8. POST/GET one consultation to a patient http://localhost:9000/SacchonApp/patients/1/consultations
 ```json
 {
     "description": "take xanax",
     "dateCreated": "2020-10-05T14:48:00.000Z",
-    "doctorId": 1
+    "doctorId": 4
+   
+
 }
 ```
-*Result*
+
+**Result**
+
 ```json
 {
     "id": 1,
     "description": "take xanax",
     "dateCreated": 1601909280000,
-    "doctorId": 1,
-    "doctorName": "Maria Smith",
+    "doctorId": 4,
+    "doctorName": "Smith Jenty",
     "patientId": 1,
     "uri": "http://localhost:9000/SacchonApp/consultations/1"
 }
 ```
-*9. GET* consultations of a patient http://localhost:9000/SacchonApp/patients/1/consultations/
 
-*Result*
+9. GET all doctor's patients http://localhost:9000/SacchonApp/doctors/4/patients
+
+**Result**
+
+```jason
+[
+    {
+        "id": 1,
+        "username": "Maria",
+        "firstName": "Maria",
+        "lastName": "Lana",
+        "email": "maria@freemail.com",
+        "password": null,
+        "telephoneNumber": 2310299999,
+        "address": "Egnatia 6",
+        "dob": 788918400000,
+        "gender": null,
+        "uri": "http://localhost:9000/SacchonApp/patient/1"
+    }
+]
+```
+
+10. Get all patient's consultations  http://localhost:9000/SacchonApp/patients/1/consultations/
+
+**Result**
+
 ```json
 [
     {
         "id": 1,
-        "description": "take zanax",
+        "description": "take xanax",
         "dateCreated": 1601909280000,
-        "doctorId": 1,
-        "doctorName": "Maria Smith",
+        "doctorId": 4,
+        "doctorName": "Smith Jenty",
         "patientId": 1,
         "uri": "http://localhost:9000/SacchonApp/consultations/1"
     }
 ]
 ```
-*10. POST* patient post carb measurements http://localhost:9000/SacchonApp/patients/1/carbs
+
+11. PUT/GET(to see the consultation) a consultation (only doctor can do this)  http://localhost:9000/SacchonApp/consultations/1/
+
+```json
+{
+    "description": "dont eat carbs",
+    "dateCreated": "2020-10-05T14:48:00.000Z",
+    "doctorId": 4
+   
+
+}
+```
+
+**Result**
+
+```json
+{
+    "id": 1,
+    "description": "dont eat carbs",
+    "dateCreated": 1601909280000,
+    "doctorId": 4,
+    "doctorName": "Smith Jenty",
+    "patientId": 1,
+    "uri": "http://localhost:9000/SacchonApp/consultations/1"
+}
+```
+
+12. POST/GET carb measurements http://localhost:9000/SacchonApp/patients/1/carbs
+
 ```json
 {
       "carbInTake": 23,
       "dateMeasured": "2020-10-05T14:48:00.000Z"
+   
+
 }
 ```
-*Result*
+
+**Result**
+
 ```json
 {
     "id": 1,
@@ -364,14 +449,18 @@ HTTP POST => baseUrl + /reporter/login (login page) *DONE*
     "uri": "http://localhost:9000/SacchonApp/carbs/1"
 }
 ```
-*11.* when a patient *GET/PUT/DELETE* carb measurements  http://localhost:9000/SacchonApp/carbs/1
+
+13.  GET/PUT/DELETE carb measurements  http://localhost:9000/SacchonApp/carbs/1
 ```json
 {
-      "carbInTake": 75,
+      "carbInTake": 75
       "dateMeasured": "2020-10-07T18:48:00.000Z"
+   
+
 }
 ```
-*Result*
+**Result**
+
 ```json
 {
     "id": 1,
@@ -381,14 +470,15 @@ HTTP POST => baseUrl + /reporter/login (login page) *DONE*
     "uri": "http://localhost:9000/SacchonApp/carbs/1"
 }
 ```
-*12.*  when a patient *POST/GET* glucose measurements http://localhost:9000/SacchonApp/patients/1/glucose
+
+14. POST/GET glucose measurements http://localhost:9000/SacchonApp/patients/1/glucose
 ```json
 {
     "bloodGlucoseLevel": 5.3,
     "dateMeasured": "2020-10-07T18:48:00.000Z"
 }
 ```
-*Result*
+**Result**
 ```json
 {
     "id": 1,
@@ -396,36 +486,19 @@ HTTP POST => baseUrl + /reporter/login (login page) *DONE*
     "dateMeasured": 1602096480000,
     "patientId": 1,
     "uri": "http://localhost:9000/SacchonApp/glucose/1"
-}	
+}
 ```
 
-*13. GET* patients tha need consultations http://localhost:9000/SacchonApp/patients/need
+15. 
 
-*Result*
-```json
-[
-    {
-        "id": 5,
-        "firstName": "Jason",
-        "lastName": "Jey",
-        "email": "jason@freemail.com",
-        "password": "77",
-        "telephoneNumber": 23456,
-        "address": "mitropolews",
-        "dob": 1020632400000,
-        "gender": "MALE",
-        "uri": "http://localhost:9000/SacchonApp/patient/5"
-    }
-]
-```
-*14.*  when a patient *GET/PUT/DELETE* glucose measurements http://localhost:9000/SacchonApp/glucose/1
+16. GET/PUT/DELETE glucose measurements(a patient)  http://localhost:9000/SacchonApp/glucose/1
 ```json
 {
-    "bloodGlucoseLevel": 10,
+    "bloodGlucoseLevel": 10
     "dateMeasured": "2020-10-07T18:48:00.000Z"
 }
 ```
-*Result*
+**Result**
 ```json
 {
     "id": 1,
@@ -435,60 +508,88 @@ HTTP POST => baseUrl + /reporter/login (login page) *DONE*
     "uri": "http://localhost:9000/SacchonApp/glucose/1"
 }
 ```
-*15. GET*  patients of each doctor tha need consultations http://localhost:9000/SacchonApp/doctors/1/patients/need
+17. 
 
-*Result*
+**Statistics**
+
+1. GET patient's average of glucose http://localhost:9000/SacchonApp/patients/1/glucose/1601931600000/1602190800000
+
+Database: First day 8.3 and 6.3, Second day 4.3 , 7.3 , 5.3  Dates(2020-10-7 , 2020-10-8)
+
+**Result**
+
 ```json
-[
-    {
-        "id": 5,
-        "firstName": "Jason",
-        "lastName": "Jey",
-        "email": "jason@freemail.com",
-        "password": "77",
-        "telephoneNumber": 23456,
-        "address": "mitropolews",
-        "dob": 1020632400000,
-        "gender": "MALE",
-        "uri": "http://localhost:9000/SacchonApp/patient/5"
-    }
-]
-```
-
-*Statistics*
-
-
-*16. GET*  patient's average of glucose-->http://localhost:9000/SacchonApp/patients/1/glucose/1601931600000/1602190800000
-
-Database values: First day  8.3 and 6.3 and the Second day 4.3 , 7.3 , 5.3  date(2020-10-7 , 2020-10-8)
-
-*Result*
-```json
-
 {
     "patientId": 1,
-    "startDate": 1601931600000,
-    "endDate": 1602190800000,
+    "startDate": 1602006265000,
+    "endDate": 1602265465000,
     "glucoseStatistics": 6.466666666666667,
     "uri": "http://localhost:9000/SacchonApp/patients/1"
 }
 ```
 
-*17. GET*  patient's average of carb-->http://localhost:9000/SacchonApp/patients/1/carbs/1601758800000/1602104400000
 
-Database  values: Date(2020-1-5) carbInTake=23 , Date(2020-1-6) carbInTake=10, Date(2020-1-7) carbInTake=50
+2.  GET patient's average of carb http://localhost:9000/SacchonApp/patients/1/carbs/1578163465000/1578509065000
 
-*Result*
+Database values: Date1(2020-1-5) carbInTake=23 , Date2(2020-1-6) carbInTake=10, Date3(2020-1-7) carbInTake=50
+
+**Result**
+
 ```json
 {
     "patientId": 1,
-    "startDate": 1601758800000,
-    "endDate": 1602104400000,
+    "startDate": 1578163465000,
+    "endDate": 1578509065000,
     "carbsStatistics": 27.666666666666668,
     "uri": "http://localhost:9000/SacchonApp/patients/1"
 }
 ```
 
+3. GET The list of the patients with no activity over a time range http://localhost:9000/SacchonApp/patients/inactive/1603219068/1604086668
+Dates from(2020-10-20) to (2020-10-30)
 
 
-
+**Result**
+```json
+[
+    {
+        "id": 1,
+        "username": "Maria",
+        "firstName": "Maria",
+        "lastName": "Lana",
+        "email": "maria@freemail.com",
+        "password": null,
+        "telephoneNumber": 2310299999,
+        "address": "Egnatia 6",
+        "dob": 788918400000,
+        "gender": null,
+        "uri": "http://localhost:9000/SacchonApp/patient/1"
+    },
+    {
+        "id": 2,
+        "username": "Helen",
+        "firstName": "Maria",
+        "lastName": "Lana",
+        "email": "maria@freemail.com",
+        "password": null,
+        "telephoneNumber": 2310299999,
+        "address": "Egnatia 6",
+        "dob": 788918400000,
+        "gender": null,
+        "uri": "http://localhost:9000/SacchonApp/patient/2"
+    },
+    {
+        "id": 5,
+        "username": "kelly",
+        "firstName": "Kelly",
+        "lastName": "g",
+        "email": "kk@",
+        "password": null,
+        "telephoneNumber": 8,
+        "address": "k",
+        "dob": 949442400000,
+        "gender": null,
+        "uri": "http://localhost:9000/SacchonApp/patient/5"
+    }
+]
+```
