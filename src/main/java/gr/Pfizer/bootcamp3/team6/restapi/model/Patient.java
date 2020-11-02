@@ -49,6 +49,7 @@ public class Patient extends ApplicationUser{
         }
         return false;
     }
+
     public boolean checkIfIsNew() {
         if (doctor==null || !doctor.checkIfActive()){
             return checkIfInNeed();
@@ -56,6 +57,7 @@ public class Patient extends ApplicationUser{
             return false;
         }
     }
+
     public void addConsultation(Consultation consultation)
     {
         listOfConsultations.add(consultation);

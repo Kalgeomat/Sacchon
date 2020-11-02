@@ -3,6 +3,8 @@ package gr.Pfizer.bootcamp3.team6.restapi.model.util;
 import gr.Pfizer.bootcamp3.team6.restapi.model.*;
 import gr.Pfizer.bootcamp3.team6.restapi.model.interfaces.Measurement;
 import org.apache.commons.lang3.time.DateUtils;
+
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -116,6 +118,12 @@ public class Reporter {
 
     private static boolean checkIfDoctorActive(ApplicationUser user, Date startDate, Date endDate)
     {
-
+        Doctor doctor = (Doctor) user;
+        List<Patient> patients = doctor.getListOfPatients();
+        if(patients.size() == 0)
+            return false;
+        else
+            return patients.stream().noneMatch(patient -> startDate.before(Date.from(patient.getLastConsultedOrSignedUp().atStartOfDay(ZoneId.systemDefault()).toInstant()))
+                    && endDate.after(Date.from(patient.getLastConsultedOrSignedUp().atStartOfDay(ZoneId.systemDefault()).toInstant())));
     }
 }

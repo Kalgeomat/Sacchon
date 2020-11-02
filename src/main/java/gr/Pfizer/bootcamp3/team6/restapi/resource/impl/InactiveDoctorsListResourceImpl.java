@@ -3,18 +3,15 @@ package gr.Pfizer.bootcamp3.team6.restapi.resource.impl;
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.NotFoundException;
 import gr.Pfizer.bootcamp3.team6.restapi.model.ApplicationUser;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Doctor;
-import gr.Pfizer.bootcamp3.team6.restapi.model.Patient;
 import gr.Pfizer.bootcamp3.team6.restapi.model.util.Reporter;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.UserRepository;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.util.JpaUtil;
 import gr.Pfizer.bootcamp3.team6.restapi.representation.DoctorRepresentation;
-import gr.Pfizer.bootcamp3.team6.restapi.representation.PatientRepresentation;
 import gr.Pfizer.bootcamp3.team6.restapi.resource.InactiveDoctorsListResource;
 import gr.Pfizer.bootcamp3.team6.restapi.resource.util.ResourceUtils;
 import gr.Pfizer.bootcamp3.team6.restapi.security.CustomRole;
 import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
-
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.Date;
@@ -47,23 +44,17 @@ public class InactiveDoctorsListResourceImpl extends ServerResource implements I
     }
 
     @Override
-    public List<PatientRepresentation> getInactiveDoctors() throws NotFoundException {
-        return null;
+    public List<DoctorRepresentation> getInactiveDoctors() {
+        ResourceUtils.checkRole(this, CustomRole.ROLE_CHIEF_DOCTOR.getRoleName());
+
+        List<ApplicationUser> users= userRepository.findAll();
+        // retrieve only the ones that are doctors
+        List<ApplicationUser> doctors = users.stream().filter(user -> user instanceof Doctor).collect(Collectors.toList());
+        doctors = Reporter.getInactiveDoctors(doctors,startDate,endDate);
+
+        List<DoctorRepresentation> doctorRepresentationList = new ArrayList<>();
+        doctors.forEach(user -> doctorRepresentationList.add(DoctorRepresentation.getDoctorRepresentation((Doctor) user)));
+
+       return doctorRepresentationList;
     }
-
-
-    //  @Override
-//   public List<DoctorRepresentation> getInactiveDoctors() throws NotFoundException {
-//        ResourceUtils.checkRole(this, CustomRole.ROLE_CHIEF_DOCTOR.getRoleName());
-//
-//        List<ApplicationUser> users= userRepository.findAll();
-//        // retrieve only the ones that are patients
-//        List<ApplicationUser> doctors = users.stream().filter(user -> user instanceof Doctors).collect(Collectors.toList());
-//        doctors = Reporter.getInactiveDoctors(doctors,startDate,endDate);
-//
-//        List<DoctorRepresentation> doctorRepresentationList = new ArrayList<>();
-//        doctors.forEach(user -> doctorsRepresentationList.add(DoctorRepresentation.getDoctorRepresentation((Doctor) user)));
-//
-//       return doctorRepresentationList;
-//    }
 }
