@@ -41,8 +41,8 @@ public class CustomRouter {
         router.attach("/patients/{id}/", PatientResourceImpl.class); // GET/DELETE
 
         // Doctor's endpoints
-        router.attach("/doctors", DoctorListResourceImpl.class); // GET,POST
-        router.attach("/doctors/", DoctorListResourceImpl.class); // GET,POST
+        router.attach("/doctors", DoctorListResourceImpl.class); // GET
+        router.attach("/doctors/", DoctorListResourceImpl.class); // GET
 
         router.attach("/doctors/{id}", DoctorResourceImpl.class); // GET,DELETE
         router.attach("/doctors/{id}/", DoctorResourceImpl.class); // GET,DELETE
