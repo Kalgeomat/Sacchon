@@ -453,7 +453,7 @@ HTTP POST => baseUrl + /reporter/login (login page) *DONE*
 13.  GET/PUT/DELETE carb measurements  http://localhost:9000/SacchonApp/carbs/1
 ```json
 {
-      "carbInTake": 75
+      "carbInTake": 75,
       "dateMeasured": "2020-10-07T18:48:00.000Z"
    
 
@@ -494,7 +494,7 @@ HTTP POST => baseUrl + /reporter/login (login page) *DONE*
 16. GET/PUT/DELETE glucose measurements(a patient)  http://localhost:9000/SacchonApp/glucose/1
 ```json
 {
-    "bloodGlucoseLevel": 10
+    "bloodGlucoseLevel": 10,
     "dateMeasured": "2020-10-07T18:48:00.000Z"
 }
 ```
