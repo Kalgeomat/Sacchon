@@ -2,28 +2,24 @@ package gr.Pfizer.bootcamp3.team6.restapi.resource.impl;
 
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.BadEntityException;
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.DeletedEntityException;
-import gr.Pfizer.bootcamp3.team6.restapi.exceptions.NotFoundException;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Carb;
-import gr.Pfizer.bootcamp3.team6.restapi.model.Consultation;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Patient;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.CarbRepository;
-import gr.Pfizer.bootcamp3.team6.restapi.repository.PatientRepository;
+import gr.Pfizer.bootcamp3.team6.restapi.repository.UserRepository;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.util.JpaUtil;
 import gr.Pfizer.bootcamp3.team6.restapi.representation.CarbRepresentation;
-import gr.Pfizer.bootcamp3.team6.restapi.representation.ConsultationRepresentation;
 import gr.Pfizer.bootcamp3.team6.restapi.resource.CarbListResource;
 import gr.Pfizer.bootcamp3.team6.restapi.resource.util.ResourceUtils;
 import gr.Pfizer.bootcamp3.team6.restapi.security.CustomRole;
 import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
-
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CarbListResourceImpl extends ServerResource implements CarbListResource {
     private CarbRepository carbRepository;
-    private PatientRepository patientRepository;
+    private UserRepository userRepository;
     private EntityManager em;
     private long patientId;
 
@@ -32,7 +28,7 @@ public class CarbListResourceImpl extends ServerResource implements CarbListReso
         try {
             em = JpaUtil.getEntityManager();
             carbRepository = new CarbRepository(em);
-            patientRepository = new PatientRepository(em);
+            userRepository = new UserRepository(em);
             patientId = Long.parseLong(getAttribute("id")); // takes the "id" from the path and transforms it to long
         }
         catch(Exception ex){
@@ -52,7 +48,7 @@ public class CarbListResourceImpl extends ServerResource implements CarbListReso
 
         Carb carb = CarbRepresentation.getCarb(carbRepresentation);
 
-        Patient patientOfCarb = patientRepository.findById(patientId).get();
+        Patient patientOfCarb = (Patient) userRepository.findById(patientId).get();
         patientOfCarb.addCarbMeasurement(carb);
         carbRepository.save(carb);
 

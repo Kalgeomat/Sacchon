@@ -9,5 +9,5 @@ public interface IRepository<T,K> {
     Optional<T> findById(K id) throws DeletedEntityException;
     List<T> findAll() ;
     Optional<T> save(T t) throws DeletedEntityException;
-    boolean deleteById(K id) throws DeletedEntityException;
+    boolean deletePersistentInstance(T persistentInstance) throws DeletedEntityException;
 }

@@ -72,22 +72,12 @@ public abstract class Repository<T, K> implements IRepository<T, K> {
     /**
      * Deleting a persistent instance
      *
-     * @param id  primary key
+     * @param persistentInstance  object to be deleted
      * @return success
      */
     @Override
-    public boolean deleteById(K id) throws DeletedEntityException {
-        T persistentInstance = entityManager.find(getEntityClass(), id);
-        if (persistentInstance != null && !checkIfDeleted(persistentInstance)) {
-
-            /*try {
-                entityManager.getTransaction().begin();
-                entityManager.remove(persistentInstance);
-                entityManager.getTransaction().commit();
-            } catch (Exception e) {
-                //e.printStackTrace();
-                return false;
-            }*/
+    public boolean deletePersistentInstance(T persistentInstance) throws DeletedEntityException {
+        if (!checkIfDeleted(persistentInstance)) {
             deleteEntity(persistentInstance);
 
             return true;

@@ -2,13 +2,11 @@ package gr.Pfizer.bootcamp3.team6.restapi.resource.impl;
 
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.BadEntityException;
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.DeletedEntityException;
-import gr.Pfizer.bootcamp3.team6.restapi.exceptions.NotFoundException;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Consultation;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Doctor;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Patient;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.ConsultationRepository;
-import gr.Pfizer.bootcamp3.team6.restapi.repository.DoctorRepository;
-import gr.Pfizer.bootcamp3.team6.restapi.repository.PatientRepository;
+import gr.Pfizer.bootcamp3.team6.restapi.repository.UserRepository;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.util.JpaUtil;
 import gr.Pfizer.bootcamp3.team6.restapi.representation.ConsultationRepresentation;
 import gr.Pfizer.bootcamp3.team6.restapi.resource.ConsultationListResource;
@@ -24,8 +22,7 @@ import java.util.List;
 
 public class ConsultationListResourceImpl extends ServerResource implements ConsultationListResource {
     private ConsultationRepository consultationRepository;
-    private DoctorRepository doctorRepository;
-    private PatientRepository patientRepository;
+    private UserRepository userRepository;
     private EntityManager em;
     private long patientId;
 
@@ -34,8 +31,7 @@ public class ConsultationListResourceImpl extends ServerResource implements Cons
         try {
             em = JpaUtil.getEntityManager();
             consultationRepository = new ConsultationRepository(em);
-            doctorRepository = new DoctorRepository(em);
-            patientRepository = new PatientRepository(em);
+            userRepository = new UserRepository(em);
             patientId = Long.parseLong(getAttribute("id")); // takes the "id" from the path and transforms it to long
         }
         catch(Exception ex){
@@ -56,8 +52,8 @@ public class ConsultationListResourceImpl extends ServerResource implements Cons
         Consultation consultation = ConsultationRepresentation.getConsultation(consultationRepresentation);
 
         // this is where the mapping or relationship is done
-        Doctor doctorConsulting = doctorRepository.findById(consultationRepresentation.getDoctorId()).get();
-        Patient patientConsulted = patientRepository.findById(patientId).get();
+        Doctor doctorConsulting = (Doctor) userRepository.findById(consultationRepresentation.getDoctorId()).get();
+        Patient patientConsulted = (Patient) userRepository.findById(patientId).get();
         consultation.setPatient(patientConsulted);
         doctorConsulting.consultPatient(patientConsulted,consultation);
         // this where the consultation is persisted
