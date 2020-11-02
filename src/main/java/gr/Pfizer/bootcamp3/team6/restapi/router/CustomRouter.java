@@ -44,6 +44,9 @@ public class CustomRouter {
         router.attach("/patients/inactive/{startDate}/{endDate}", InactivePatientsListResourceImpl.class); // GET
         router.attach("/patients/inactive/{startDate}/{endDate}/", InactivePatientsListResourceImpl.class); // GET
 
+        router.attach("/doctors/inactive/{startDate}/{endDate}", InactiveDoctorsListResourceImpl.class); // GET
+        router.attach("/doctors/inactive/{startDate}/{endDate}/", InactiveDoctorsListResourceImpl.class); // GET
+
         // Doctor's endpoints
         router.attach("/doctors", DoctorListResourceImpl.class); // GET
         router.attach("/doctors/", DoctorListResourceImpl.class); // GET

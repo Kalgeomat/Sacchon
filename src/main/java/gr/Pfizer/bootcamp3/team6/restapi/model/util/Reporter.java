@@ -1,9 +1,6 @@
 package gr.Pfizer.bootcamp3.team6.restapi.model.util;
 
-import gr.Pfizer.bootcamp3.team6.restapi.model.ApplicationUser;
-import gr.Pfizer.bootcamp3.team6.restapi.model.Carb;
-import gr.Pfizer.bootcamp3.team6.restapi.model.Glucose;
-import gr.Pfizer.bootcamp3.team6.restapi.model.Patient;
+import gr.Pfizer.bootcamp3.team6.restapi.model.*;
 import gr.Pfizer.bootcamp3.team6.restapi.model.interfaces.Measurement;
 import org.apache.commons.lang3.time.DateUtils;
 import java.util.ArrayList;
@@ -29,6 +26,10 @@ public class Reporter {
     public static List<ApplicationUser> getInactivePatients(List<ApplicationUser> allUsers, Date startDate, Date endDate)
     {
         return allUsers.stream().filter(user -> checkIfPatientActive(user,startDate,endDate)).collect(Collectors.toList());
+    }
+    public static List<ApplicationUser> getInactiveDoctors(List<ApplicationUser> allUsers, Date startDate, Date endDate)
+    {
+        return allUsers.stream().filter(user -> checkIfDoctorActive(user,startDate,endDate)).collect(Collectors.toList());
     }
 
     // utility methods
@@ -110,5 +111,10 @@ public class Reporter {
             return true;
 
         return false;
+    }
+}
+    private static boolean checkIfDoctorActive(ApplicationUser user, Date startDate, Date endDate)
+    {
+
     }
 }
