@@ -1,11 +1,10 @@
 package gr.Pfizer.bootcamp3.team6.restapi.resource.impl;
 
-import gr.Pfizer.bootcamp3.team6.restapi.exceptions.NotFoundException;
 import gr.Pfizer.bootcamp3.team6.restapi.model.ApplicationUser;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Patient;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.UserRepository;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.util.JpaUtil;
-import gr.Pfizer.bootcamp3.team6.restapi.representation.PatientRepresentation;
+import gr.Pfizer.bootcamp3.team6.restapi.representation.PatientIneedRepresentation;
 import gr.Pfizer.bootcamp3.team6.restapi.resource.PatientIneedListResource;
 import gr.Pfizer.bootcamp3.team6.restapi.resource.util.ResourceUtils;
 import gr.Pfizer.bootcamp3.team6.restapi.security.CustomRole;
@@ -37,15 +36,18 @@ public class PatientIneedListResourceImpl extends ServerResource implements Pati
     }
 
     @Override
-    public List<PatientRepresentation> getPatients() throws NotFoundException, ResourceException {
+    public List<PatientIneedRepresentation> getPatients() throws ResourceException {
         ResourceUtils.checkRole(this, CustomRole.ROLE_CHIEF_DOCTOR.getRoleName());
 
         List<ApplicationUser> users= userRepository.findAll();
-        List<Patient> patients = getPatientIneed(users);
-        List<PatientRepresentation> patientRepresentationList = new ArrayList<>();
-        patients.forEach(patient ->patientRepresentationList.add(PatientRepresentation.getPatientRepresentation(patient)));
+        // retrieve only the ones that are patients
+        List<ApplicationUser> patients = users.stream().filter(user -> user instanceof Patient).collect(Collectors.toList());
 
-        return patientRepresentationList;
+        List<Patient> patientIneed = getPatientIneed(patients);
+        List<PatientIneedRepresentation> patientIneedRepresentationList = new ArrayList<>();
+        patientIneed.forEach(patient ->patientIneedRepresentationList.add(PatientIneedRepresentation.getPatientIneedRepresentation(patient)));
+
+        return patientIneedRepresentationList;
     }
 
     // utility method

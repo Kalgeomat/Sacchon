@@ -1,11 +1,10 @@
 package gr.Pfizer.bootcamp3.team6.restapi.resource.impl;
 
-import gr.Pfizer.bootcamp3.team6.restapi.exceptions.NotFoundException;
 import gr.Pfizer.bootcamp3.team6.restapi.model.ApplicationUser;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Patient;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.UserRepository;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.util.JpaUtil;
-import gr.Pfizer.bootcamp3.team6.restapi.representation.PatientRepresentation;
+import gr.Pfizer.bootcamp3.team6.restapi.representation.PatientIneedRepresentation;
 import gr.Pfizer.bootcamp3.team6.restapi.resource.DoctorPatientNeedResource;
 import gr.Pfizer.bootcamp3.team6.restapi.resource.util.ResourceUtils;
 import gr.Pfizer.bootcamp3.team6.restapi.security.CustomRole;
@@ -39,20 +38,23 @@ public class DoctorPatientNeedResourceImpl extends ServerResource implements Doc
     }
 
     @Override
-    public List<PatientRepresentation> getDoctorPatientsNeed()  throws NotFoundException {
+    public List<PatientIneedRepresentation> getDoctorPatientsNeed() {
         ResourceUtils.checkRole(this, CustomRole.ROLE_DOCTOR.getRoleName());
 
         List<ApplicationUser> users= userRepository.findAll();
-        List<Patient> patientsIneed = getPatientNeedForDoctor(users);
-        List<PatientRepresentation> patientRepresentationList = new ArrayList<>();
-        patientsIneed.forEach(patient ->patientRepresentationList.add(PatientRepresentation.getPatientRepresentation(patient)));
+        // retrieve only the ones that are patients
+        List<ApplicationUser> patients = users.stream().filter(user -> user instanceof Patient).collect(Collectors.toList());
 
-        return patientRepresentationList;
+        List<Patient> patientsIneed = getPatientNeedForDoctor(patients);
+        List<PatientIneedRepresentation> patientIneedRepresentationList = new ArrayList<>();
+        patientsIneed.forEach(patient ->patientIneedRepresentationList.add(PatientIneedRepresentation.getPatientIneedRepresentation(patient)));
+
+        return patientIneedRepresentationList;
     }
 
-    private List<Patient> getPatientNeedForDoctor(List<ApplicationUser> allUsers) {
+    private List<Patient> getPatientNeedForDoctor(List<ApplicationUser> allPatients) {
         List<Patient> doctorPatientsIneed = new ArrayList<>();
-        List<ApplicationUser> allPatients = allUsers.stream().filter(user -> user instanceof Patient).collect(Collectors.toList());
+
         allPatients.forEach(user -> {
             Patient patient = (Patient) user;
             if (patient.checkIfInNeed() && patient.getDoctor().getId() == doctorId)

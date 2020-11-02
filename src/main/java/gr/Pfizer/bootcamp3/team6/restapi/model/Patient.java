@@ -17,11 +17,8 @@ import static java.time.temporal.ChronoUnit.DAYS;
 @Entity
 @DiscriminatorValue("patient")
 public class Patient extends ApplicationUser{
-    public Patient()
-    {
-        setRole(CustomRole.ROLE_PATIENT);
-    }
-
+    @Transient
+    private long nubmerOfDaysIneed;
     private LocalDate lastConsultedOrSignedUp;
     @ManyToOne
     private Doctor doctor;
@@ -35,10 +32,23 @@ public class Patient extends ApplicationUser{
     @OneToMany(mappedBy = "patient",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Glucose> listOfGlucoseMeasurements = new ArrayList<>();
 
+    public Patient()
+    {
+        setRole(CustomRole.ROLE_PATIENT);
+        nubmerOfDaysIneed = 0;
+    }
+
     public boolean checkIfInNeed()
     {
         long daysWithoutConsultation = DAYS.between(lastConsultedOrSignedUp,LocalDate.now(Clock.systemUTC()));
-        return daysWithoutConsultation >= 29;
+        if(daysWithoutConsultation >= 29)
+        {
+            if(daysWithoutConsultation != 29)
+                nubmerOfDaysIneed = daysWithoutConsultation - 29;
+
+            return true;
+        }
+        return false;
     }
     public boolean checkIfIsNew() {
         if (doctor==null || !doctor.checkIfActive()){

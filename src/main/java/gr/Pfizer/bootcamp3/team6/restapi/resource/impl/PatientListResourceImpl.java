@@ -1,7 +1,6 @@
 package gr.Pfizer.bootcamp3.team6.restapi.resource.impl;
 
 import gr.Pfizer.bootcamp3.team6.restapi.model.ApplicationUser;
-import gr.Pfizer.bootcamp3.team6.restapi.model.Doctor;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Patient;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.UserRepository;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.util.JpaUtil;
