@@ -1,5 +1,6 @@
 package gr.Pfizer.bootcamp3.team6.restapi.model.util;
 
+import gr.Pfizer.bootcamp3.team6.restapi.model.ApplicationUser;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Carb;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Glucose;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Patient;
@@ -25,9 +26,9 @@ public class Reporter {
         return getCarbAverage(neededMeasurements);
     }
 
-    public static List<Patient> getInactivePatients(List<Patient> allPatients, Date startDate, Date endDate)
+    public static List<ApplicationUser> getInactivePatients(List<ApplicationUser> allUsers, Date startDate, Date endDate)
     {
-        return allPatients.stream().filter(patient -> checkIfPatientActive(patient,startDate,endDate)).collect(Collectors.toList());
+        return allUsers.stream().filter(user -> checkIfPatientActive(user,startDate,endDate)).collect(Collectors.toList());
     }
 
     // utility methods
@@ -93,8 +94,9 @@ public class Reporter {
         return sumCarbIntake/carbMeasurements.size();
     }
 
-    private static boolean checkIfPatientActive(Patient patient, Date startDate, Date endDate)
+    private static boolean checkIfPatientActive(ApplicationUser user, Date startDate, Date endDate)
     {
+        Patient patient = (Patient) user;
         List<Measurement> allPatientMeasurements = Stream.concat(patient.getListOfCarbMeasurements().stream()
                 , patient.getListOfGlucoseMeasurements().stream()).collect(Collectors.toList());
 

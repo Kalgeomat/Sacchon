@@ -15,7 +15,6 @@ import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class CarbListResourceImpl extends ServerResource implements CarbListResource {
@@ -61,7 +60,7 @@ public class CarbListResourceImpl extends ServerResource implements CarbListReso
         List<String> roles = new ArrayList<>();
         roles.add(CustomRole.ROLE_PATIENT.getRoleName());
         roles.add(CustomRole.ROLE_DOCTOR.getRoleName());
-        //ResourceUtils.checkRoles(this, roles);
+        ResourceUtils.checkRoles(this, roles);
 
         List<Carb> carbs= carbRepository.findAll();
         carbs = getCarbsForPatient(carbs);
@@ -71,16 +70,14 @@ public class CarbListResourceImpl extends ServerResource implements CarbListReso
         return carbRepresentationList;
     }
 
-        private List<Carb> getCarbsForPatient(List<Carb> allCarbs)
-        {
-            List<Carb> patientCarbs = new ArrayList<>();
+    private List<Carb> getCarbsForPatient(List<Carb> allCarbs)
+    {
+        List<Carb> patientCarbs = new ArrayList<>();
 
-            allCarbs.forEach(carb -> {
-                if(carb.getPatient().getId() == patientId)
-                    patientCarbs.add(carb);
-            });
-            return patientCarbs;
-        }
-
+        allCarbs.forEach(carb -> {
+            if(carb.getPatient().getId() == patientId)
+                patientCarbs.add(carb);
+        });
+        return patientCarbs;
+    }
 }
-

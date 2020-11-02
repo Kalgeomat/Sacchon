@@ -32,7 +32,6 @@ public class CarbRepository extends Repository<Carb, Long> {
     protected void deleteEntity(Carb carb) {
         carb.setActive(false);
         save(carb);
-
     }
 
     @Override

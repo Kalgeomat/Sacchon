@@ -40,6 +40,10 @@ public class CustomRouter {
         router.attach("/patients/{id}", PatientResourceImpl.class); // GET/DELETE
         router.attach("/patients/{id}/", PatientResourceImpl.class); // GET/DELETE
 
+
+        router.attach("/patients/inactive/{startDate}/{endDate}", InactivePatientsListResourceImpl.class); // GET
+        router.attach("/patients/inactive/{startDate}/{endDate}/", InactivePatientsListResourceImpl.class); // GET
+
         // Doctor's endpoints
         router.attach("/doctors", DoctorListResourceImpl.class); // GET
         router.attach("/doctors/", DoctorListResourceImpl.class); // GET
@@ -78,8 +82,6 @@ public class CustomRouter {
 
         router.attach("/patients/{id}/carbs/{startDate}/{endDate}", CarbsStatisticsResourceImpl.class); // GET
         router.attach("/patients/{id}/carbs/{startDate}/{endDate}/", CarbsStatisticsResourceImpl.class); // GET
-
-
 
         return router;
     }

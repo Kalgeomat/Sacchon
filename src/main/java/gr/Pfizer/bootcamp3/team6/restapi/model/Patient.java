@@ -39,7 +39,6 @@ public class Patient extends ApplicationUser{
         return daysWithoutConsultation >= 29;
     }
     public boolean checkIfIsNew() {
-
         if (doctor==null || !doctor.checkIfActive()){
             return checkIfInNeed();
         }else{
