@@ -14,6 +14,7 @@ import org.restlet.resource.ServerResource;
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DoctorPatientsListResourceImpl extends ServerResource implements DoctorPatientsListResource {
     private UserRepository userRepository;
@@ -52,11 +53,13 @@ public class DoctorPatientsListResourceImpl extends ServerResource implements Do
     // utility method
     private List<Patient> getPatientForDoctor(List<ApplicationUser> allUsers)
     {
+        // retrieve only the ones that are patients
+        List<ApplicationUser> allPatients = allUsers.stream().filter(user -> user instanceof Patient).collect(Collectors.toList());
         List<Patient> doctorsPatients = new ArrayList<>();
 
-        allUsers.forEach(user -> {
+        allPatients.forEach(user -> {
             Patient patient = (Patient) user;
-            if(patient.getDoctor().getId() == doctorId)
+            if(patient.getDoctor() != null && patient.getDoctor().getId() == doctorId)
                 doctorsPatients.add(patient);
         });
 
