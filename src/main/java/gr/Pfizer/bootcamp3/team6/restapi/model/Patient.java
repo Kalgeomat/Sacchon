@@ -38,7 +38,14 @@ public class Patient extends ApplicationUser{
         long daysWithoutConsultation = DAYS.between(lastConsultedOrSignedUp,LocalDate.now(Clock.systemUTC()));
         return daysWithoutConsultation >= 29;
     }
+    public boolean checkIfIsNew() {
 
+        if (doctor==null || !doctor.checkIfActive()){
+            return checkIfInNeed();
+        }else{
+            return false;
+        }
+    }
     public void addConsultation(Consultation consultation)
     {
         listOfConsultations.add(consultation);

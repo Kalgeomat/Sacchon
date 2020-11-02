@@ -34,6 +34,9 @@ public class CustomRouter {
         router.attach("/patients/need", PatientIneedListResourceImpl.class); // GET
         router.attach("/patients/need/", PatientIneedListResourceImpl.class); // GET
 
+        router.attach("/patients/new", PatientNewListResourceImpl.class); // GET
+        router.attach("/patients/new/", PatientNewListResourceImpl.class); // GET
+
         router.attach("/patients/{id}", PatientResourceImpl.class); // GET/DELETE
         router.attach("/patients/{id}/", PatientResourceImpl.class); // GET/DELETE
 
