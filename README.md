@@ -128,7 +128,8 @@ HTTP POST => baseUrl + /reporter/login (login page) *DONE*
 
 *JSON*
 
-*1. POST* a patient-->http://localhost:9000/SacchonApp/patients/     
+*1. POST* a patient-->http://localhost:9000/SacchonApp/patients/  
+```json
 { 
     "firstName": "Helen",
     "lastName": "Chatzi",
@@ -139,6 +140,7 @@ HTTP POST => baseUrl + /reporter/login (login page) *DONE*
     "dob": "1995-01-01T00:00:00.00Z",
     "gender":1
 }
+```
 *Result*
 {
     "id": 1,
