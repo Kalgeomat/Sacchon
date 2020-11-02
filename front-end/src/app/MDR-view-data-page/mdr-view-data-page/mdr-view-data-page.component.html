@@ -23,40 +23,60 @@
         <input type="date" id="date_from" name="date_from">
         <input type="date" id="date_to" name="date_to">
         <button type="submit">Go</button>
-    </div>
+    </div><br>
     <div style="margin-left: 50px">
-        <br><label>Average Daily Glycose</label><br>
-        <input formControlName="Average Daily Glycose" type="text"><br>
-        <br><label>Average Carb Intake</label><br>
-        <input formControlName="Average Carb Intake" type="text"><br>
+        <style>  
+            table {
+                    font-family: arial, sans-serif;
+                    border-collapse: collapse;
+                    width: 50%;
+                    }
+            </style>
+          <table>
+              <tr>
+                <th>Average Daily Glycose</th>
+                <th>Average Carb Intake</th>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+              </tr>
+            </table>
     </div>
     <div>
         <h1  style="margin-left: 50px">BLOOD LEVEL GLYCOSE INPUTS</h1>
-        <ul style="margin-left: 20px">
-            <li><label for="level">Level</label>
-                <label style="margin-left: 131px" for="date">Date</label>
-                <label style="margin-left: 113px" for="time">Time</label>
-            </li>
-            <li><input type="text" id="level" name="level" value="">
-                <input type="date" id="date" name="date" value="">
-                <input type="time" id="time" name="time" value="">
-                <button type="submit">Edit<a/button>
+      <table style="margin-left: 40px" >
+          <tr>
+            <th>level</th>
+            <th>date</th>
+            <th>time</th>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <button type="submit">Edit</button>
                 <button type="submit">Delete</button>
-            </li>
-        </ul>
+            </td>
+          </tr>
+        </table>
     </div>
     <div>
         <h1 style="margin-left: 50px">CARB INTAKE INPUTS</h1>
-        <ul style="margin-left: 20px">
-            <li><label for="carbe_intake">Carbe Intake</label>
-                <label style="margin-left: 86px" for="date">Date</label>
-            </li>
-            <li>
-                <input type="text" id="carbe_intake" name="carbe_intake" value="">
-                <input type="date" id="date" name="date" value="">
-                <button type="submit">Edit</button>
-                <button type="submit">Delete</button>
-            </li>
-        </ul>
-    </div>
+        <table style="margin-left: 40px" >
+            <tr>
+              <th>Carb Intake</th>
+              <th>date</th>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td>
+                  <button type="submit">Edit</button>
+                  <button type="submit">Delete</button>
+              </td>
+            </tr>
+          </table>
+        </div>
 </form>
