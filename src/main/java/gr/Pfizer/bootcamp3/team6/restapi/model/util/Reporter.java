@@ -15,13 +15,13 @@ import java.util.stream.Stream;
 public class Reporter {
     public static double getGlucoseAverageReport(List<Glucose> glucoseMeasurements, Date startDate, Date endDate)
     {
-        List<Measurement> neededMeasurements = getNeededMearurements(glucoseMeasurements,startDate,endDate);
+        List<Measurement> neededMeasurements = getNeededMeasurements(glucoseMeasurements,startDate,endDate);
         return getGlucoseAverage(neededMeasurements);
     }
 
     public static double getCarbAverageReport(List<Carb> carbMeasurements, Date startDate, Date endDate)
     {
-        List<Measurement> neededMeasurements = getNeededMearurements(carbMeasurements,startDate,endDate);
+        List<Measurement> neededMeasurements = getNeededMeasurements(carbMeasurements,startDate,endDate);
         return getCarbAverage(neededMeasurements);
     }
 
@@ -31,7 +31,7 @@ public class Reporter {
     }
 
     // utility methods
-    private static <T extends Measurement> List<Measurement> getNeededMearurements(List<T> measurements, Date startDate, Date endDate)
+    private static <T extends Measurement> List<Measurement> getNeededMeasurements(List<T> measurements, Date startDate, Date endDate)
     {
         List<Measurement> neededMeasurements = new ArrayList<>();
 
@@ -101,9 +101,10 @@ public class Reporter {
         if(allPatientMeasurements.size() == 0)
             return true;
 
-        List<Measurement> neededMearurements = getNeededMearurements(allPatientMeasurements,startDate,endDate);
 
-        if(neededMearurements.size() == 0)
+        List<Measurement> neededMeasurements = getNeededMeasurements(allPatientMeasurements,startDate,endDate);
+
+        if(neededMeasurements.size() == 0)
             return true;
 
         return false;
