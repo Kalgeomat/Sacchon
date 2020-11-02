@@ -47,17 +47,23 @@ public class InactiveDoctorsListResourceImpl extends ServerResource implements I
     }
 
     @Override
-    public List<DoctorRepresentation> getInactiveDoctors() throws NotFoundException {
-        ResourceUtils.checkRole(this, CustomRole.ROLE_CHIEF_DOCTOR.getRoleName());
-
-        List<ApplicationUser> users= userRepository.findAll();
-        // retrieve only the ones that are patients
-        List<ApplicationUser> doctors = users.stream().filter(user -> user instanceof Doctors).collect(Collectors.toList());
-        doctors = Reporter.getInactiveDoctors(doctors,startDate,endDate);
-
-        List<DoctorRepresentation> doctorRepresentationList = new ArrayList<>();
-        doctors.forEach(user -> doctorsRepresentationList.add(DoctorRepresentation.getDoctorRepresentation((Doctor) user)));
-
-        return doctorRepresentationList;
+    public List<PatientRepresentation> getInactiveDoctors() throws NotFoundException {
+        return null;
     }
+
+
+    //  @Override
+//   public List<DoctorRepresentation> getInactiveDoctors() throws NotFoundException {
+//        ResourceUtils.checkRole(this, CustomRole.ROLE_CHIEF_DOCTOR.getRoleName());
+//
+//        List<ApplicationUser> users= userRepository.findAll();
+//        // retrieve only the ones that are patients
+//        List<ApplicationUser> doctors = users.stream().filter(user -> user instanceof Doctors).collect(Collectors.toList());
+//        doctors = Reporter.getInactiveDoctors(doctors,startDate,endDate);
+//
+//        List<DoctorRepresentation> doctorRepresentationList = new ArrayList<>();
+//        doctors.forEach(user -> doctorsRepresentationList.add(DoctorRepresentation.getDoctorRepresentation((Doctor) user)));
+//
+//       return doctorRepresentationList;
+//    }
 }
