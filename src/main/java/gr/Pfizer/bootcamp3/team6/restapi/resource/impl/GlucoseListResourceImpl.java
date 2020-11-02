@@ -56,7 +56,6 @@ public class GlucoseListResourceImpl extends ServerResource implements GlucoseLi
         return GlucoseRepresentation.getGlucoseRepresentation(glucose);
     }
 
-
     @Override
     public List<GlucoseRepresentation> getGlucose(){
         List<String> roles = new ArrayList<>();

@@ -2,14 +2,15 @@ package gr.Pfizer.bootcamp3.team6.restapi.model.util;
 
 import gr.Pfizer.bootcamp3.team6.restapi.model.Carb;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Glucose;
+import gr.Pfizer.bootcamp3.team6.restapi.model.Patient;
 import gr.Pfizer.bootcamp3.team6.restapi.model.interfaces.Measurement;
 import org.apache.commons.lang3.time.DateUtils;
-
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Reporter {
     public static double getGlucoseAverageReport(List<Glucose> glucoseMeasurements, Date startDate, Date endDate)
@@ -22,6 +23,11 @@ public class Reporter {
     {
         List<Measurement> neededMeasurements = getNeededMearurements(carbMeasurements,startDate,endDate);
         return getCarbAverage(neededMeasurements);
+    }
+
+    public static List<Patient> getInactivePatients(List<Patient> allPatients, Date startDate, Date endDate)
+    {
+        return allPatients.stream().filter(patient -> checkIfPatientActive(patient,startDate,endDate)).collect(Collectors.toList());
     }
 
     // utility methods
@@ -85,5 +91,21 @@ public class Reporter {
     {
         double sumCarbIntake = carbMeasurements.stream().mapToDouble(measurement -> measurement.getMeasurementData()).sum();
         return sumCarbIntake/carbMeasurements.size();
+    }
+
+    private static boolean checkIfPatientActive(Patient patient, Date startDate, Date endDate)
+    {
+        List<Measurement> allPatientMeasurements = Stream.concat(patient.getListOfCarbMeasurements().stream()
+                , patient.getListOfGlucoseMeasurements().stream()).collect(Collectors.toList());
+
+        if(allPatientMeasurements.size() == 0)
+            return true;
+
+        List<Measurement> neededMearurements = getNeededMearurements(allPatientMeasurements,startDate,endDate);
+
+        if(neededMearurements.size() == 0)
+            return true;
+
+        return false;
     }
 }

@@ -1,7 +1,6 @@
 package gr.Pfizer.bootcamp3.team6.restapi;
 
 import gr.Pfizer.bootcamp3.team6.restapi.repository.util.JpaUtil;
-import gr.Pfizer.bootcamp3.team6.restapi.resource.impl.ConsultationListResourceImpl;
 import gr.Pfizer.bootcamp3.team6.restapi.router.CustomRouter;
 import gr.Pfizer.bootcamp3.team6.restapi.security.CustomRole;
 import gr.Pfizer.bootcamp3.team6.restapi.security.Shield;
@@ -14,7 +13,6 @@ import org.restlet.engine.Engine;
 import org.restlet.routing.Router;
 import org.restlet.security.ChallengeAuthenticator;
 import org.restlet.security.Role;
-
 import javax.persistence.EntityManager;
 import java.util.logging.Logger;
 
