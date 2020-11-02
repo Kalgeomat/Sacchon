@@ -1,37 +1,26 @@
 package gr.Pfizer.bootcamp3.team6.restapi.model;
 
+import gr.Pfizer.bootcamp3.team6.restapi.security.CustomRole;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
 import java.time.Clock;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
 import static java.time.temporal.ChronoUnit.DAYS;
 
 @Setter
 @Getter
-@NoArgsConstructor
 @Entity
-public class Patient {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String password;
-    private long telephoneNumber;
-    private String address;
-    private Date dob;
-    private Gender gender;
+@DiscriminatorValue("patient")
+public class Patient extends ApplicationUser{
+    public Patient()
+    {
+        setRole(CustomRole.ROLE_PATIENT);
+    }
+
     private LocalDate lastConsultedOrSignedUp;
-    private boolean isActive;
     @ManyToOne
     private Doctor doctor;
 
@@ -66,10 +55,5 @@ public class Patient {
     {
         glucoseMeasurement.setPatient(this);
         listOfGlucoseMeasurements.add(glucoseMeasurement);
-    }
-
-    public boolean checkIfActive()
-    {
-        return isActive;
     }
 }

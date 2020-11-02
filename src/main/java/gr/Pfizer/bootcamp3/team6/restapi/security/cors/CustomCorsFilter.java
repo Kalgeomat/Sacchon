@@ -36,7 +36,6 @@ public class CustomCorsFilter {
                 }
 
                 // Request headers
-
                 Series<Header> requestHeaders = (Series<Header>) request.getAttributes().get(HeaderConstants.ATTRIBUTE_HEADERS);
                 String requestOrigin = requestHeaders.getFirstValue("Origin", false, "*");
                 String rh = requestHeaders.getFirstValue( "Access-Control-Request-Headers", false, "*");

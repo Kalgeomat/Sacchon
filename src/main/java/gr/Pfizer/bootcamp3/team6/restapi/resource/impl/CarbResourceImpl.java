@@ -68,7 +68,7 @@ public class CarbResourceImpl  extends ServerResource implements CarbResource {
         Optional<Carb> carbRemove = carbRepository.findById(carbId);
         setExisting(carbRemove.isPresent());
         if (!carbRemove.isPresent())  throw new NotFoundException("Carb is not found");
-        carbRepository.deleteById(carbId);
+        carbRepository.deletePersistentInstance(carbRemove.get());
 
     }
 

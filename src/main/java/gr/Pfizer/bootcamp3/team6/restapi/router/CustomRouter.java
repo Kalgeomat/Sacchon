@@ -18,9 +18,18 @@ public class CustomRouter {
 
         // the repetition is happening because of the trailing slash issue
         // the order of the endpoints attached to the router matters, first are the ones without any path parameter and then the other ones that have a parameter.
+        // Authentication endpoint
+        // This login endpoint is for all three roles
+        router.attach("/login", LoginResourceImpl.class); //POST
+        router.attach("/login/", LoginResourceImpl.class); //POST
+
+        // sign up for a doctor
+        router.attach("/doctors/signup", DoctorSignUpResourceImpl.class); // POST
+        router.attach("/doctors/signup/", DoctorSignUpResourceImpl.class); // POST
+
         // Patient's endpoints
-        router.attach("/patients", PatientListResourceImpl.class); // GET,POST
-        router.attach("/patients/", PatientListResourceImpl.class); // GET,POST
+        router.attach("/patients", PatientListResourceImpl.class); // GET
+        router.attach("/patients/", PatientListResourceImpl.class); // GET
 
         router.attach("/patients/need", PatientIneedListResourceImpl.class); // GET
         router.attach("/patients/need/", PatientIneedListResourceImpl.class); // GET
@@ -38,8 +47,8 @@ public class CustomRouter {
         router.attach("/doctors/{id}/patients", DoctorPatientsListResourceImpl.class); //GET
         router.attach("/doctors/{id}/patients/", DoctorPatientsListResourceImpl.class); //GET
 
-        router.attach("/doctors/{id}/patients/need", DoctorPatientNeedImplResource.class); //GET
-        router.attach("/doctors/{id}/patients/need/",DoctorPatientNeedImplResource.class); //GET
+        router.attach("/doctors/{id}/patients/need", DoctorPatientNeedResourceImpl.class); //GET
+        router.attach("/doctors/{id}/patients/need/", DoctorPatientNeedResourceImpl.class); //GET
 
         // Consultation's endpoints
         router.attach("/consultations/{id}", ConsultationResourceImpl.class); // GET,PUT
@@ -66,12 +75,20 @@ public class CustomRouter {
         router.attach("/patients/{id}/carbs/{startDate}/{endDate}", CarbsStatisticsResourceImpl.class); // GET
         router.attach("/patients/{id}/carbs/{startDate}/{endDate}/", CarbsStatisticsResourceImpl.class); // GET
 
+
+
         return router;
     }
 
     public Router publicResources() {
         Router router = new Router();
+        // test router
         router.attach("/ping", PingServerResource.class);
+
+        // sign up for a patient
+        router.attach("/patients/signup", PatientSignUpResourceImpl.class); // POST
+        router.attach("/patients/signup/", PatientSignUpResourceImpl.class); // POST
+
         return router;
     }
 }

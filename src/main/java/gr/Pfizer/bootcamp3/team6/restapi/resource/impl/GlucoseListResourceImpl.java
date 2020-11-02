@@ -2,28 +2,24 @@ package gr.Pfizer.bootcamp3.team6.restapi.resource.impl;
 
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.BadEntityException;
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.DeletedEntityException;
-import gr.Pfizer.bootcamp3.team6.restapi.model.Carb;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Glucose;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Patient;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.GlucoseRepository;
-import gr.Pfizer.bootcamp3.team6.restapi.repository.PatientRepository;
+import gr.Pfizer.bootcamp3.team6.restapi.repository.UserRepository;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.util.JpaUtil;
-import gr.Pfizer.bootcamp3.team6.restapi.representation.CarbRepresentation;
 import gr.Pfizer.bootcamp3.team6.restapi.representation.GlucoseRepresentation;
 import gr.Pfizer.bootcamp3.team6.restapi.resource.GlucoseListResource;
 import gr.Pfizer.bootcamp3.team6.restapi.resource.util.ResourceUtils;
 import gr.Pfizer.bootcamp3.team6.restapi.security.CustomRole;
 import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
-
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class GlucoseListResourceImpl extends ServerResource implements GlucoseListResource {
     private GlucoseRepository glucoseRepository;
-    private PatientRepository patientRepository;
+    private UserRepository userRepository;
     private EntityManager em;
     private long patientId;
 
@@ -32,7 +28,7 @@ public class GlucoseListResourceImpl extends ServerResource implements GlucoseLi
         try {
             em = JpaUtil.getEntityManager();
             glucoseRepository = new GlucoseRepository(em);
-            patientRepository = new PatientRepository(em);
+            userRepository = new UserRepository(em);
             patientId = Long.parseLong(getAttribute("id")); // takes the "id" from the path and transforms it to long
         }
         catch(Exception ex){
@@ -52,7 +48,7 @@ public class GlucoseListResourceImpl extends ServerResource implements GlucoseLi
 
         Glucose glucose = GlucoseRepresentation.getGlucose(glucoseRepresentation);
 
-        Patient patientOfGlucose = patientRepository.findById(patientId).get();
+        Patient patientOfGlucose = (Patient) userRepository.findById(patientId).get();
         patientOfGlucose.addGlucoseMeasurement(glucose);
         glucoseRepository.save(glucose);
 
@@ -67,7 +63,7 @@ public class GlucoseListResourceImpl extends ServerResource implements GlucoseLi
         roles.add(CustomRole.ROLE_DOCTOR.getRoleName());
         ResourceUtils.checkRoles(this, roles);
 
-        Patient patientOfGlucose = patientRepository.findById(patientId).get();
+        Patient patientOfGlucose = (Patient) userRepository.findById(patientId).get();
         List<Glucose> glucoseMeasurements = patientOfGlucose.getListOfGlucoseMeasurements();
         List<GlucoseRepresentation>  glucoseRepresentationList = new ArrayList<>();
         glucoseMeasurements.forEach(glucose -> glucoseRepresentationList.add(GlucoseRepresentation.getGlucoseRepresentation(glucose)));
@@ -75,5 +71,3 @@ public class GlucoseListResourceImpl extends ServerResource implements GlucoseLi
         return glucoseRepresentationList;
     }
 }
-
-

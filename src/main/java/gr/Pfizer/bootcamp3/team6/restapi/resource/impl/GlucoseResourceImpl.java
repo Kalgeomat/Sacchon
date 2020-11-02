@@ -67,7 +67,7 @@ public class GlucoseResourceImpl extends ServerResource implements GlucoseResour
         Optional<Glucose> glucoseRemove = glucoseRepository.findById(glucoseId);
         setExisting(glucoseRemove.isPresent());
         if (!glucoseRemove.isPresent())  throw new NotFoundException("Glucose is not found");
-        glucoseRepository.deleteById(glucoseId);
+        glucoseRepository.deletePersistentInstance(glucoseRemove.get());
 
     }
 

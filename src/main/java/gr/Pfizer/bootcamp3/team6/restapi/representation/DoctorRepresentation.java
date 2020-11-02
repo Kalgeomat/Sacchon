@@ -11,6 +11,7 @@ import java.util.Date;
 @Data
 public class DoctorRepresentation {
     private long id;
+    private String username;
     private String firstName;
     private String lastName;
     private String email;
@@ -24,6 +25,7 @@ public class DoctorRepresentation {
     static public Doctor getDoctor(DoctorRepresentation doctorRepresentation){
         Doctor doctor = new Doctor();
 
+        doctor.setUsername(doctorRepresentation.getUsername());
         doctor.setFirstName(doctorRepresentation.getFirstName());
         doctor.setLastName(doctorRepresentation.getLastName());
         doctor.setEmail(doctorRepresentation.getEmail());
@@ -31,19 +33,18 @@ public class DoctorRepresentation {
         doctor.setTelephoneNumber(doctorRepresentation.getTelephoneNumber());
         doctor.setAddress(doctorRepresentation.getAddress());
         doctor.setDob(doctorRepresentation.getDob());
-        doctor.setGender(doctorRepresentation.getGender());
+        //doctor.setGender(doctorRepresentation.getGender());
 
         return doctor;
     }
     static public DoctorRepresentation  getDoctorRepresentation (Doctor doctor){
         DoctorRepresentation  doctorRepresentation  = new DoctorRepresentation ();
-        //Doctor d = (Doctor)user;
 
         doctorRepresentation.setId(doctor.getId());
+        doctorRepresentation.setUsername(doctor.getUsername());
         doctorRepresentation.setFirstName(doctor.getFirstName());
         doctorRepresentation.setLastName(doctor.getLastName());
         doctorRepresentation.setEmail(doctor.getEmail());
-        doctorRepresentation.setPassword(doctor.getPassword());
         doctorRepresentation.setTelephoneNumber(doctor.getTelephoneNumber());
         doctorRepresentation.setAddress(doctor.getAddress());
         doctorRepresentation.setDob(doctor.getDob());

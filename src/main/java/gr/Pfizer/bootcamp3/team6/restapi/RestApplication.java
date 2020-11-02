@@ -53,7 +53,6 @@ public class RestApplication extends Application {
         publicRouter.attachDefault(apiGuard);
 
         // return publicRouter;
-
         CustomCorsFilter corsFilter = new CustomCorsFilter(this);
         return corsFilter.createCorsFilter(publicRouter);
     }

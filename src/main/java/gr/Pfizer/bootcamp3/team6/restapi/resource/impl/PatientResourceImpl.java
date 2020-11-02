@@ -1,11 +1,10 @@
 package gr.Pfizer.bootcamp3.team6.restapi.resource.impl;
 
-import gr.Pfizer.bootcamp3.team6.restapi.exceptions.BadEntityException;
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.DeletedEntityException;
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.NotFoundException;
-
+import gr.Pfizer.bootcamp3.team6.restapi.model.ApplicationUser;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Patient;
-import gr.Pfizer.bootcamp3.team6.restapi.repository.PatientRepository;
+import gr.Pfizer.bootcamp3.team6.restapi.repository.UserRepository;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.util.JpaUtil;
 import gr.Pfizer.bootcamp3.team6.restapi.representation.PatientRepresentation;
 import gr.Pfizer.bootcamp3.team6.restapi.resource.PatientResource;
@@ -13,12 +12,11 @@ import gr.Pfizer.bootcamp3.team6.restapi.resource.util.ResourceUtils;
 import gr.Pfizer.bootcamp3.team6.restapi.security.CustomRole;
 import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
-
 import javax.persistence.EntityManager;
 import java.util.Optional;
 
 public class PatientResourceImpl extends ServerResource implements PatientResource {
-    private PatientRepository patientRepository ;
+    private UserRepository userRepository;
     private EntityManager em;
     private long id;
 
@@ -26,7 +24,7 @@ public class PatientResourceImpl extends ServerResource implements PatientResour
     protected void doInit() {
         try {
             em = JpaUtil.getEntityManager();
-            patientRepository = new PatientRepository(em);
+            userRepository = new UserRepository(em);
             id = Long.parseLong(getAttribute("id")); // takes the "id" from the path and transforms it to long
         }
         catch(Exception ex){
@@ -42,19 +40,19 @@ public class PatientResourceImpl extends ServerResource implements PatientResour
     @Override
     public PatientRepresentation getPatient() throws NotFoundException, ResourceException, DeletedEntityException {
         ResourceUtils.checkRole(this, CustomRole.ROLE_DOCTOR.getRoleName());
-        Optional<Patient> patient = patientRepository.findById(id);
-        setExisting(patient.isPresent());
-        if (!patient.isPresent())  throw new NotFoundException("Patient is not found");
-        PatientRepresentation patientRepresentation = PatientRepresentation.getPatientRepresentation(patient.get());
+        Optional<ApplicationUser> user = userRepository.findById(id);
+        setExisting(user.isPresent());
+        if (!user.isPresent())  throw new NotFoundException("Patient is not found");
+        PatientRepresentation patientRepresentation = PatientRepresentation.getPatientRepresentation((Patient) user.get());
         return patientRepresentation;
     }
 
     @Override
     public void remove() throws NotFoundException, DeletedEntityException {
         ResourceUtils.checkRole(this, CustomRole.ROLE_PATIENT.getRoleName());
-        Optional<Patient> patient = patientRepository.findById(id);
-        setExisting(patient.isPresent());
-        if (!patient.isPresent())  throw new NotFoundException("Patient is not found");
-        patientRepository.deleteById(id);
+        Optional<ApplicationUser> user = userRepository.findById(id);
+        setExisting(user.isPresent());
+        if (!user.isPresent())  throw new NotFoundException("Patient is not found");
+        userRepository.deletePersistentInstance(user.get());
     }
 }
