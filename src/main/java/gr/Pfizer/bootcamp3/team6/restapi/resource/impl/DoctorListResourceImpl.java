@@ -14,6 +14,7 @@ import org.restlet.resource.ServerResource;
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DoctorListResourceImpl extends ServerResource implements DoctorListResource {
     private UserRepository userRepository;
@@ -53,9 +54,11 @@ public class DoctorListResourceImpl extends ServerResource implements DoctorList
     public List<DoctorRepresentation> getDoctors() {
         ResourceUtils.checkRole(this, CustomRole.ROLE_CHIEF_DOCTOR.getRoleName());
         List<ApplicationUser> users= userRepository.findAll();
+        // retrieve only the ones that are doctors
+        List<ApplicationUser> doctors = users.stream().filter(user -> user instanceof Doctor).collect(Collectors.toList());
 
         List<DoctorRepresentation> doctorRepresentationList = new ArrayList<>();
-        users.forEach(user -> doctorRepresentationList.add(DoctorRepresentation.getDoctorRepresentation((Doctor) user)));
+        doctors.forEach(user -> doctorRepresentationList.add(DoctorRepresentation.getDoctorRepresentation((Doctor) user)));
 
         return doctorRepresentationList;
     }
