@@ -23,7 +23,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let g of glucoses">
+                      <tr *ngFor="let g of glucoses; index as i;">
                         <td *ngIf="enableEdit;else elseBlock">
                           <form [formGroup]="bloodGlucoseForm">
                             <input formControlName="bglevel" [ngModel]="g.bloodGlucoseLevel">
@@ -71,7 +71,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let c of carbs">
+                      <tr *ngFor="let c of carbs; index as i;">
                         <td *ngIf="enableEdit;else elseBlock">
                           <form [formGroup]="carbIntakeForm">
                             <input formControlName="cilevel" [ngModel]="c.carbInTake">     
@@ -85,13 +85,11 @@
                         <!-- <td>{{c.carbInTake}}</td> 
                         <td>{{ c.dateMeasured | date }}</td>   -->
                         <td>
-                          <span>
                             <button *ngIf="!enableEdit" type="button" class="btn-sm btn-primary" (click)="onEditClick($event, i)">Edit</button>
                             <button *ngIf="!enableEdit" type="button" class="btn-sm btn-danger" (click)="onCarbDeleteClick()">Delete</button>
                             <button *ngIf="enableEdit && enableEditIndex == i" id="saveBtn" class="btn-sm page-primary-action-btn" (click)="saveCarb()" type="submit">Save</button>
                             <button *ngIf="enableEdit && enableEditIndex == i" (click)="enableEdit=false" class="btn-sm page-secondary-action-btn" ng-click="cancel()">Cancel</button>
-                          </span>
-                        </td>                                 
+                          </td>                                 
                       </tr>                   
                     </tbody>
                   </table>

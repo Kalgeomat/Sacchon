@@ -9,7 +9,7 @@ import { ReporterService } from 'src/app/reporter.service';
 })
 export class PeriodFormComponent implements OnInit {
 
-  dreport: DReport[];
+  // dreport: DReport[];
 
   periodForm: FormGroup;
 
@@ -24,7 +24,7 @@ export class PeriodFormComponent implements OnInit {
   }
 
   onClickGo() {
-    this.reporterService.getDoctorActivity().subscribe( result => this.dreport = result );
+    // this.reporterService.getDoctorActivity().subscribe( result => this.dreport = result );
   }
 
 }
