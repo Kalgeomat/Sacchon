@@ -27,10 +27,11 @@ public class Reporter {
     {
         return allUsers.stream().filter(user -> checkIfPatientActive(user,startDate,endDate)).collect(Collectors.toList());
     }
-//    public static List<ApplicationUser> getInactiveDoctors(List<ApplicationUser> allUsers, Date startDate, Date endDate)
-//    {
-//        return allUsers.stream().filter(user -> checkIfDoctorActive(user,startDate,endDate)).collect(Collectors.toList());
-//    }
+
+    public static List<ApplicationUser> getInactiveDoctors(List<ApplicationUser> allUsers, Date startDate, Date endDate)
+    {
+        return allUsers.stream().filter(user -> checkIfDoctorActive(user,startDate,endDate)).collect(Collectors.toList());
+    }
 
     // utility methods
     private static <T extends Measurement> List<Measurement> getNeededMeasurements(List<T> measurements, Date startDate, Date endDate)
@@ -112,8 +113,9 @@ public class Reporter {
 
         return false;
     }
+
+    private static boolean checkIfDoctorActive(ApplicationUser user, Date startDate, Date endDate)
+    {
+
+    }
 }
-//    private static boolean checkIfDoctorActive(ApplicationUser user, Date startDate, Date endDate)
-//    {
-//
-//    }

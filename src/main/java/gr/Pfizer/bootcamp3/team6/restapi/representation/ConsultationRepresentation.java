@@ -17,8 +17,6 @@ public class ConsultationRepresentation {
 
     static public Consultation getConsultation(ConsultationRepresentation consultationRepresentation){
         Consultation consultation = new Consultation();
-
-        consultation.setDateCreated(consultationRepresentation.getDateCreated());
         consultation.setDescription(consultationRepresentation.getDescription());
 
         return consultation;
