@@ -15,6 +15,7 @@ import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class GlucoseListResourceImpl extends ServerResource implements GlucoseListResource {
@@ -66,6 +67,7 @@ public class GlucoseListResourceImpl extends ServerResource implements GlucoseLi
         Patient patientOfGlucose = (Patient) userRepository.findById(patientId).get();
         List<Glucose> glucoseMeasurements = patientOfGlucose.getListOfGlucoseMeasurements();
         List<GlucoseRepresentation>  glucoseRepresentationList = new ArrayList<>();
+        Collections.reverse(glucoseMeasurements);
         glucoseMeasurements.forEach(glucose -> glucoseRepresentationList.add(GlucoseRepresentation.getGlucoseRepresentation(glucose)));
 
         return glucoseRepresentationList;
