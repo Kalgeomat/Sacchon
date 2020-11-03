@@ -88,7 +88,7 @@ public class CustomRouter {
 
         // Chief's endpoints
         router.attach("/patients/{id}/activity/{startDate}/{endDate}/", PatientActivityResourceImpl.class); // GET
-        router.attach("/doctors/{id}/activity/{startDate}/{endDate}/", PatientActivityResourceImpl.class); // GET
+        router.attach("/doctors/{id}/activity/{startDate}/{endDate}/", DoctorActivityResourceImpl.class); // GET
 
         return router;
     }

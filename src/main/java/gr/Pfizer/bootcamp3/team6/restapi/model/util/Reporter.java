@@ -46,6 +46,24 @@ public class Reporter {
         }
     }
 
+    public static int getActivityForDoctor(ApplicationUser user, Date startDate, Date endDate)
+    {
+        if(checkIfDoctorInactive(user,startDate,endDate))
+            return 0;
+        else
+        {
+            List<Patient> doctorPatients = ((Doctor)user).getListOfPatients();
+            List<Consultation> allConsultations = new ArrayList<>();
+
+            doctorPatients.forEach(patient -> allConsultations.addAll(patient.getListOfConsultations()));
+            List<Consultation> neededConsultations = allConsultations.stream()
+                    .filter(consultation -> startDate.before(consultation.getDateCreated()) && endDate.after(consultation.getDateCreated()))
+                    .collect(Collectors.toList());
+
+            return neededConsultations.size();
+        }
+    }
+
     // utility methods
     private static <T extends Measurement> List<Measurement> getNeededMeasurements(List<T> measurements, Date startDate, Date endDate)
     {
