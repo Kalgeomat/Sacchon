@@ -17,6 +17,7 @@ public class PatientRepresentation {
     private String address;
     private Date dob;
     private Gender gender;
+    private boolean ifNeedsConsultation;
     private String uri;
 
     static public Patient getPatient(PatientRepresentation patientRepresentation){
@@ -47,6 +48,7 @@ public class PatientRepresentation {
         patientRepresentation.setAddress(patient.getAddress());
         patientRepresentation.setDob(patient.getDob());
         patientRepresentation.setGender(patient.getGender());
+        patientRepresentation.setIfNeedsConsultation(patient.checkIfInNeed());
         patientRepresentation.setUri("http://localhost:9000/SacchonApp/patient/"+patient.getId());
 
         return patientRepresentation;

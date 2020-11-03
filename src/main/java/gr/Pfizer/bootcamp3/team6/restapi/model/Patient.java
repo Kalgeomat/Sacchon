@@ -47,6 +47,7 @@ public class Patient extends ApplicationUser{
 
             return true;
         }
+
         return false;
     }
 
