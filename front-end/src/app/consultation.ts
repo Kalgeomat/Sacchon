@@ -2,6 +2,6 @@ export interface Consultation {
     // isActive: 1;
     description: string;
     dateCreated: string;
-    patientId: number;
+    // patientId: number;
     doctorId: number;
 }

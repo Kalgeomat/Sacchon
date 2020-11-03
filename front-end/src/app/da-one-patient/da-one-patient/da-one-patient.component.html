@@ -77,11 +77,10 @@
                     <span *ngIf="isFirst">
                       <button *ngIf="!enableEdit" type="button" class="btn-sm btn-primary" (click)="onEditClick($event, i)">Edit</button>
                       <button *ngIf="enableEdit && enableEditIndex == i" (click)="enableEdit=false" class="btn-sm page-secondary-action-btn" ng-click="cancel()">Cancel</button>
-                      <button *ngIf="enableEdit && enableEditIndex == i" id="saveBtn" class="btn-sm page-primary-action-btn" (click)="saveConsult(con.dateCreated)" type="submit">Save</button>
+                      <button *ngIf="enableEdit && enableEditIndex == i" id="saveBtn" class="btn-sm page-primary-action-btn" (click)="saveConsult(con.dateCreated, con.id)" type="submit">Save</button>
                     </span>
                   </td>
-                  <!-- <td>Dr {{doctor.firstName}} {{doctor.lastName}}</td>   -->
-                  <!-- TODO uncomment when back sends it in right format -->
+                  <td>Dr {{con.doctorName}} </td>  
                   <td>{{ con.dateCreated | date }}</td>        
                 </tr>                 
               </tbody>

@@ -22,7 +22,13 @@ export class NavbarComponent implements OnInit {
   }
 
   logOut(){
-    sessionStorage.removeItem("credentials");
+    sessionStorage.removeItem( 'credentials' );
+    sessionStorage.removeItem( 'luUsername' );
+    sessionStorage.removeItem( 'luId' );
+    sessionStorage.removeItem( 'luFirstName' );
+    sessionStorage.removeItem( 'luLastName' );
+    sessionStorage.removeItem( 'luRole' );
+    sessionStorage.removeItem( 'username' );   
     this.isLogged = false;
     this.router.navigate(['login']);
   }

@@ -30,7 +30,7 @@ export class CarbIntakeFormComponent implements OnInit {
     };
 
     this.measurementsService.addCarb(carb).subscribe(data => {
-      alert(JSON.stringify(data));
+      // alert(JSON.stringify(data));
       this.ngOnInit();
     });
     

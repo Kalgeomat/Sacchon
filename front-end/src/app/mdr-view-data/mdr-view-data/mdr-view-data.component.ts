@@ -84,7 +84,7 @@ export class MdrViewDataComponent implements OnInit {
     };
 
     this.measurements.updateCarb(carb, id).subscribe(data => {
-      alert(JSON.stringify(data));
+      // alert(JSON.stringify(data));
       this.ngOnInit();
     });
 
@@ -102,7 +102,7 @@ export class MdrViewDataComponent implements OnInit {
     };
 
     this.measurements.updateGlucose(glucose, id).subscribe(data => {
-      alert(JSON.stringify(data));
+      // alert(JSON.stringify(data));
       this.ngOnInit();
     });
 

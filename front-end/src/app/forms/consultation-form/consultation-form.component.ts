@@ -28,15 +28,15 @@ export class ConsultationFormComponent implements OnInit {
     let consultation:Consultation ={
       description:this.consultationForm.get('consultation').value,
       dateCreated:myDate,
-      patientId:1,
-      doctorId:7  
+      doctorId:parseInt((sessionStorage.getItem("luId")))
     };
 
     this.route.params.subscribe( params => { this.router.navigate(['doctoradvice/consultation',params.id]);
-    this.consultationsService.addConsultation(consultation, params.id).subscribe(data => {
-      alert(JSON.stringify(data));
-      this.ngOnInit();
-    });
+      this.consultationsService.addConsultation(consultation, params.id).subscribe(data => {
+        // alert(JSON.stringify(data));
+        this.ngOnInit();
+        this.router.navigate(['doctoradvice/patient/', params.id]);
+      });
     });
     
 

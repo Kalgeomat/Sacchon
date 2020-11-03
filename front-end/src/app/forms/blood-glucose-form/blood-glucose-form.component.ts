@@ -34,7 +34,7 @@ export class BloodGlucoseFormComponent implements OnInit {
     };
 
     this.measurementsService.addGlucose(glucose).subscribe(data => {
-      alert(JSON.stringify(data));
+      // alert(JSON.stringify(data));
       this.ngOnInit();
     });
 

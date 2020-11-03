@@ -16,7 +16,9 @@ export class ConsultationsService {
 
   //DA
   endpoint3= 'http://localhost:9000/SacchonApp/patients/'+parseInt(sessionStorage.getItem("luId"))+'/consultations/';
-  endpoint2 = 'http://localhost:9000/SacchonApp/consultations/2';
+  endpoint2 = 'http://localhost:9000/SacchonApp/consultations/';
+  endpoint5= 'http://localhost:9000/SacchonApp/patients/';
+
 
 
   constructor(private http:HttpClient) { }
@@ -26,7 +28,7 @@ export class ConsultationsService {
   }
 
   getUserConsultations(id): Observable<any> {
-    return this.http.get(this.endpoint3+id+'/consultations/',{headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
+    return this.http.get(this.endpoint5+id+'/consultations/',{headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
   }
 
   addConsultation(values:Consultation, id):Observable<any> {
@@ -35,8 +37,8 @@ export class ConsultationsService {
       {headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
   }
 
-  updateConsultation(values:ConsultationU):Observable<any> {
-    return this.http.put(this.endpoint2,
+  updateConsultation(values:ConsultationU, id):Observable<any> {
+    return this.http.put(this.endpoint2+id,
       values,
       {headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
   }

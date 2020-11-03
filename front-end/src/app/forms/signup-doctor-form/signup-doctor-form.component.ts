@@ -43,7 +43,7 @@ export class SignupDoctorFormComponent implements OnInit {
    
 
     this.doctorService.addDoctor(doctor).subscribe(data => {
-      alert(JSON.stringify(data));
+      // alert(JSON.stringify(data));
       this.ngOnInit();
     });
     

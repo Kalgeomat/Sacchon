@@ -25,8 +25,7 @@ export class SignupPatientFormComponent implements OnInit {
       spsurname: new FormControl("", Validators.required),
       spaddress: new FormControl(),
       sptelephone: new FormControl(),
-      spbirthday: new FormControl("", Validators.required),
-      spsex: new FormControl()
+      spbirthday: new FormControl("", Validators.required)
     });
 
   }
@@ -45,7 +44,7 @@ export class SignupPatientFormComponent implements OnInit {
    
 
     this.patientService.addPatient(patient).subscribe(data => {
-      alert(JSON.stringify(data));
+      // alert(JSON.stringify(data));
       this.ngOnInit();
       this.router.navigate(['login']);
     });
