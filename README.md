@@ -593,3 +593,62 @@ Dates from(2020-10-20) to (2020-10-30)
     }
 ]
 ```
+4. GET The list of the doctors with no activity over a time range http://localhost:9000/SacchonApp/patients/inactive/1603219068/1604086668
+Dates from(2020-10-20) to (2020-10-30)
+
+**Result**
+```jason
+[
+    {
+        "id": 5,
+        "username": "kil",
+        "firstName": "h",
+        "lastName": "c",
+        "email": null,
+        "password": null,
+        "telephoneNumber": 5,
+        "address": "d",
+        "dob": null,
+        "gender": null,
+        "ifNeedsConsultation": false,
+        "uri": "http://localhost:9000/SacchonApp/patient/5"
+    },
+    {
+        "id": 6,
+        "username": "john",
+        "firstName": "john",
+        "lastName": "kk",
+        "email": "hh@",
+        "password": null,
+        "telephoneNumber": 2,
+        "address": "55",
+        "dob": 981064800000,
+        "gender": "FEMALE",
+        "ifNeedsConsultation": true,
+        "uri": "http://localhost:9000/SacchonApp/patient/6"
+    }
+]
+```
+5. GET The list of the patients who are waiting for a consultation and the time
+elapsed since they needed to have one http://localhost:9000/SacchonApp/patients/need
+
+**Result**
+
+```json
+[
+    {
+        "id": 6,
+        "username": "john",
+        "firstName": "john",
+        "lastName": "kk",
+        "email": "hh@",
+        "password": null,
+        "telephoneNumber": 2,
+        "address": "55",
+        "dob": 981064800000,
+        "gender": "FEMALE",
+        "uri": "http://localhost:9000/SacchonApp/patient/6",
+        "nubmerOfDaysIneed": 3
+    }
+]
+```
