@@ -140,8 +140,6 @@ HTTP POST => baseUrl + /reporter/login (login page)  **DONE**
     "telephoneNumber": 2310299999,
     "address": "Egnatia 6",
     "dob": "1995-01-01T00:00:00.00Z",
-    "gender":0
-     
 }
 ```
 
@@ -176,7 +174,6 @@ HTTP POST => baseUrl + /reporter/login (login page)  **DONE**
     "address": "Egnatia 6",
     "dob": "1995-01-01T00:00:00.00Z",
     "gender":1
-     
 }
 ```
 
@@ -340,10 +337,7 @@ HTTP POST => baseUrl + /reporter/login (login page)  **DONE**
 ```json
 {
     "description": "take xanax",
-    "dateCreated": "2020-10-05T14:48:00.000Z",
     "doctorId": 4
-   
-
 }
 ```
 
@@ -406,10 +400,7 @@ HTTP POST => baseUrl + /reporter/login (login page)  **DONE**
 ```json
 {
     "description": "dont eat carbs",
-    "dateCreated": "2020-10-05T14:48:00.000Z",
     "doctorId": 4
-   
-
 }
 ```
 
@@ -433,8 +424,6 @@ HTTP POST => baseUrl + /reporter/login (login page)  **DONE**
 {
       "carbInTake": 23,
       "dateMeasured": "2020-10-05T14:48:00.000Z"
-   
-
 }
 ```
 
@@ -455,10 +444,9 @@ HTTP POST => baseUrl + /reporter/login (login page)  **DONE**
 {
       "carbInTake": 75,
       "dateMeasured": "2020-10-07T18:48:00.000Z"
-   
-
 }
 ```
+
 **Result**
 
 ```json
@@ -478,7 +466,9 @@ HTTP POST => baseUrl + /reporter/login (login page)  **DONE**
     "dateMeasured": "2020-10-07T18:48:00.000Z"
 }
 ```
+
 **Result**
+
 ```json
 {
     "id": 1,
@@ -498,7 +488,9 @@ HTTP POST => baseUrl + /reporter/login (login page)  **DONE**
     "dateMeasured": "2020-10-07T18:48:00.000Z"
 }
 ```
+
 **Result**
+
 ```json
 {
     "id": 1,
@@ -508,6 +500,7 @@ HTTP POST => baseUrl + /reporter/login (login page)  **DONE**
     "uri": "http://localhost:9000/SacchonApp/glucose/1"
 }
 ```
+
 17. 
 
 **Statistics**
@@ -528,7 +521,6 @@ Database: First day 8.3 and 6.3, Second day 4.3 , 7.3 , 5.3  Dates(2020-10-7 , 2
 }
 ```
 
-
 2.  GET patient's average of carb http://localhost:9000/SacchonApp/patients/1/carbs/1578163465000/1578509065000
 
 Database values: Date1(2020-1-5) carbInTake=23 , Date2(2020-1-6) carbInTake=10, Date3(2020-1-7) carbInTake=50
@@ -547,7 +539,6 @@ Database values: Date1(2020-1-5) carbInTake=23 , Date2(2020-1-6) carbInTake=10, 
 
 3. GET The list of the patients with no activity over a time range http://localhost:9000/SacchonApp/patients/inactive/1603219068/1604086668
 Dates from(2020-10-20) to (2020-10-30)
-
 
 **Result**
 ```json
@@ -593,6 +584,7 @@ Dates from(2020-10-20) to (2020-10-30)
     }
 ]
 ```
+
 4. GET The list of the doctors with no activity over a time range http://localhost:9000/SacchonApp/patients/inactive/1603219068/1604086668
 Dates from(2020-10-20) to (2020-10-30)
 
@@ -629,6 +621,7 @@ Dates from(2020-10-20) to (2020-10-30)
     }
 ]
 ```
+
 5. GET The list of the patients who are waiting for a consultation and the time
 elapsed since they needed to have one http://localhost:9000/SacchonApp/patients/need
 
