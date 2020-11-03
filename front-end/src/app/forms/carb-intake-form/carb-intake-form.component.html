@@ -1,0 +1,26 @@
+<div class="container">
+
+    <h2>Carb Intake</h2>
+
+
+    <form [formGroup]="carbIntakeForm">
+        <div>
+            <label>Carb Intake (grams)</label><br>
+            <input type="number" formControlName="cilevel">
+            <div *ngIf="carbIntakeForm.get('cilevel').invalid && carbIntakeForm.get('cilevel').dirty" class="warningmessages">
+                *The field is required
+            </div>
+        </div>
+        <div>
+            <label>Date</label><br>
+            <input type="date" formControlName="cidate">
+            <div *ngIf="carbIntakeForm.get('cidate').invalid && carbIntakeForm.get('cidate').dirty" class="warningmessages">
+                *The field is required
+            </div>
+        </div><br>
+        <button type="button" class="btn btn-default btn-md btn-primary" (click)="onClickCSubmit()">
+            Submit
+        </button>
+    </form>
+
+</div>

@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h3>Personal Monitor Data</h3>
+            Choose a Patient:
+            <select formControlName="rrpatient">
+                <option>Patient</option>
+                <option>Patient</option>
+                <option>Patient</option>
+            </select>
+            <app-period-form></app-period-form>
+
+            <p>Total number of measurements: </p>
+        </div>
+        <div class="col-md-4">
+            <h3>Patients with no activity</h3>
+            <app-period-form></app-period-form>
+
+        </div>
+        <div class="col-md-4">
+            <h3>Patients Waiting For Consultation</h3>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Days Due</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let dp of duepatients">
+                    <td>{{dp.firstName}} {{dp.lastName}}</td>
+                    <td>{{dp.nubmerOfDaysIneed}}</td>                    
+                  </tr>                  
+                </tbody>
+              </table>
+
+        </div>
+    </div>
+</div>

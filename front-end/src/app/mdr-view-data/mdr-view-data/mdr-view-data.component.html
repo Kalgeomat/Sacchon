@@ -1,0 +1,113 @@
+<div class="container">
+    <div class="row">
+        <h3>View Data</h3>
+    </div>
+    <div class="row">
+        
+        <div class="col-md-6">
+            
+            <app-period-form></app-period-form>
+            <p>Average Daily Glucose: </p>
+
+        </div>
+        <div class="col-md-6">
+            
+            <app-period-form></app-period-form>
+            <p>Average Carb Intake: </p>
+
+        </div>
+    </div>
+    <hr>
+        <div class="row">
+          <div class="col-md-4">            
+                <h4>Blood Level Glucose Inputs</h4>
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Level</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Time</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let g of glucoses; index as i;">
+                        <td *ngIf="enableEdit;else elseBlock">
+                          <form [formGroup]="bloodGlucoseForm">
+                            <input formControlName="bglevel" [ngModel]="g.bloodGlucoseLevel">
+                            <input type="datetime-local" formControlName="bgdatetime" value="2017-06-01T08:30">
+                            
+                          </form> 
+                        </td> 
+                        <ng-template #elseBlock>
+                          <td>{{g.bloodGlucoseLevel}}</td> 
+                          <td>{{ g.dateMeasured | date }}</td>  
+                          <td>{{ g.dateMeasured | date:'shortTime'}}</td>
+                        </ng-template>
+                          <td>
+                            <span>
+                              <button *ngIf="!enableEdit" type="button" class="btn-sm btn-primary" (click)="onEditClick($event, i)">Edit</button>
+                              <button *ngIf="!enableEdit" type="button" class="btn-sm btn-danger" (click)="onGlucoseDeleteClick(g.id)">Delete</button>
+                              <button *ngIf="enableEdit && enableEditIndex == i" id="saveBtn" class="btn-sm page-primary-action-btn" (click)="saveGlucose(g.id)" type="submit">Save</button>
+                              <button *ngIf="enableEdit && enableEditIndex == i" (click)="enableEdit=false" class="btn-sm page-secondary-action-btn" ng-click="cancel()">Cancel</button>
+                            </span>
+                          </td>                                  
+                        </tr>                   
+                      </tbody>
+                  </table>
+        </div>
+        <div class="col-md-4">   
+                <h4>Carb Intake Inputs</h4>
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Carb Intake</th>
+                        <th scope="col">Date</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr  *ngFor="let c of carbs; index as j;" id="{{c.id}}">
+                        <td *ngIf="enableEdit;else elseBlock">
+                          <form [formGroup]="carbIntakeForm">
+                            <input formControlName="cilevel" [ngModel]="c.carbInTake">     
+                            <input type="date" formControlName="cidate" [ngModel]="2020-08-07">   
+                          </form>        
+                        </td> 
+                        <ng-template #elseBlock>                          
+                          <td>{{c.carbInTake}}</td> 
+                          <td>{{ c.dateMeasured | date }}</td>
+                        </ng-template>
+                        <td class="carbtd">
+                          <button *ngIf="!enableEdit" type="button" class="btn-sm btn-primary" (click)="onEditClick($event, j)">Edit</button>
+                          <button *ngIf="!enableEdit" type="button" class="btn-sm btn-danger" (click)="onCarbDeleteClick(c.id)">Delete</button>
+                          <button *ngIf="enableEdit && enableEditIndex == j" id="saveBtn" class="btn-sm page-primary-action-btn" (click)="saveCarb(c.id)" type="submit">Save</button>
+                          <button *ngIf="enableEdit && enableEditIndex == j" (click)="enableEdit=false" class="btn-sm page-secondary-action-btn" ng-click="cancel()">Cancel</button>
+                        </td>                                 
+                      </tr>                   
+                    </tbody>
+                  </table>
+        </div>
+        <div class="col-md-4">
+          <h4>Past Consultations</h4>
+          <table class="table" *ngIf="consults?.length">
+            <thead>
+              <tr>
+                <th scope="col">Consultation</th>
+                <th scope="col">Doctor</th>
+                <th scope="col">Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let con of consults">                
+                <td> {{con.description}} </td> 
+                
+                <td>Dr {{con.doctorName}}</td>  
+
+                <td>{{ con.dateCreated | date }}</td>        
+              </tr>                 
+            </tbody>
+          </table>
+        </div>
+    </div>
+</div>

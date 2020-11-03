@@ -1,0 +1,24 @@
+<div class="container">
+    <h2>Blood Glucose Level</h2>
+
+    <form [formGroup]="bloodGlucoseForm">
+        <div>
+            <label>Blood Glycose Level (mg/dL)</label><br>
+            <input type="number" formControlName="bglevel">
+            <div *ngIf="bloodGlucoseForm.get('bglevel').invalid && bloodGlucoseForm.get('bglevel').dirty" class="warningmessages">
+                *The field is required
+            </div>
+        </div>
+        <div>
+            <label>Date & Time</label><br>
+            <input type="datetime-local" formControlName="bgdatetime" value="">
+            <div *ngIf="bloodGlucoseForm.get('bgdatetime').invalid && bloodGlucoseForm.get('bgdatetime').dirty" class="warningmessages">
+                *The field is required
+            </div>
+        </div>
+        <button type="button" class="btn btn-default btn-md btn-primary" (click)="onClickGSubmit()">
+            Submit
+        </button>
+    </form>
+
+</div>

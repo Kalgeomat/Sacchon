@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h4> New Patients Available for Consultation </h4>
+            <table class="table" *ngIf="newPatients?.length">
+                <thead>
+                  <tr>
+                    <th scope="col">Patients</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let np of newPatients">
+                    <td>{{np.firstName}} {{np.lastName}} <button type="button" class="btn-sm btn-primary" (click)="viewOPData()">View Data</button></td>                      
+                  </tr>                   
+                </tbody>
+              </table>
+        </div>        
+    </div>
+</div>

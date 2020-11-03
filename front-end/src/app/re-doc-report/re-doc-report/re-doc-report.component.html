@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Consultation Submissions</h3>
+            Choose a Doctor:
+            <select formControlName="rrdoctor">
+                <option *ngFor="let d of dataD">{{d.firstName}} {{d.lastName}}</option>
+            </select>
+            <app-period-form></app-period-form>
+
+            <p>Total number of submissions (consultations): </p>
+        </div>
+        <div class="col-md-6">
+            <h3>Doctors with no activity</h3>
+            <app-period-form></app-period-form>
+
+            <table class="table" *ngIf="dataD?.length">
+                <thead>
+                  <tr>
+                    <th scope="col">Doctors</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let d of dataD">
+                    <td>{{d.firstName}} {{d.lastName}}</td>
+                  </tr>                  
+                </tbody>
+              </table>
+
+        </div>
+    </div>
+</div>

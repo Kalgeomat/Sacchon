@@ -1,0 +1,72 @@
+<div class="container">
+    <!-- Content here -->
+
+    <h2>Sign Up</h2>
+
+    <form [formGroup]="signupPatientForm">
+        <div>
+            <label>Username</label><br>
+            <input type="text" formControlName="spusername">
+            <div *ngIf="signupPatientForm.get('spusername').invalid && signupPatientForm.get('spusername').dirty" class="warningmessages">
+                *The field is required
+            </div>
+        </div>
+        <div>
+            <label>Email</label><br>
+            <input type="email" formControlName="spemail">
+            <div *ngIf="signupPatientForm.get('spemail').invalid && signupPatientForm.get('spemail').dirty" class="warningmessages">
+                *The field is required
+            </div>
+        </div>
+        <div>
+            <label>Password</label><br>
+            <input type="password" formControlName="sppassword">
+            <div *ngIf="signupPatientForm.get('sppassword').invalid && signupPatientForm.get('sppassword').dirty" class="warningmessages">
+                *The field is required
+            </div>
+        </div>
+        <div>
+            <label>Name</label><br>
+            <input type="text" formControlName="spname">
+            <div *ngIf="signupPatientForm.get('spname').invalid && signupPatientForm.get('spname').dirty" class="warningmessages">
+                *The field is required
+            </div>
+        </div>
+        <div>
+            <label>Surname</label><br>
+            <input type="text" formControlName="spsurname">
+            <div *ngIf="signupPatientForm.get('spsurname').invalid && signupPatientForm.get('spsurname').dirty" class="warningmessages">
+                *The field is required
+            </div>
+        </div>
+        <div>
+            <label>Address</label><br>
+            <input type="text" formControlName="spaddress">
+        </div>
+        <div>
+            <label>Telephone Number</label><br>
+            <input type="tel" formControlName="sptelephone">
+        </div>
+        <div>
+            <label for="example-date-input" >Birthday</label><br>
+            <input type="date" formControlName="spbirthday">
+            <div *ngIf="signupPatientForm.get('spbirthday').invalid && signupPatientForm.get('spbirthday').dirty" class="warningmessages">
+                *The field is required
+            </div>
+        </div>
+        <!-- <div>
+            <label for="exampleSelect1">Sex</label> <br>
+            <select id="exampleSelect1" formControlName="spsex">
+              <option>Female</option>
+              <option>Male</option>
+              <option>Other</option>
+            </select>
+        </div> -->
+        <br>
+        <button type="button" class="btn btn-default btn-md btn-primary" (click)=onClickSubmit()>
+            Sign Up
+        </button>
+    </form>
+
+</div>
+
