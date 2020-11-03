@@ -6,13 +6,11 @@
                 <thead>
                   <tr>
                     <th scope="col">Patients</th>
-                    <!-- <th scope="col"></th> -->
                   </tr>
                 </thead>
                 <tbody>
                 <tr *ngFor="let np of newPatients">
-                    <td>{{np.firstName}} {{np.lastName}} <button type="button" class="btn-sm btn-primary" (click)="viewOPData()">View Data</button></td>   
-                    <!-- <td></td>   -->
+                    <td>{{np.firstName}} {{np.lastName}} <button type="button" class="btn-sm btn-primary" (click)="viewOPData()">View Data</button></td>                      
                   </tr>                   
                 </tbody>
               </table>

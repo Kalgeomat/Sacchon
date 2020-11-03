@@ -21,7 +21,6 @@ export class MdrViewDataComponent implements OnInit {
   consults: Consultation[];
   enableEdit = false;
   enableEditIndex = null;
-  // consultationForm: FormGroup;
   carbIntakeForm: FormGroup;
   bloodGlucoseForm: FormGroup;
   selectedItem = null;
@@ -36,10 +35,6 @@ export class MdrViewDataComponent implements OnInit {
     this.measurements.getGlucose().subscribe( result => this.glucoses = result );
 
     this.consultationsService.getConsultations().subscribe( result => this.consults = result );
-
-    // this.consultationForm = new FormGroup({
-    //   consultation: new FormControl()
-    // });
 
     this.carbIntakeForm = new FormGroup({
       cilevel: new FormControl(),

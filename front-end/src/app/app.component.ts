@@ -36,7 +36,6 @@ export class AppComponent implements OnInit,OnDestroy{
         this.isLogged = false
       }else{
         this.isLogged = true
-        // this.router.navigate(['medidatarepo'])
       }
     });
     

@@ -12,7 +12,6 @@
         <div>
             <label>Date & Time</label><br>
             <input type="datetime-local" formControlName="bgdatetime" value="">
-            <!-- <input type="hidden" id="timezone" name="timezone" value="-08:00"> -->
             <div *ngIf="bloodGlucoseForm.get('bgdatetime').invalid && bloodGlucoseForm.get('bgdatetime').dirty" class="warningmessages">
                 *The field is required
             </div>

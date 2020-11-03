@@ -8,14 +8,12 @@
             
             <app-period-form></app-period-form>
             <p>Average Daily Glucose: </p>
-            <!-- TODO show average daily glucose in that period -->
 
         </div>
         <div class="col-md-6">
             
             <app-period-form></app-period-form>
             <p>Average Carb Intake: </p>
-            <!-- TODO show average Carb Intake in that period -->
 
         </div>
     </div>
@@ -80,8 +78,6 @@
                           <td>{{c.carbInTake}}</td> 
                           <td>{{ c.dateMeasured | date }}</td>
                         </ng-template>
-                        <!-- <td>{{c.carbInTake}}</td> 
-                        <td>{{ c.dateMeasured | date }}</td>   -->
                         <td class="carbtd">
                           <button *ngIf="!enableEdit" type="button" class="btn-sm btn-primary" (click)="onEditClick($event, j)">Edit</button>
                           <button *ngIf="!enableEdit" type="button" class="btn-sm btn-danger" (click)="onCarbDeleteClick(c.id)">Delete</button>
@@ -107,7 +103,6 @@
                 <td> {{con.description}} </td> 
                 
                 <td>Dr {{con.doctorName}}</td>  
-                <!-- TODO uncomment when back sends it in right format -->
 
                 <td>{{ con.dateCreated | date }}</td>        
               </tr>                 

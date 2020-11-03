@@ -9,8 +9,6 @@ import { ReporterService } from 'src/app/reporter.service';
 })
 export class PeriodFormComponent implements OnInit {
 
-  // dreport: DReport[];
-
   periodForm: FormGroup;
 
   constructor(private reporterService:ReporterService) { }

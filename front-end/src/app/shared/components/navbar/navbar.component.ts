@@ -11,13 +11,10 @@ export class NavbarComponent implements OnInit {
 
   isLogged:boolean;
   subscription: Subscription;
-  // luRole:string;
   
   constructor(private router:Router) { }
 
   ngOnInit(): void {
-    // this.luRole = sessionStorage.getItem('luRole');
-
 
   }
 

@@ -33,8 +33,7 @@ export class DaOnePatientComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe( params => {
-      console.log(params.id);
-   
+      console.log(params.id);   
 
       this.measurements.getPatientCarb(params.id).subscribe( result => this.carbs = result );
       this.measurements.getPatientGlucose(params.id).subscribe( result => this.glucoses = result );

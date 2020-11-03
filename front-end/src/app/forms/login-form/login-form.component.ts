@@ -16,7 +16,6 @@ export class LoginFormComponent implements OnInit, AfterViewInit {
   password: string;
   responseString: User;
   user: User;
-  // loggedUser: User;
 
   constructor(private router: Router, private loginService: LoginService) { }
   
@@ -64,27 +63,13 @@ export class LoginFormComponent implements OnInit, AfterViewInit {
         }        
         
 
-      }
-      // else {
-      //   alert("Wrong login or password!!!");
-      //     this.router.navigate(['login'])
-      // }
-
-      // sessionStorage.setItem( 'luUsername', this.user.username );
-      // sessionStorage.setItem( 'luId', this.user.id.toString() );
-      // sessionStorage.setItem( 'luFirstName', this.user.firstName );
-      // sessionStorage.setItem( 'luLastName', this.user.lastName );
-      // sessionStorage.setItem( 'luRole', this.user.role );
-      // sessionStorage.setItem( 'username', this.user.username );
-      
+      }    
 
 
     } );
 
    
   }
-
-
   
 
 }
