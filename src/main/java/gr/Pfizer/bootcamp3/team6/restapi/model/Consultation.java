@@ -15,6 +15,7 @@ public class Consultation {
     private Date dateCreated;
     private String description;
     private boolean isActive;
+    private String doctorName;
 
     @ManyToOne
     private Patient patient;
