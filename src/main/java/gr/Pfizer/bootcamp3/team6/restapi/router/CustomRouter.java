@@ -87,7 +87,8 @@ public class CustomRouter {
         router.attach("/patients/{id}/carbs/{startDate}/{endDate}/", CarbsStatisticsResourceImpl.class); // GET
 
         // Chief's endpoints
-        router.attach("/patients/{id}/activity/{startDate}/{endDate}/", CarbsStatisticsResourceImpl.class); // GET
+        router.attach("/patients/{id}/activity/{startDate}/{endDate}/", PatientActivityResourceImpl.class); // GET
+        router.attach("/doctors/{id}/activity/{startDate}/{endDate}/", PatientActivityResourceImpl.class); // GET
 
         return router;
     }

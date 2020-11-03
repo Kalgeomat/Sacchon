@@ -51,9 +51,9 @@ public class PatientActivityResourceImpl extends ServerResource implements Patie
         setExisting(user.isPresent());
         if (!user.isPresent())  throw new NotFoundException("Patient is not found");
 
-        int numberOfmeasurements = Reporter.getActivityForPatient(user.get(),startDate,endDate);
+        int numberOfMeasurements = Reporter.getActivityForPatient(user.get(),startDate,endDate);
         PatientActivityRepresentation patientActivityRepresentation = new PatientActivityRepresentation();
-        patientActivityRepresentation.setNumberOfMeasurements(numberOfmeasurements);
+        patientActivityRepresentation.setNumberOfMeasurements(numberOfMeasurements);
         patientActivityRepresentation.setCurrentDate(new Date());
         patientActivityRepresentation.setPatientId(patientId);
 
