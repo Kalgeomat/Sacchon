@@ -1,0 +1,82 @@
+<form [formGroup]="myForm">
+    <div>
+        <h1 style="margin-left: 50px"><img src="src\app\Pfizer-the-total-business.jpg" alt="Trulli" width="33" height="33">SACCHON</h1>
+    </div>
+    <div class= "container">
+    <div class="row">
+            <a class="navbar-brand" style="margin-left: 50px" style="color:black;"[routerLink]="'MDR-home-page'">HOME</a> 
+            <a class="navbar-brand" style="margin-left: 5px" style="color:black;"[routerLink]="'MDR-view-data-page'">VIEW MY DATA</a> 
+            <a class="navbar-brand" style="margin-left: 5px" style="color:black;"[routerLink]="'MDR-past-consultations-page'">CONSULTATIONS</a> 
+            <a class="navbar-brand" style="margin-left: 5px" style="color:black;"[routerLink]="'MDR-account-page'">ACCOUNT</a> 
+            <a class="navbar-brand" style="margin-left: 5px" style="color:black;"[routerLink]="'MDR-login-page'">SIGN OUT</a>
+    </div>
+    <div>
+        <h1 style="margin-left: 50px">VIEW DATA</h1><br>
+    </div>
+    <div>
+        <h5 style="margin-left: 50px">Choose Period to see average data</h5><br>
+    </div>
+    <div style="margin-left: 50px">
+        <label for="date">From</label>:</label>
+        <label  style="margin-left: 100px" for="date">To</label>:</label>
+        <br>
+        <input type="date" id="date_from" name="date_from">
+        <input type="date" id="date_to" name="date_to">
+        <button type="submit">Go</button>
+    </div><br>
+    <div style="margin-left: 50px">
+        <style>  
+            table {
+                    font-family: arial, sans-serif;
+                    border-collapse: collapse;
+                    width: 50%;
+                    }
+            </style>
+          <table>
+              <tr>
+                <th>Average Daily Glycose</th>
+                <th>Average Carb Intake</th>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+              </tr>
+            </table>
+    </div>
+    <div>
+        <h1  style="margin-left: 50px">BLOOD LEVEL GLYCOSE INPUTS</h1>
+      <table style="margin-left: 40px" >
+          <tr>
+            <th>level</th>
+            <th>date</th>
+            <th>time</th>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <button type="submit">Edit</button>
+                <button type="submit">Delete</button>
+            </td>
+          </tr>
+        </table>
+    </div>
+    <div>
+        <h1 style="margin-left: 50px">CARB INTAKE INPUTS</h1>
+        <table style="margin-left: 40px" >
+            <tr>
+              <th>Carb Intake</th>
+              <th>date</th>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td>
+                  <button type="submit">Edit</button>
+                  <button type="submit">Delete</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+</form>
