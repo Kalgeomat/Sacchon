@@ -139,7 +139,7 @@ HTTP POST => baseUrl + /reporter/login (login page)  **DONE**
     "password": "smith",
     "telephoneNumber": 2310299999,
     "address": "Egnatia 6",
-    "dob": "1995-01-01T00:00:00.00Z",
+    "dob": "1995-01-01T00:00:00.00Z"
 }
 ```
 
@@ -172,8 +172,7 @@ HTTP POST => baseUrl + /reporter/login (login page)  **DONE**
     "password": "helen",
     "telephoneNumber": 2310299999,
     "address": "Egnatia 6",
-    "dob": "1995-01-01T00:00:00.00Z",
-    "gender":1
+    "dob": "1995-01-01T00:00:00.00Z"
 }
 ```
 
