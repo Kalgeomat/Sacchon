@@ -1,6 +1,6 @@
 package gr.Pfizer.bootcamp3.team6.restapi.resource.impl;
 
-import gr.Pfizer.bootcamp3.team6.restapi.exceptions.NotFoundException;
+
 import gr.Pfizer.bootcamp3.team6.restapi.model.ApplicationUser;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Doctor;
 import gr.Pfizer.bootcamp3.team6.restapi.model.util.Reporter;
