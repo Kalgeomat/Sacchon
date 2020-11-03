@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Carb } from 'src/app/carb';
 import { Consultation } from 'src/app/consultation';
 import { ConsultationsService } from 'src/app/consultations.service';
@@ -26,25 +26,29 @@ export class DaOnePatientComponent implements OnInit {
   doctor: Doctor;
   consultationForm: FormGroup;
 
-  constructor(private doctorId: DoctorsService, private consultationsService: ConsultationsService, private measurements: MeasurementsService, private router:Router) { }
+  constructor(private route: ActivatedRoute, private doctorId: DoctorsService, private consultationsService: ConsultationsService, private measurements: MeasurementsService, private router:Router) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe( params => {
+      console.log(params.id);
+   
 
-    this.measurements.getCarbs().subscribe( result => this.carbs = result );
-    this.measurements.getGlucose().subscribe( result => this.glucoses = result );
+      this.measurements.getPatientCarb(params.id).subscribe( result => this.carbs = result );
+      this.measurements.getPatientGlucose(params.id).subscribe( result => this.glucoses = result );
 
-    this.consultationsService.getConsultations().subscribe( result => this.consults = result );
+      this.consultationsService.getUserConsultations(params.id).subscribe( result => this.consults = result );
 
-    // this.doctorId.getDoctorById().subscribe( result => this.doctor = result );
-
-    this.consultationForm = new FormGroup({
-      consultation: new FormControl()
+      this.consultationForm = new FormGroup({
+        consultation: new FormControl()
+      });
     });
+
 
   }
 
   consult() {
-    this.router.navigate(['doctoradvice/consultation']);
+    this.route.params.subscribe( params => { this.router.navigate(['doctoradvice/consultation',params.id]);
+    });
   }
 
   onEditClick(e, i) {

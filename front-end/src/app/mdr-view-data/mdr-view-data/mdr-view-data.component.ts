@@ -55,41 +55,35 @@ export class MdrViewDataComponent implements OnInit {
 
   
   onEditClick(e, i) {
+    
     this.enableEdit = true;
     this.enableEditIndex = i;
     // this.selectedItem = c.id;
     console.log(i, e);
   }
 
-  onCarbDeleteClick(e, i) {
-    console.log(i, e);
-
-    this.measurements.deleteCarb().subscribe(data => {
+  onCarbDeleteClick(id) {
+    this.measurements.deleteCarb(id).subscribe(data => {
       alert("Carb input removed!");
       this.ngOnInit();       
-    });
-
-    
+    });    
   }
 
   
-  onGlucoseDeleteClick(e, i) {
-    console.log(i, e);    
-
-    this.measurements.deleteGlucose().subscribe(data => {
+  onGlucoseDeleteClick(id) {
+    this.measurements.deleteGlucose(id).subscribe(data => {
       alert("Blood Glucose input removed!");
       this.ngOnInit();       
     });
   }
 
-  saveCarb() {
-
+  saveCarb(id) {
     let carb:CarbU ={
       carbInTake:this.carbIntakeForm.get('cilevel').value,
       dateMeasured:this.carbIntakeForm.get('cidate').value
     };
 
-    this.measurements.updateCarb(carb).subscribe(data => {
+    this.measurements.updateCarb(carb, id).subscribe(data => {
       alert(JSON.stringify(data));
       this.ngOnInit();
     });
@@ -98,8 +92,7 @@ export class MdrViewDataComponent implements OnInit {
 
   }
 
-  saveGlucose() {
-
+  saveGlucose(id) {
     let datetime=this.bloodGlucoseForm.get('bgdatetime').value;    
     let rightdatetime=new Date(datetime.replace(/-/g,'/').replace('T',' '));    
 
@@ -108,16 +101,14 @@ export class MdrViewDataComponent implements OnInit {
       dateMeasured:rightdatetime.toISOString()
     };
 
-    this.measurements.updateGlucose(glucose).subscribe(data => {
+    this.measurements.updateGlucose(glucose, id).subscribe(data => {
       alert(JSON.stringify(data));
       this.ngOnInit();
     });
 
     this.enableEdit = false;
 
-
   }
-
 
 
 }

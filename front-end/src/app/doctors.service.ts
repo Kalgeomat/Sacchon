@@ -8,7 +8,7 @@ import { Doctor } from './doctor';
 })
 export class DoctorsService {
   endpoint = 'http://localhost:9000/SacchonApp/doctors/';
-  endpoint2 = 'http://localhost:9000/SacchonApp/doctors/2';
+  endpoint2 = 'http://localhost:9000/SacchonApp/doctors/'+parseInt(sessionStorage.getItem("luId"));
 
   constructor(private http: HttpClient) {   }
 

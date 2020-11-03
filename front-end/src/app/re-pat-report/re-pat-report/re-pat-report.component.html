@@ -39,11 +39,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <!-- <tr *ngIf="duepatients.length">
-                    <th scope="row">{{duepatients.name}} {{duepatients.surname}}</th>
-                    <td>{{duepatients.days}}-30</td>                    
-                  </tr>                   -->
-                  <!--TODO show due patients-->
+                  <tr *ngFor="let dp of duepatients">
+                    <td>{{dp.firstName}} {{dp.lastName}}</td>
+                    <td>{{dp.nubmerOfDaysIneed}}</td>                    
+                  </tr>                  
                 </tbody>
               </table>
 

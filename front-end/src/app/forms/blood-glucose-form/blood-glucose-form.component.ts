@@ -30,7 +30,7 @@ export class BloodGlucoseFormComponent implements OnInit {
     let glucose:Glucose ={
       bloodGlucoseLevel:this.bloodGlucoseForm.get('bglevel').value,
       dateMeasured:rightdatetime.toISOString(),
-      patientId:1
+      patientId:parseInt(sessionStorage.getItem("luId"))
     };
 
     this.measurementsService.addGlucose(glucose).subscribe(data => {

@@ -22,8 +22,8 @@ export class DaHomeComponent implements OnInit {
 
   }
 
-  viewOPData() {
-    this.router.navigate(['doctoradvice/patient']);
+  viewOPData(id) {
+    this.router.navigate(['doctoradvice/patient/',id]);
   }
 
 }

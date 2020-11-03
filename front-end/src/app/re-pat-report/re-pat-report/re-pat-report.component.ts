@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PatientDue } from 'src/app/patientDue';
+import { PatientsService } from 'src/app/patients.service';
 
 @Component({
   selector: 'app-re-pat-report',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RePatReportComponent implements OnInit {
 
-  constructor() { }
+
+  duepatients: PatientDue[];
+
+  constructor(private patientService: PatientsService) { }
 
   ngOnInit(): void {
+
+    this.patientService.getAllPatientsInNeed().subscribe( result => this.duepatients = result);
   }
+
+
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Patient } from 'src/app/patient';
 import { PatientsService } from 'src/app/patients.service';
 
@@ -12,21 +13,20 @@ export class SignupPatientFormComponent implements OnInit {
 
   signupPatientForm: FormGroup;
 
-  constructor(private patientService: PatientsService) { }
+  constructor(private patientService: PatientsService, private router:Router) { }
   
   ngOnInit(): void {
     //form instatiation, configuration, pedia formas
     this.signupPatientForm = new FormGroup({
       spusername: new FormControl("", Validators.required),
-      email: new FormControl("", Validators.required),
-      firstName: new FormControl("", Validators.required),
-      password: new FormControl("", Validators.required),
-      lastName: new FormControl("", Validators.required),
-      address: new FormControl(),
-      telephoneNumber: new FormControl(),
-      dob: new FormControl("", Validators.required),
-      gender: new FormControl("", Validators.required)
-      // doctor_id: 1
+      spemail: new FormControl("", Validators.required),
+      spname: new FormControl("", Validators.required),
+      sppassword: new FormControl("", Validators.required),
+      spsurname: new FormControl("", Validators.required),
+      spaddress: new FormControl(),
+      sptelephone: new FormControl(),
+      spbirthday: new FormControl("", Validators.required),
+      spsex: new FormControl()
     });
 
   }
@@ -40,14 +40,14 @@ export class SignupPatientFormComponent implements OnInit {
       lastName:this.signupPatientForm.get('spsurname').value,
       address:this.signupPatientForm.get('spaddress').value,
       telephoneNumber:this.signupPatientForm.get('sptelephone').value,
-      dob:this.signupPatientForm.get('spbirthday').value,
-      gender:1
+      dob:this.signupPatientForm.get('spbirthday').value
     };
    
 
     this.patientService.addPatient(patient).subscribe(data => {
       alert(JSON.stringify(data));
       this.ngOnInit();
+      this.router.navigate(['login']);
     });
     
   }

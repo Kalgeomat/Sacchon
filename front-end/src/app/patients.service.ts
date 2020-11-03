@@ -8,11 +8,12 @@ import { Patient } from './patient';
 })
 export class PatientsService {
 
-  endpoint = 'http://localhost:9000/SacchonApp/doctors/1/patients';
-  endpoint2 = 'http://localhost:9000/SacchonApp/doctors/1/patients/need';
-  endpoint3 = 'http://localhost:9000/SacchonApp/patients/3';
-  endpoint4 = 'http://localhost:9000/SacchonApp/patients';
+  endpoint = 'http://localhost:9000/SacchonApp/doctors/'+parseInt(sessionStorage.getItem("luId"))+'/patients';
+  endpoint2 = 'http://localhost:9000/SacchonApp/doctors/'+parseInt(sessionStorage.getItem("luId"))+'/patients/need';
+  endpoint3 = 'http://localhost:9000/SacchonApp/patients/'+parseInt(sessionStorage.getItem("luId"));
+  endpoint4 = 'http://localhost:9000/SacchonApp/patients/signup';
   endpoint5 = 'http://localhost:9000/SacchonApp/patients/new';
+  endpoint6 = 'http://localhost:9000/SacchonApp/patients/need';
 
   constructor(private http: HttpClient) { }
 
@@ -34,6 +35,10 @@ export class PatientsService {
 
   getNewPatientsInNeed(): Observable<any> {
     return this.http.get(this.endpoint5,{headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
+  }
+
+  getAllPatientsInNeed(): Observable<any> {
+    return this.http.get(this.endpoint6,{headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
   }
 
 }

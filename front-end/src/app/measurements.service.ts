@@ -11,12 +11,18 @@ import { GlucoseU } from './glucoseU';
 })
 export class MeasurementsService {
 
-  endpointc = 'http://localhost:9000/SacchonApp/patients/1/carbs';
-  endpointc1 = 'http://localhost:9000/SacchonApp/carbs/2';
-  endpointg = 'http://localhost:9000/SacchonApp/patients/1/glucose';
-  endpointg1 = 'http://localhost:9000/SacchonApp/glucose/3';
+  endpointc = 'http://localhost:9000/SacchonApp/patients/'+parseInt(sessionStorage.getItem("luId"))+'/carbs';
+  endpointc1 = 'http://localhost:9000/SacchonApp/carbs/';
+  endpointg = 'http://localhost:9000/SacchonApp/patients/'+parseInt(sessionStorage.getItem("luId"))+'/glucose';
+  endpointg1 = 'http://localhost:9000/SacchonApp/glucose/';
+  endpointga = 'http://localhost:9000/SacchonApp/patients/id/glucose/'; //start/end';
+  endpointca = 'http://localhost:9000/SacchonApp/patients/id/carb/'; //start/end';
+  endpointu = 'http://localhost:9000/SacchonApp/patients/';
+
+
 
   constructor(private http:HttpClient) { }
+ 
 
   getCarbs(): Observable<any> {
     return this.http.get(this.endpointc,{headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
@@ -24,6 +30,14 @@ export class MeasurementsService {
 
   getGlucose(): Observable<any> {
     return this.http.get(this.endpointg,{headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
+  }
+
+  getPatientCarb(id): Observable<any> {
+    return this.http.get(this.endpointu+id+'/carbs',{headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
+  }
+
+  getPatientGlucose(id): Observable<any> {
+    return this.http.get(this.endpointu+id+'/glucose',{headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
   }
 
   addCarb(values:Carb):Observable<any> { 
@@ -38,24 +52,33 @@ export class MeasurementsService {
     {headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
   }
 
-  updateCarb(values:CarbU):Observable<any> {
-    return this.http.put(this.endpointc1,
+  updateCarb(values:CarbU, id):Observable<any> {
+    console.log('this 2 '+id);
+    return this.http.put(this.endpointc1+id,
       values,
       {headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
   }
 
-  updateGlucose(values:GlucoseU):Observable<any> {
-    return this.http.put(this.endpointg1,
+  updateGlucose(values:GlucoseU, id):Observable<any> {
+    return this.http.put(this.endpointg1+id,
       values,
       {headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
   }
 
-  deleteCarb():Observable<any> {
-    return this.http.delete(this.endpointc1,{headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
+  deleteCarb(id):Observable<any> {
+    return this.http.delete(this.endpointc1+id,{headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
   }
 
-  deleteGlucose():Observable<any> {
-    return this.http.delete(this.endpointg1,{headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
+  deleteGlucose(id):Observable<any> {
+    return this.http.delete(this.endpointg1+id,{headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
+  }
+
+  getAverageCarbs(s, e): Observable<any> {
+    return this.http.get(this.endpointca+s+'/'+e,{headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
+  }
+
+  getAverageGlucose(s, e): Observable<any> {
+    return this.http.get(this.endpointga+s+'/'+e,{headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});    
   }
 
 }

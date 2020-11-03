@@ -17,6 +17,7 @@ export class SignupDoctorFormComponent implements OnInit {
   ngOnInit(): void {
     //form instatiation, configuration, pedia formas
     this.signupDoctorForm = new FormGroup({
+      sdusername: new FormControl("", Validators.required),
       sdemail: new FormControl("", Validators.required),
       sdpassword: new FormControl("", Validators.required),
       sdname: new FormControl("", Validators.required),
@@ -37,8 +38,7 @@ export class SignupDoctorFormComponent implements OnInit {
       lastName:this.signupDoctorForm.get('sdsurname').value,
       address:this.signupDoctorForm.get('sdaddress').value,
       telephoneNumber:this.signupDoctorForm.get('sdtelephone').value,
-      dob:this.signupDoctorForm.get('sdbirthday').value,
-      gender:1
+      dob:this.signupDoctorForm.get('sdbirthday').value
     };
    
 

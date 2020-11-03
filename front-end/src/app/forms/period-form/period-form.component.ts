@@ -24,7 +24,11 @@ export class PeriodFormComponent implements OnInit {
   }
 
   onClickGo() {
-    // this.reporterService.getDoctorActivity().subscribe( result => this.dreport = result );
+    // this.reporterService.getAverageGlucose(s,e).subscribe( result => this.dreport = result );
   }
+
+  // onClickCGo() {
+  //   // this.reporterService.getAverageCarbs(s,e).subscribe( result => this.dreport = result );
+  // }
 
 }

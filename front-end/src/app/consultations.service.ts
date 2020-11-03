@@ -9,8 +9,15 @@ import { ConsultationU } from './consultationU';
 })
 export class ConsultationsService {
 
-  endpoint = 'http://localhost:9000/SacchonApp/patients/1/consultations/';
+  //MDR
+  endpoint = 'http://localhost:9000/SacchonApp/patients/'+parseInt(sessionStorage.getItem("luId"))+'/consultations/';
+  endpoint4 = 'http://localhost:9000/SacchonApp/patients/';//++'/consultations/';
+  
+
+  //DA
+  endpoint3= 'http://localhost:9000/SacchonApp/patients/'+parseInt(sessionStorage.getItem("luId"))+'/consultations/';
   endpoint2 = 'http://localhost:9000/SacchonApp/consultations/2';
+
 
   constructor(private http:HttpClient) { }
 
@@ -18,8 +25,12 @@ export class ConsultationsService {
     return this.http.get(this.endpoint,{headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
   }
 
-  addConsultation(values:Consultation):Observable<any> {
-    return this.http.post(this.endpoint,
+  getUserConsultations(id): Observable<any> {
+    return this.http.get(this.endpoint3+id+'/consultations/',{headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
+  }
+
+  addConsultation(values:Consultation, id):Observable<any> {
+    return this.http.post(this.endpoint4+id+'/consultations/',
       values,
       {headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
   }

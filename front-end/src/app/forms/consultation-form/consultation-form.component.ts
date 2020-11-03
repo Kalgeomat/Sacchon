@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Consultation } from 'src/app/consultation';
 import { ConsultationsService } from 'src/app/consultations.service';
 
@@ -12,7 +13,7 @@ export class ConsultationFormComponent implements OnInit {
 
   consultationForm: FormGroup;
 
-  constructor(private consultationsService: ConsultationsService) { }
+  constructor(private router:Router, private route:ActivatedRoute, private consultationsService: ConsultationsService) { }
   
   ngOnInit(): void {
     //form instatiation, configuration, pedia formas
@@ -31,10 +32,13 @@ export class ConsultationFormComponent implements OnInit {
       doctorId:7  
     };
 
-    this.consultationsService.addConsultation(consultation).subscribe(data => {
+    this.route.params.subscribe( params => { this.router.navigate(['doctoradvice/consultation',params.id]);
+    this.consultationsService.addConsultation(consultation, params.id).subscribe(data => {
       alert(JSON.stringify(data));
       this.ngOnInit();
     });
+    });
+    
 
   }
 

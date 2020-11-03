@@ -9,6 +9,8 @@ import { ConsultationsService } from 'src/app/consultations.service';
 })
 export class MdrHomeComponent implements OnInit {
 
+  patientName:string;
+
   consults: Consultation[];
 
   constructor(private consultationsService: ConsultationsService) { }
@@ -16,6 +18,8 @@ export class MdrHomeComponent implements OnInit {
   ngOnInit(): void {
 
     this.consultationsService.getConsultations().subscribe( result => this.consults = result );
+
+    this.patientName = sessionStorage.getItem("luFirstName");
 
 
   }

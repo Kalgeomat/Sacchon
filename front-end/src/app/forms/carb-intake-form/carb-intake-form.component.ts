@@ -26,7 +26,7 @@ export class CarbIntakeFormComponent implements OnInit {
     let carb:Carb ={
       carbInTake:this.carbIntakeForm.get('cilevel').value,
       dateMeasured:this.carbIntakeForm.get('cidate').value,
-      patientId:1
+      patientId:parseInt(sessionStorage.getItem("luId"))
     };
 
     this.measurementsService.addCarb(carb).subscribe(data => {
