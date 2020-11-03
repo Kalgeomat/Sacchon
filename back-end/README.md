@@ -101,30 +101,23 @@ Get all inactive patients:
 HTTP GET => baseUrl + /patients/noactive/start/end (R patient report page in "PATIENTS WITH NO ACTIVITY")  **DONE**
 
 Get a patient's activity data:
-HTTP GET => baseUrl + /patients/id/activity/start/end (R patient report page in "PERSONAL MONITOR DATA")
+HTTP GET => baseUrl + /patients/id/activity/start/end (R patient report page in "PERSONAL MONITOR DATA") **DONE**
 
 Get a doctor's activity data:
-HTTP GET => baseUrl + /doctors/id/activity/start/end (R doctor report page in "CONSULTATION SUBMISSIONS")
+HTTP GET => baseUrl + /doctors/id/activity/start/end (R doctor report page in "CONSULTATION SUBMISSIONS") **DONE**
 
 Post a doctor:
 HTTP POST => baseUrl + /doctors (R doctor signup page)  **DONE**
 
 *Authentication*
+Login a user:
+HTTP POST => baseUrl + /patients/login (login page) **DONE**
 
 Sign up a patient:
 HTTP POST => baseUrl + /patients/signup (sign up page)  **DONE**
 
-Login a patient:
-HTTP POST => baseUrl + /patients/login (login page) **DONE**
 Sign up a doctor (from chief's system):
 HTTP POST => baseUrl + /doctors/signup (sign up page)  **DONE**
-
-Login a doctor:
-HTTP POST => baseUrl + /doctors/login (login page)  **DONE**
-
-Login the chief:
-HTTP POST => baseUrl + /reporter/login (login page)  **DONE**
-
 
 **JSON**
 
