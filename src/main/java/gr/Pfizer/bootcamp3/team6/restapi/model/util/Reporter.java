@@ -3,7 +3,6 @@ package gr.Pfizer.bootcamp3.team6.restapi.model.util;
 import gr.Pfizer.bootcamp3.team6.restapi.model.*;
 import gr.Pfizer.bootcamp3.team6.restapi.model.interfaces.Measurement;
 import org.apache.commons.lang3.time.DateUtils;
-
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,12 +26,24 @@ public class Reporter {
 
     public static List<ApplicationUser> getInactivePatients(List<ApplicationUser> allUsers, Date startDate, Date endDate)
     {
-        return allUsers.stream().filter(user -> checkIfPatientActive(user,startDate,endDate)).collect(Collectors.toList());
+        return allUsers.stream().filter(user -> checkIfPatientInactive(user,startDate,endDate)).collect(Collectors.toList());
     }
 
     public static List<ApplicationUser> getInactiveDoctors(List<ApplicationUser> allUsers, Date startDate, Date endDate)
     {
-        return allUsers.stream().filter(user -> checkIfDoctorActive(user,startDate,endDate)).collect(Collectors.toList());
+        return allUsers.stream().filter(user -> checkIfDoctorInactive(user,startDate,endDate)).collect(Collectors.toList());
+    }
+
+    public static int getActivityForPatient(ApplicationUser user, Date startDate, Date endDate)
+    {
+        if(checkIfPatientInactive(user,startDate,endDate))
+            return 0;
+        else
+        {
+            List<Measurement> patientMeasurements = getAllPatientMeasurements(user);
+            patientMeasurements = getNeededMeasurements(patientMeasurements,startDate,endDate);
+            return patientMeasurements.size();
+        }
     }
 
     // utility methods
@@ -98,15 +109,12 @@ public class Reporter {
         return sumCarbIntake/carbMeasurements.size();
     }
 
-    private static boolean checkIfPatientActive(ApplicationUser user, Date startDate, Date endDate)
+    private static boolean checkIfPatientInactive(ApplicationUser user, Date startDate, Date endDate)
     {
-        Patient patient = (Patient) user;
-        List<Measurement> allPatientMeasurements = Stream.concat(patient.getListOfCarbMeasurements().stream()
-                , patient.getListOfGlucoseMeasurements().stream()).collect(Collectors.toList());
+        List<Measurement> allPatientMeasurements = getAllPatientMeasurements(user);
 
         if(allPatientMeasurements.size() == 0)
             return true;
-
 
         List<Measurement> neededMeasurements = getNeededMeasurements(allPatientMeasurements,startDate,endDate);
 
@@ -116,14 +124,21 @@ public class Reporter {
         return false;
     }
 
-    private static boolean checkIfDoctorActive(ApplicationUser user, Date startDate, Date endDate)
+    private static boolean checkIfDoctorInactive(ApplicationUser user, Date startDate, Date endDate)
     {
         Doctor doctor = (Doctor) user;
         List<Patient> patients = doctor.getListOfPatients();
         if(patients.size() == 0)
-            return false;
+            return true;
         else
             return patients.stream().noneMatch(patient -> startDate.before(Date.from(patient.getLastConsultedOrSignedUp().atStartOfDay(ZoneId.systemDefault()).toInstant()))
                     && endDate.after(Date.from(patient.getLastConsultedOrSignedUp().atStartOfDay(ZoneId.systemDefault()).toInstant())));
+    }
+
+    private static List<Measurement> getAllPatientMeasurements(ApplicationUser user)
+    {
+        Patient patient = (Patient) user;
+        return Stream.concat(patient.getListOfCarbMeasurements().stream()
+                , patient.getListOfGlucoseMeasurements().stream()).collect(Collectors.toList());
     }
 }

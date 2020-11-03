@@ -2,23 +2,20 @@ package gr.Pfizer.bootcamp3.team6.restapi.resource.impl;
 
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.NotFoundException;
 import gr.Pfizer.bootcamp3.team6.restapi.model.ApplicationUser;
-import gr.Pfizer.bootcamp3.team6.restapi.model.Carb;
-import gr.Pfizer.bootcamp3.team6.restapi.model.Patient;
 import gr.Pfizer.bootcamp3.team6.restapi.model.util.Reporter;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.UserRepository;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.util.JpaUtil;
-import gr.Pfizer.bootcamp3.team6.restapi.representation.CarbsStatisticsRepresentation;
-import gr.Pfizer.bootcamp3.team6.restapi.resource.CarbsStatisticsResource;
+import gr.Pfizer.bootcamp3.team6.restapi.representation.PatientActivityRepresentation;
+import gr.Pfizer.bootcamp3.team6.restapi.resource.PatientActivityResource;
 import gr.Pfizer.bootcamp3.team6.restapi.resource.util.ResourceUtils;
 import gr.Pfizer.bootcamp3.team6.restapi.security.CustomRole;
 import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
 import javax.persistence.EntityManager;
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 
-public class CarbsStatisticsResourceImpl extends ServerResource implements CarbsStatisticsResource {
+public class PatientActivityResourceImpl extends ServerResource implements PatientActivityResource {
     private UserRepository userRepository;
     private EntityManager em;
     private long patientId;
@@ -47,23 +44,19 @@ public class CarbsStatisticsResourceImpl extends ServerResource implements Carbs
     }
 
     @Override
-    public CarbsStatisticsRepresentation getCarbsStatistics() throws NotFoundException {
-        ResourceUtils.checkRole(this, CustomRole.ROLE_PATIENT.getRoleName());
+    public PatientActivityRepresentation getPatientActivity() throws NotFoundException {
+        ResourceUtils.checkRole(this, CustomRole.ROLE_CHIEF_DOCTOR.getRoleName());
 
         Optional<ApplicationUser> user = userRepository.findById(patientId);
         setExisting(user.isPresent());
         if (!user.isPresent())  throw new NotFoundException("Patient is not found");
-        Patient patientOfCarb = (Patient) user.get();
 
-        List<Carb> carbMeasurements = patientOfCarb.getListOfCarbMeasurements();
-        double carbAverage = Reporter.getCarbAverageReport(carbMeasurements, startDate, endDate);
+        int numberOfmeasurements = Reporter.getActivityForPatient(user.get(),startDate,endDate);
+        PatientActivityRepresentation patientActivityRepresentation = new PatientActivityRepresentation();
+        patientActivityRepresentation.setNumberOfMeasurements(numberOfmeasurements);
+        patientActivityRepresentation.setCurrentDate(new Date());
+        patientActivityRepresentation.setPatientId(patientId);
 
-        CarbsStatisticsRepresentation carbStatRep = new CarbsStatisticsRepresentation();
-        carbStatRep.setPatientId(patientId);
-        carbStatRep.setStartDate(startDate);
-        carbStatRep.setEndDate(endDate);
-        carbStatRep.setCarbsStatistics(carbAverage);
-
-        return carbStatRep;
+        return patientActivityRepresentation;
     }
 }
