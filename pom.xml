@@ -15,9 +15,8 @@
         <lombok.version>1.18.12</lombok.version>
     </properties>
 
-
-
     <dependencies>
+
         <dependency>
             <groupId>org.restlet.jse</groupId>
             <artifactId>org.restlet</artifactId>
