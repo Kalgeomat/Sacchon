@@ -1,6 +1,8 @@
 package gr.Pfizer.bootcamp3.team6.restapi.resource.impl;
 
 import gr.Pfizer.bootcamp3.team6.restapi.exceptions.BadEntityException;
+import gr.Pfizer.bootcamp3.team6.restapi.model.ChiefDoctor;
+import gr.Pfizer.bootcamp3.team6.restapi.model.Gender;
 import gr.Pfizer.bootcamp3.team6.restapi.model.Patient;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.UserRepository;
 import gr.Pfizer.bootcamp3.team6.restapi.repository.util.JpaUtil;
@@ -11,6 +13,7 @@ import org.restlet.resource.ServerResource;
 import javax.persistence.EntityManager;
 import java.time.Clock;
 import java.time.LocalDate;
+import java.util.Date;
 
 public class PatientSignUpResourceImpl extends ServerResource implements PatientSignUpResource {
     private UserRepository userRepository;
@@ -40,6 +43,19 @@ public class PatientSignUpResourceImpl extends ServerResource implements Patient
         patient.setActive(true);
         patient.setLastConsultedOrSignedUp(LocalDate.now(Clock.systemUTC()));
         userRepository.save(patient);
+        
+        /*ChiefDoctor chiefDoctor = new ChiefDoctor();
+        chiefDoctor.setUsername("admin");
+        chiefDoctor.setPassword("admin57");
+        chiefDoctor.setFirstName("John");
+        chiefDoctor.setLastName("John");
+        chiefDoctor.setAddress("Athens");
+        chiefDoctor.setDob(new Date());
+        chiefDoctor.setEmail("test@mail.com");
+        chiefDoctor.setGender(Gender.MALE);
+        chiefDoctor.setActive(true);
+        chiefDoctor.setTelephoneNumber(5577);
+        userRepository.save(chiefDoctor);*/
 
         return PatientRepresentation.getPatientRepresentation(patient);
     }

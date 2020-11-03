@@ -22,9 +22,11 @@ public class ApplicationUser {
     protected long telephoneNumber;
     protected String address;
     protected Date dob;
-    protected Gender gender;
     protected boolean isActive;
+    @Enumerated(EnumType.STRING)
     protected CustomRole role;
+    @Enumerated(EnumType.STRING)
+    protected Gender gender;
 
     public boolean checkIfActive()
     {
