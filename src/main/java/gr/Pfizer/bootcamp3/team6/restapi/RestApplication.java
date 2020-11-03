@@ -34,7 +34,7 @@ public class RestApplication extends Application {
 
         LOGGER.info("Sacchon Web API started");
         LOGGER.info("URL: http://localhost:9000/SacchonApp/");
-        LOGGER.info("URL: http://localhost:9000/SacchonApp/patients/1/consultations");
+
     }
     @Override
     public Restlet createInboundRoot() {
