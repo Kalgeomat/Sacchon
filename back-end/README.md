@@ -121,6 +121,8 @@ HTTP POST => baseUrl + /patients/signup (sign up page)
 Sign up a doctor (from chief's system):
 HTTP POST => baseUrl + /doctors/signup (sign up page)
 
+### Example Requests
+
 1. POST sign up doctor http://localhost:9000/SacchonApp/doctors/signup
 
     #### JSON
